@@ -1,10 +1,12 @@
-import { Button } from "@/components/ui/button";
+import { Navbar } from "@/components/Navbar/Navbar";
+
 import { Outlet } from "react-router-dom";
 
 export const Root = () => {
   return (
     <div>
-      <Button>Click</Button>
+      <Navbar />
+
       <Outlet />
     </div>
   );
