@@ -8,6 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useNavigate } from "react-router-dom";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const ProfileDropDown = ({ user }) => {
   const navigate = useNavigate();
@@ -18,7 +19,10 @@ export const ProfileDropDown = ({ user }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
-        <img className="w-10 h-9 rounded-full" src={user?.photoURL} alt="" />
+        <Avatar>
+          <AvatarImage src={user?.photoURL} />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuLabel>

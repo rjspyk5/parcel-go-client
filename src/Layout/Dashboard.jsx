@@ -1,5 +1,22 @@
 import React from "react";
+import { NavLink, Outlet } from "react-router-dom";
 
 export const Dashboard = () => {
-  return <div>Dashboard</div>;
+  const userMenu = (
+    <>
+      <li>
+        <NavLink>Book a Parcel</NavLink>
+      </li>
+    </>
+  );
+  return (
+    <div>
+      <div className="flex">
+        <div className="w-[20%] min-h-screen bg-gray-500"></div>
+        <div className="flex-1">
+          <Outlet></Outlet>
+        </div>
+      </div>
+    </div>
+  );
 };

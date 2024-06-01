@@ -5,6 +5,8 @@ import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { ProfileDropDown } from "../ProfileDropDown/ProfileDropDown";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "@/Hooks/useAuth";
+import { Switch } from "@radix-ui/react-switch";
+import { ToogleTheme } from "../Theme/ToogleTheme";
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -48,6 +50,8 @@ export const Navbar = () => {
             </Button>
           ))}
         </div>
+        <ToogleTheme />
+
         {/* end side */}
         <div className="flex gap-2">
           {user ? (
