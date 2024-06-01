@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import login from "../../assets/image/login3.jpg";
 
 import { useForm } from "react-hook-form";
@@ -6,10 +6,11 @@ import { useState } from "react";
 import axios from "axios";
 import { GoogleLogin } from "../GoogleLogin/GoogleLogin";
 import { useAuth } from "@/Hooks/useAuth";
+import Swal from "sweetalert2";
 
 export const Registration = () => {
-  const { user } = useAuth();
-  console.log(user);
+  const { user, createUser, updateInfo, loading, logOut } = useAuth();
+  const navigate = useNavigate();
 
   const url = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMG_API
@@ -21,6 +22,11 @@ export const Registration = () => {
 
     formState: { errors },
   } = useForm();
+  {
+    !loading && user && navigate("/");
+  }
+  console.log(loading);
+  console.log(user);
   const onSubmit = async (data) => {
     if (data.image.length > 0) {
       const imageFile = { image: data.image[0] };
@@ -33,7 +39,17 @@ export const Registration = () => {
     } else {
       data.image = "https://iili.io/Jbv2kkF.jpg";
     }
-    console.log(data);
+    createUser(data.email, data.pass).then((res) => {
+      data.name &&
+        updateInfo(data.name, data.image).then(() => {
+          Swal.fire({
+            icon: "success",
+            title: "Registration successful,now you can login",
+            timer: 2000,
+          });
+          logOut().then(() => navigate("/login"));
+        });
+    });
   };
   return (
     <div>
@@ -152,13 +168,16 @@ export const Registration = () => {
               </span>
 
               <input
-                {...register("pass", { required: true })}
+                {...register("pass", { required: true, minLength: 6 })}
                 type="password"
                 className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 placeholder="Password"
               />
             </div>
             {errors.pass && <span>This field is required</span>}
+            {errors.pass?.type === "minLength" && (
+              <span className="text-red-500">Minimum length have to be 6</span>
+            )}
             <div className="mt-4">
               <select
                 placeholder="Select"

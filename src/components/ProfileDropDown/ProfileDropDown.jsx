@@ -7,11 +7,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useNavigate } from "react-router-dom";
 
 export const ProfileDropDown = ({ user }) => {
+  const navigate = useNavigate();
   const { logOut } = useAuth();
   const handleLogOut = () => {
-    logOut().then(() => console.log("logout"));
+    logOut().then(() => navigate("/login"));
   };
   return (
     <DropdownMenu>
