@@ -5,12 +5,32 @@ import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { ProfileDropDown } from "../ProfileDropDown/ProfileDropDown";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "@/Hooks/useAuth";
-import { Switch } from "@radix-ui/react-switch";
+
 import { ToogleTheme } from "../Theme/ToogleTheme";
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user } = useAuth();
+  const menu = (
+    <>
+      <NavLink
+        to="/"
+        className={({ isAcitve }) =>
+          isAcitve ? "bg-yellow-500 dark:bg-yellow-300" : "bg-red-500"
+        }
+      >
+        <Button variant="link">Home</Button>
+      </NavLink>
+      <NavLink
+        to="/dashboard"
+        className={({ isAcitve }) =>
+          isAcitve ? "bg-yellow-500 dark:bg-yellow-300" : ""
+        }
+      >
+        <Button variant="link">Dashboard</Button>
+      </NavLink>
+    </>
+  );
   const mobileItems = ["Home", "Dashboard", "C"];
   return (
     <div>
@@ -25,35 +45,17 @@ export const Navbar = () => {
             </SheetTrigger>
 
             <SheetContent side="left">
-              <div className="flex flex-col items-start">
-                {mobileItems.map((item, index) => (
-                  <Button
-                    key={index}
-                    variant="link"
-                    onClick={() => {
-                      setOpen(false);
-                    }}
-                  >
-                    {item}
-                  </Button>
-                ))}
-              </div>
+              <div className="flex flex-col items-start">{menu}</div>
             </SheetContent>
           </Sheet>
           <h1>Logo</h1>
         </div>
         {/* Middle side */}
-        <div className="mr-4 hidden gap-2 md:flex">
-          {mobileItems.map((item, index) => (
-            <Button key={index} variant="link">
-              {item}
-            </Button>
-          ))}
-        </div>
-        <ToogleTheme />
+        <div className="mr-4 hidden gap-2 md:flex">{menu}</div>
 
         {/* end side */}
         <div className="flex gap-2">
+          <ToogleTheme />
           {user ? (
             <ProfileDropDown user={user} />
           ) : (
