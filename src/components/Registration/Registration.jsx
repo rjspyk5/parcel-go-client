@@ -3,7 +3,12 @@ import login from "../../assets/image/login3.jpg";
 import { SelectDropDown } from "../SelectDropDown/SelectDropDown";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import axios from "axios";
+
 export const Registration = () => {
+  const url = `https://api.imgbb.com/1/upload?key=${
+    import.meta.env.VITE_IMG_API
+  }`;
   const [profilePhotoName, setprofilePhotoName] = useState("Profile Photo");
   const {
     register,
@@ -11,13 +16,16 @@ export const Registration = () => {
 
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
     if (data.image.length > 0) {
-      const image = data.image[0];
-      console.log(image);
+      const imageFile = { image: data.image[0] };
+      const im = await axios.post(url, imageFile, {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      });
+      data.image = im.data.data.display_url;
     }
-    console.log(data.image);
   };
   return (
     <div>
@@ -90,7 +98,6 @@ export const Registration = () => {
                 className=" opacity-0 w-0 h-0 overflow-hidden"
               />
             </label>
-
             <div className="relative flex items-center mt-4">
               <span className="absolute">
                 <svg
