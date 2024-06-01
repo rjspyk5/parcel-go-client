@@ -25,7 +25,10 @@ export const Registration = () => {
         },
       });
       data.image = im.data.data.display_url;
+    } else {
+      data.image = "https://iili.io/Jbv2kkF.jpg";
     }
+    console.log(data);
   };
   return (
     <div>
