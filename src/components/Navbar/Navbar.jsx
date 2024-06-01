@@ -3,6 +3,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { ProfileDropDown } from "../ProfileDropDown/ProfileDropDown";
+import { NavLink } from "react-router-dom";
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -47,8 +48,13 @@ export const Navbar = () => {
         </div>
         {/* end side */}
         <div className="flex gap-2">
-          <Button>Login</Button>
-          <Button>Register</Button>
+          <NavLink to="/login">
+            <Button>Sign In</Button>
+          </NavLink>
+          <NavLink to="/reg">
+            <Button>Sign Up</Button>
+          </NavLink>
+
           <ProfileDropDown />
         </div>
       </div>
