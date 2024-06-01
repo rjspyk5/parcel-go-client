@@ -1,16 +1,16 @@
+import { Link } from "react-router-dom";
+import login from "../../assets/image/login3.jpg";
 export const Login = () => {
   return (
     <div>
       <section className="">
-        <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
-          <form className="w-full max-w-md">
-            <img
-              className="w-auto h-7 sm:h-8"
-              src="https://merakiui.com/images/logo.svg"
-              alt=""
-            />
-
-            <h1 className="mt-3 text-2xl font-semibold text-gray-800 capitalize sm:text-3xl dark:text-white">
+        <div className="absolute  h-full w-full overflow-hidden bg-fixed bg-black bg-opacity-50"></div>
+        <div
+          style={{ backgroundImage: `url(${login})` }}
+          className="  bg-cover bg-no-repeat container flex items-center justify-center min-h-screen px-6 mx-auto"
+        >
+          <form className="w-full max-w-md bg-[#b6b5b52f] rounded-lg backdrop-blur-lg p-10">
+            <h1 className="mt-3 text-2xl text-white font-semibold text-center capitalize sm:text-3xl">
               sign In
             </h1>
 
@@ -69,13 +69,11 @@ export const Login = () => {
                 Sign in
               </button>
 
-              <p className="mt-4 text-center text-gray-600 dark:text-gray-400">
-                or sign in with
-              </p>
+              <p className="mt-4 text-center text-white">or sign in with</p>
 
               <a
                 href="#"
-                className="flex items-center justify-center px-6 py-3 mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg dark:border-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600"
+                className="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg hover:text-black hover:bg-gray-50 dark:hover:bg-gray-600"
               >
                 <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">
                   <path
@@ -100,12 +98,12 @@ export const Login = () => {
               </a>
 
               <div className="mt-6 text-center ">
-                <a
-                  href="#"
-                  className="text-sm text-blue-500 hover:underline dark:text-blue-400"
+                <Link
+                  to="/reg"
+                  className="text-sm text-blue-500 hover:underline"
                 >
                   Don’t have an account yet? Sign up
-                </a>
+                </Link>
               </div>
             </div>
           </form>
