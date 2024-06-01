@@ -2,14 +2,23 @@ import { Link } from "react-router-dom";
 import login from "../../assets/image/login3.jpg";
 import { SelectDropDown } from "../SelectDropDown/SelectDropDown";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 export const Registration = () => {
+  const [profilePhotoName, setprofilePhotoName] = useState("Profile Photo");
   const {
     register,
     handleSubmit,
 
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    console.log(data);
+    if (data.image.length > 0) {
+      const image = data.image[0];
+      console.log(image);
+    }
+    console.log(data.image);
+  };
   return (
     <div>
       <section className="">
@@ -20,7 +29,7 @@ export const Registration = () => {
         >
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="w-full max-w-md bg-[#b6b5b52f] rounded-lg backdrop-blur-lg p-7"
+            className="w-full max-w-md bg-[#b6b5b52f] rounded-lg backdrop-blur-lg px-7 py-2"
           >
             <h1 className="mt-3 text-2xl text-white font-semibold text-center capitalize sm:text-3xl">
               Sign Up
@@ -68,13 +77,17 @@ export const Registration = () => {
                 />
               </svg>
 
-              <h2 className="mx-3 text-gray-400">Profile Photo</h2>
+              <h2 className="mx-3 text-gray-400">{profilePhotoName}</h2>
 
               <input
                 {...register("image")}
                 id="dropzone-file"
                 type="file"
-                className="hidden"
+                onChange={(e) =>
+                  e.target.files.length &&
+                  setprofilePhotoName(e.target.files[0].name)
+                }
+                className=" opacity-0 w-0 h-0 overflow-hidden"
               />
             </label>
 
@@ -139,7 +152,7 @@ export const Registration = () => {
                 {...register("user", { required: true })}
               >
                 <option value="" disabled hidden>
-                  Select an option
+                  Select User Type
                 </option>
                 <option value="user">User</option>
                 <option value="deliveryMan">Delivery Man</option>
