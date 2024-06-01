@@ -1,28 +1,23 @@
 import { useState } from "react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { ProfileDropDown } from "../ProfileDropDown/ProfileDropDown";
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const mobileItems = ["A", "B", "C"];
+  const mobileItems = ["Home", "Dashboard", "C"];
   return (
     <div>
-      <header className="w-full border-b">
-        <div className="flex h-14 items-center px-4">
-          <div className="mr-4 hidden gap-2 md:flex">
-            {mobileItems.map((item, index) => (
-              <Button key={index} variant="link">
-                {item}
-              </Button>
-            ))}
-          </div>
+      <div className="flex shadow-md py-4 justify-between border-b">
+        {/* left side  */}
+        <div className="flex gap-3 items-center">
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
-                Open
+                <HamburgerMenuIcon />
               </Button>
             </SheetTrigger>
-            <h1>Nav</h1>
 
             <SheetContent side="left">
               <div className="flex flex-col items-start">
@@ -40,8 +35,23 @@ export const Navbar = () => {
               </div>
             </SheetContent>
           </Sheet>
+          <h1>Logo</h1>
         </div>
-      </header>
+        {/* Middle side */}
+        <div className="mr-4 hidden gap-2 md:flex">
+          {mobileItems.map((item, index) => (
+            <Button key={index} variant="link">
+              {item}
+            </Button>
+          ))}
+        </div>
+        {/* end side */}
+        <div className="flex gap-2">
+          <Button>Login</Button>
+          <Button>Register</Button>
+          <ProfileDropDown />
+        </div>
+      </div>
     </div>
   );
 };
