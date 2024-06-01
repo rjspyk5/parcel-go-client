@@ -1,6 +1,5 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import login from "../../assets/image/login3.jpg";
-
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import axios from "axios";
@@ -11,7 +10,6 @@ import Swal from "sweetalert2";
 export const Registration = () => {
   const { user, createUser, updateInfo, loading, logOut } = useAuth();
   const navigate = useNavigate();
-
   const url = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMG_API
   }`;
@@ -19,14 +17,12 @@ export const Registration = () => {
   const {
     register,
     handleSubmit,
-
     formState: { errors },
   } = useForm();
   {
     !loading && user && navigate("/");
   }
-  console.log(loading);
-  console.log(user);
+
   const onSubmit = async (data) => {
     if (data.image.length > 0) {
       const imageFile = { image: data.image[0] };

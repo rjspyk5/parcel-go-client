@@ -1,10 +1,17 @@
 import { useAuth } from "@/Hooks/useAuth";
+import Swal from "sweetalert2";
 
 export const GoogleLogin = () => {
   const { googleLogin } = useAuth();
   const handleLogin = () => {
     googleLogin()
-      .then((res) => console.log(res))
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Successfully Login",
+          timer: 2000,
+        });
+      })
       .catch((er) => console.log(er));
   };
   return (

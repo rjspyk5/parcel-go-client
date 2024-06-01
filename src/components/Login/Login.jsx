@@ -1,16 +1,51 @@
-import { Link } from "react-router-dom";
-import login from "../../assets/image/login3.jpg";
+import { Link, useNavigate } from "react-router-dom";
+import loginimg from "../../assets/image/login3.jpg";
 import { GoogleLogin } from "../GoogleLogin/GoogleLogin";
+import { useAuth } from "@/Hooks/useAuth";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 export const Login = () => {
+  const { user, login, loading } = useAuth();
+  const navigate = useNavigate();
+  {
+    !loading && user && navigate("/");
+  }
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = async (data) => {
+    login(data.email, data.pass)
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Successfully login",
+          timer: 2000,
+        });
+      })
+      .catch((er) => {
+        Swal.fire({
+          icon: "error",
+          title: `${er}`,
+        });
+      });
+  };
+
   return (
     <div>
       <section className="">
         <div className="absolute  h-full w-full overflow-hidden bg-fixed bg-black bg-opacity-50"></div>
         <div
-          style={{ backgroundImage: `url(${login})` }}
+          style={{ backgroundImage: `url(${loginimg})` }}
           className="  bg-cover bg-no-repeat container flex items-center justify-center min-h-screen px-6 mx-auto"
         >
-          <form className="w-full max-w-md bg-[#b6b5b52f] rounded-lg backdrop-blur-lg p-10">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="w-full max-w-md bg-[#b6b5b52f] rounded-lg backdrop-blur-lg p-10"
+          >
             <h1 className="mt-3 text-2xl text-white font-semibold text-center capitalize sm:text-3xl">
               sign In
             </h1>
@@ -34,11 +69,13 @@ export const Login = () => {
               </span>
 
               <input
+                {...register("email", { required: true })}
                 type="email"
                 className="block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 placeholder="Email address"
               />
             </div>
+            {errors.email && <span>This field is required</span>}
 
             <div className="relative flex items-center mt-4">
               <span className="absolute">
@@ -59,11 +96,13 @@ export const Login = () => {
               </span>
 
               <input
+                {...register("pass", { required: true })}
                 type="password"
                 className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
                 placeholder="Password"
               />
             </div>
+            {errors.pass && <span>This field is required</span>}
 
             <div className="mt-6">
               <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
