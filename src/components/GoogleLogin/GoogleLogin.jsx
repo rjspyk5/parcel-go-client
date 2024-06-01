@@ -10,7 +10,7 @@ export const GoogleLogin = () => {
   return (
     <button
       onClick={handleLogin}
-      className="flex items-center justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg hover:text-black hover:bg-gray-50 dark:hover:bg-gray-600"
+      className="flex items-center w-full justify-center px-6 py-3 mt-4 text-white transition-colors duration-300 transform border rounded-lg hover:text-black hover:bg-gray-50 dark:hover:bg-gray-600"
     >
       <svg className="w-6 h-6 mx-2" viewBox="0 0 40 40">
         <path

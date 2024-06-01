@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { ProfileDropDown } from "../ProfileDropDown/ProfileDropDown";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "@/Hooks/useAuth";
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { user } = useAuth();
   const mobileItems = ["Home", "Dashboard", "C"];
   return (
     <div>
@@ -48,14 +50,13 @@ export const Navbar = () => {
         </div>
         {/* end side */}
         <div className="flex gap-2">
-          <NavLink to="/login">
-            <Button>Sign In</Button>
-          </NavLink>
-          <NavLink to="/reg">
-            <Button>Sign Up</Button>
-          </NavLink>
-
-          <ProfileDropDown />
+          {user ? (
+            <ProfileDropDown user={user} />
+          ) : (
+            <NavLink to="/login">
+              <Button>Sign In</Button>
+            </NavLink>
+          )}
         </div>
       </div>
     </div>
