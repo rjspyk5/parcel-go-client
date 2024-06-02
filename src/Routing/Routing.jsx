@@ -8,6 +8,14 @@ import { Home } from "@/Pages/Home/Home";
 import { Dashboard } from "@/Layout/Dashboard";
 
 import { PrivateRoute } from "@/components/privateRoute/PrivateRoute";
+import { AdminPrivateRoute } from "@/components/adminPrivateRoute/adminPrivateRoute";
+import { DeliveryMainPrivateRoute } from "@/components/deliveryManPrivateRoute/deliveryMainPrivateRoute";
+import { MyDeliveryList } from "@/Pages/Dashboard/DevliveryHeroDashboard/MyDeliveryList";
+import { MyReviews } from "@/Pages/Dashboard/DevliveryHeroDashboard/MyReviews";
+import { AllUser } from "@/Pages/Dashboard/AdminDashboard/AllUser";
+import { AllParcel } from "@/Pages/Dashboard/AdminDashboard/AllParcel";
+import { AllDelivery } from "@/Pages/Dashboard/AdminDashboard/AllDelivery";
+import { Statistics } from "@/Pages/Dashboard/AdminDashboard/Statistics";
 export const Routing = createBrowserRouter([
   {
     path: "/",
@@ -32,5 +40,59 @@ export const Routing = createBrowserRouter([
         <Dashboard />
       </PrivateRoute>
     ),
+    children: [
+      // Delivery Hero Routes
+      {
+        path: "mydelivery",
+        element: (
+          <DeliveryMainPrivateRoute>
+            <MyDeliveryList />
+          </DeliveryMainPrivateRoute>
+        ),
+      },
+      {
+        path: "reviews",
+        element: (
+          <DeliveryMainPrivateRoute>
+            <MyReviews />
+          </DeliveryMainPrivateRoute>
+        ),
+      },
+
+      // Admin Routes
+      {
+        path: "alluser",
+        element: (
+          <AdminPrivateRoute>
+            <AllUser />
+          </AdminPrivateRoute>
+        ),
+      },
+      {
+        path: "allparcel",
+        element: (
+          <AdminPrivateRoute>
+            <AllParcel />
+          </AdminPrivateRoute>
+        ),
+      },
+      {
+        path: "alldelivery",
+        element: (
+          <AdminPrivateRoute>
+            <AllDelivery />
+          </AdminPrivateRoute>
+        ),
+      },
+      {
+        path: "statistics",
+        element: (
+          <AdminPrivateRoute>
+            <Statistics />
+          </AdminPrivateRoute>
+        ),
+      },
+      // UserRotes
+    ],
   },
 ]);
