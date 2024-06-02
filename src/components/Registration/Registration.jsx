@@ -1,13 +1,15 @@
 import { Link, useNavigate } from "react-router-dom";
 import login from "../../assets/image/login3.jpg";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { GoogleLogin } from "../GoogleLogin/GoogleLogin";
 import { useAuth } from "@/Hooks/useAuth";
 import Swal from "sweetalert2";
+import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
 
 export const Registration = () => {
+  const axiosPublic = useAxiosPublic();
   const { user, createUser, updateInfo, loading, logOut } = useAuth();
   const navigate = useNavigate();
   const url = `https://api.imgbb.com/1/upload?key=${
@@ -19,33 +21,58 @@ export const Registration = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  {
-    !loading && user && navigate("/");
-  }
 
-  const onSubmit = async (data) => {
-    if (data.image.length > 0) {
-      const imageFile = { image: data.image[0] };
-      const im = await axios.post(url, imageFile, {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
-      });
-      data.image = im.data.data.display_url;
-    } else {
-      data.image = "https://iili.io/Jbv2kkF.jpg";
-    }
-    createUser(data.email, data.pass).then((res) => {
-      data.name &&
-        updateInfo(data.name, data.image).then(() => {
-          Swal.fire({
-            icon: "success",
-            title: "Registration successful,now you can login",
-            timer: 2000,
-          });
-          logOut().then(() => navigate("/login"));
+  useEffect(() => {
+    !loading && user && navigate("/");
+  }, []);
+
+  const onSubmit = (data) => {
+    const handleImageUpload = async () => {
+      if (data.image.length > 0) {
+        const imageFile = { image: data.image[0] };
+        const im = await axios.post(url, imageFile, {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
         });
-    });
+        data.image = im.data.data.display_url;
+      } else {
+        data.image = "https://iili.io/Jbv2kkF.jpg";
+      }
+    };
+    handleImageUpload()
+      .then(() => createUser(data.email, data.pass))
+
+      .then(() => {
+        if (data.name) {
+          return updateInfo(data.name, data.image);
+        }
+      })
+      .then(() => {
+        return axiosPublic.post("/user", {
+          name: data?.name,
+          email: data.email,
+          role: data.role,
+        });
+      })
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Registration successful,now you can login",
+          timer: 2000,
+        });
+      })
+      .then(() => {
+        return logOut();
+      })
+      .then(() => navigate("/login"))
+      .catch((er) => {
+        Swal.fire({
+          icon: "error",
+          title: "Registration failed",
+          text: er.message,
+        });
+      });
   };
   return (
     <div>
@@ -179,13 +206,13 @@ export const Registration = () => {
                 placeholder="Select"
                 defaultValue=""
                 className="block w-full py-3 px-8  text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
-                {...register("user", { required: true })}
+                {...register("role", { required: true })}
               >
                 <option value="" disabled hidden>
                   Select User Type
                 </option>
                 <option value="user">User</option>
-                <option value="deliveryMan">Delivery Man</option>
+                <option value="deliveryHero">Delivery Hero</option>
               </select>
               {errors.user && <span>This field is required</span>}
             </div>

@@ -5,7 +5,6 @@ import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { ProfileDropDown } from "../ProfileDropDown/ProfileDropDown";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "@/Hooks/useAuth";
-
 import { ToogleTheme } from "../Theme/ToogleTheme";
 
 export const Navbar = () => {

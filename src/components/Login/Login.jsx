@@ -4,12 +4,14 @@ import { GoogleLogin } from "../GoogleLogin/GoogleLogin";
 import { useAuth } from "@/Hooks/useAuth";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
+import { useEffect } from "react";
 export const Login = () => {
   const { user, login, loading } = useAuth();
   const navigate = useNavigate();
-  {
+
+  useEffect(() => {
     !loading && user && navigate("/");
-  }
+  }, []);
 
   const {
     register,
