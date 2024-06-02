@@ -2,7 +2,6 @@ import { useAuth } from "@/Hooks/useAuth";
 import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-
 export const GoogleLogin = () => {
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();

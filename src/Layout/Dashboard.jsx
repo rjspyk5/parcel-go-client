@@ -1,11 +1,23 @@
-import React from "react";
+import { useAuth } from "@/Hooks/useAuth";
 import { NavLink, Outlet } from "react-router-dom";
 
 export const Dashboard = () => {
+  const { user } = useAuth();
+  console.log(user);
   const userMenu = (
     <>
       <li>
         <NavLink>Book a Parcel</NavLink>
+      </li>
+    </>
+  );
+  const adminMenu = (
+    <>
+      <li>
+        <NavLink>All Parcels</NavLink>
+        <NavLink>All Users</NavLink>
+        <NavLink>All Delivery</NavLink>
+        <NavLink>Statistics</NavLink>
       </li>
     </>
   );
