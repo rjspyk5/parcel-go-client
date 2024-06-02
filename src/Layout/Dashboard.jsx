@@ -7,37 +7,43 @@ export const Dashboard = () => {
     <>
       <ul>
         <li>
-          <NavLink>Book a Parcel</NavLink>
+          <NavLink to="/dashboard/bookparcel">Book a Parcel</NavLink>
+        </li>
+        <li>
+          <NavLink to="/dashboard/myparcel">My Parcel</NavLink>
+        </li>
+        <li>
+          <NavLink to="/dashboard/myprofile">My Profile</NavLink>
         </li>
       </ul>
     </>
   );
   const adminMenu = (
     <>
-      <li>
-        <NavLink>All Parcels</NavLink>
-        <NavLink>All Users</NavLink>
-        <NavLink>All Delivery</NavLink>
-        <NavLink>Statistics</NavLink>
-      </li>
+      <ul>
+        <li>
+          <NavLink to="/dashboard/allparcel">All Parcels</NavLink>
+        </li>
+        <li>
+          <NavLink to="/dashboard/alluser">All Users</NavLink>
+        </li>
+        <li>
+          <NavLink to="/dashboard/alldelivery">All Delivery</NavLink>
+        </li>
+        <li>
+          <NavLink to="/dashboard/statistics">Statistics</NavLink>
+        </li>
+      </ul>
     </>
   );
   const deliveryHeroMenu = (
     <>
       <ul>
         <li>
-          <NavLink>All Parcels</NavLink>
+          <NavLink to="/dashboard/mydelivery">My Delivery List</NavLink>
         </li>
         <li>
-          {" "}
-          <NavLink>All Users</NavLink>
-        </li>
-        <li>
-          <NavLink>All Delivery</NavLink>
-        </li>
-        <li>
-          {" "}
-          <NavLink>Statistics</NavLink>
+          <NavLink to="/dashboard/reviews">My Reviews</NavLink>
         </li>
       </ul>
     </>
