@@ -1,18 +1,37 @@
 import { useAuth } from "@/Hooks/useAuth";
+import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export const GoogleLogin = () => {
+  const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const { googleLogin } = useAuth();
   const handleLogin = () => {
     googleLogin()
+      .then((res) => {
+        const data = {
+          name: res?.user?.displayName,
+          email: res?.user?.email,
+          role: "user",
+        };
+        return axiosPublic.post("/user", data);
+      })
       .then(() => {
-        Swal.fire({
+        return Swal.fire({
           icon: "success",
           title: "Successfully Login",
-          timer: 2000,
         });
       })
-      .catch((er) => console.log(er));
+      .then(() => navigate("/"))
+      .catch((er) =>
+        Swal.fire({
+          icon: "error",
+          title: "Something Went Wrong",
+          text: er.message,
+          timer: 2000,
+        })
+      );
   };
   return (
     <button

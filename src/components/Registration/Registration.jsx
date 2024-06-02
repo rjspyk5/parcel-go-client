@@ -23,8 +23,10 @@ export const Registration = () => {
   } = useForm();
 
   useEffect(() => {
-    !loading && user && navigate("/");
-  }, []);
+    if (user) {
+      navigate("/");
+    }
+  }, [loading]);
 
   const onSubmit = (data) => {
     const handleImageUpload = async () => {

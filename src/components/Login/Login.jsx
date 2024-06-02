@@ -10,8 +10,10 @@ export const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    !loading && user && navigate("/");
-  }, []);
+    if (user) {
+      navigate("/");
+    }
+  }, [loading]);
 
   const {
     register,
