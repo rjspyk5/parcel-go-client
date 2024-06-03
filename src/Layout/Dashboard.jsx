@@ -61,7 +61,7 @@ export const Dashboard = () => {
               ? deliveryHeroMenu
               : adminMenu}
           </div>
-          <div className="flex-1">
+          <div className="overflow-hidden flex-grow w-full">
             <Outlet></Outlet>
           </div>
         </div>
