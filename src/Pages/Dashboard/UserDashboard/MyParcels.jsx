@@ -1,57 +1,58 @@
 export const MyParcels = () => {
   return (
-    <div className=" overflow-x-scroll">
+    <div className=" overflow-x-auto">
       <table className=" divide-y divide-gray-200  w-full dark:divide-gray-700">
         <thead className="bg-gray-50 dark:bg-gray-800">
           <tr>
-            <th className="md:px-12 px-2 py-3.5 text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
+            <th className="md:px-3 px-1 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
               Parcel Type
             </th>
-            <th className="px-1 md:px-4 py-3.5 text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
+            <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
               Req. Delivery Date
             </th>
-            <th className="px-1 md:px-4 py-3.5 text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
+            <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
               Approx. Delivery Date
             </th>
-
-            <th className="px-1 md:px-4 py-3.5 text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
+            <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
               Booking Date
             </th>
 
-            <th className="px-1 md:px-4 py-3.5 text-sm font-normal  text-left  text-gray-500 dark:text-gray-400">
+            <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal  text-left  text-gray-500 dark:text-gray-400">
               Delivery HeroID
             </th>
-            <th className="px-1 md:px-4 py-3.5 text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
+            <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
               Status
             </th>
-            <th className="px-1 md:px-4 py-3.5 text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
+            <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
               Action
             </th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
           <tr>
-            <td className="md:px-12 px-2  py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+            <td className="md:px-3 px-1  py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
               Lead Developer
             </td>
-            <td className="px-1 md:px-4 py-4 text-sm font-medium text-gray-700 ">
+            <td className="px-1 md:px-3 py-4 text-xs md:text-smfont-medium text-gray-700 ">
               <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
-                <h2 className="text-sm font-normal text-emerald-500">Active</h2>
+                <h2 className="text-xs md:text-sm font-normal text-emerald-500">
+                  Active
+                </h2>
               </div>
             </td>
-            <td className="px-1 md:px-4 py-4 text-sm text-gray-500 dark:text-gray-300">
+            <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300">
               Lead Developer
             </td>
-            <td className="px-1 md:px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
-              ameliaanderson@example.com
+            <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 ">
+              ameliaand
             </td>
-            <td className="px-1 md:px-4 py-4 text-sm text-gray-500 dark:text-gray-300 ">
-              ameliaanderson@example.com
+            <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 ">
+              ameliaanderso
             </td>
-            <td className="px-1 md:px-4 py-4 text-sm ">test</td>
-            <td className="px-1 md:px-4 py-4 text-sm ">
-              <div className="flex items-center gap-x-6">
+            <td className="px-1 md:px-3 py-4 text-xs md:text-sm">test</td>
+            <td className="px-1 md:px-3 py-4 text-xs md:text-sm">
+              <div className="flex items-center gap-x-2">
                 <button className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
