@@ -1,12 +1,39 @@
+import { useAuth } from "@/Hooks/useAuth";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup
+  .object({
+    senderNumber: yup.number().integer().required(),
+    recieverNumber: yup.number().integer(),
+    recieverName: yup.string().required(),
+    recieverAdressLatitute: yup.number(),
+    recieverAdressLongitude: yup.number(),
+  })
+  .required();
 
 export const BookParcels = () => {
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const {
+    user: { displayName, email },
+  } = useAuth();
+  console.log(displayName, email);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const onSubmit = (data) => {
+    data.senderName = displayName;
+    data.senderEmail = email;
+    console.log(data);
+  };
   return (
     <div>
       <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <h2 className="text-lg font-semibold text-gray-700 capitalize dark:text-white">
             From
           </h2>
@@ -14,7 +41,10 @@ export const BookParcels = () => {
             <div>
               <label className="text-gray-700 dark:text-gray-200">Name</label>
               <input
-                id="username"
+                {...register("senderName")}
+                disabled
+                value={displayName}
+                defaultValue={displayName}
                 type="text"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
@@ -23,20 +53,33 @@ export const BookParcels = () => {
             <div>
               <label className="text-gray-700 dark:text-gray-200">Email</label>
               <input
-                id="emailAddress"
+                {...register("senderEmail")}
+                disabled
+                defaultValue={email}
                 type="email"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
-
             <div>
               <label className="text-gray-700 dark:text-gray-200">
-                Mobile Number
+                Mobile Number<span className="text-red-500">*</span>
               </label>
               <input
+                required
+                {...register("senderNumber", { min: 9 })}
                 type="number"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-              />
+              />{" "}
+              {errors.senderNumber && (
+                <p role="alert" className="text-red-500">
+                  {errors.senderNumber?.message}
+                </p>
+              )}
+              {errors.senderNumber?.type === "min" && (
+                <span className="text-red-500">
+                  Minimum length have to be 10
+                </span>
+              )}
             </div>
           </div>
           <h2 className="text-lg my-8 font-semibold text-gray-700 capitalize dark:text-white">
@@ -47,28 +90,41 @@ export const BookParcels = () => {
             <div>
               <label className="text-gray-700 dark:text-gray-200">Name</label>
               <input
-                id="username"
+                {...register("recieverName")}
                 type="text"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
-            </div>
-
-            <div>
-              <label className="text-gray-700 dark:text-gray-200">Number</label>
-              <input
-                id="emailAddress"
-                type="email"
-                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-              />
+              {errors.recieverName && (
+                <p role="alert" className="text-red-500">
+                  {errors.recieverName?.message}
+                </p>
+              )}
             </div>
 
             <div>
               <label className="text-gray-700 dark:text-gray-200">
-                Delivery Adress
+                Number<span className="text-red-500">*</span>
               </label>
               <input
-                id="password"
-                type="password"
+                {...register("recieverNumber")}
+                type="number"
+                className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+              />
+              {errors.recieverNumber && (
+                <p role="alert" className="text-red-500">
+                  {errors.recieverNumber?.message}
+                </p>
+              )}
+            </div>
+
+            <div>
+              <label className="text-gray-700 dark:text-gray-200">
+                Delivery Adress<span className="text-red-500">*</span>
+              </label>
+              <input
+                required
+                {...register("recieverDeliveryAdress")}
+                type="text"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
@@ -78,20 +134,30 @@ export const BookParcels = () => {
                 Adress Latitute
               </label>
               <input
-                id="passwordConfirmation"
-                type="password"
+                {...register("recieverAdressLatitute")}
+                type="text"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
+              {errors.recieverAdressLatitute && (
+                <p role="alert" className="text-red-500">
+                  {errors.recieverAdressLatitute?.message}
+                </p>
+              )}
             </div>
             <div>
               <label className="text-gray-700 dark:text-gray-200">
                 Adress Longitude
               </label>
               <input
-                id="passwordConfirmation"
-                type="password"
+                {...register("recieverAdressLongitude")}
+                type="text"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
+              {errors.recieverAdressLongitude && (
+                <p role="alert" className="text-red-500">
+                  {errors.recieverAdressLongitude?.message}
+                </p>
+              )}
             </div>
           </div>
 
@@ -105,7 +171,7 @@ export const BookParcels = () => {
                 Parcel Type
               </label>
               <input
-                id="username"
+                {...register("parcleType")}
                 type="text"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
@@ -113,11 +179,11 @@ export const BookParcels = () => {
 
             <div>
               <label className="text-gray-700 dark:text-gray-200">
-                Parcel Weight
+                Parcel Weight(gm)<span className="text-red-500">*</span>
               </label>
               <input
-                id="emailAddress"
-                type="email"
+                {...register("parcelWeight")}
+                type="number"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
@@ -127,8 +193,8 @@ export const BookParcels = () => {
                 Requested Date
               </label>
               <input
-                id="password"
-                type="password"
+                {...register("reqDeliveryDate")}
+                type="date"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
