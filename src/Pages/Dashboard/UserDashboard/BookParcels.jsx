@@ -2,6 +2,7 @@ import { useAuth } from "@/Hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useState } from "react";
 
 const schema = yup
   .object({
@@ -30,6 +31,9 @@ export const BookParcels = () => {
     data.senderEmail = email;
     console.log(data);
   };
+  const [price, setprice] = useState(0);
+  const parcelWeight = register("parcelWeight");
+
   return (
     <div>
       <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
@@ -179,10 +183,13 @@ export const BookParcels = () => {
 
             <div>
               <label className="text-gray-700 dark:text-gray-200">
-                Parcel Weight(gm)<span className="text-red-500">*</span>
+                Parcel Weight(kg)<span className="text-red-500">*</span>
               </label>
               <input
-                {...register("parcelWeight")}
+                onChange={(e) => {
+                  parcelWeight.onChange(e);
+                  setprice(e.target.value);
+                }}
                 type="number"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
@@ -200,7 +207,11 @@ export const BookParcels = () => {
             </div>
           </div>
 
-          <div className="flex justify-end mt-6">
+          <div className="flex justify-between mt-6">
+            <p>
+              Estimated price :
+              {price > 0 ? (price > 2 ? 150 : price * 50) : price}
+            </p>
             <button className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
               Book Now
             </button>
