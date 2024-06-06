@@ -19,6 +19,8 @@ import { Statistics } from "@/Pages/Dashboard/AdminDashboard/Statistics";
 import { BookParcels } from "@/Pages/Dashboard/UserDashboard/BookParcels";
 import { MyParcels } from "@/Pages/Dashboard/UserDashboard/MyParcels";
 import { MyProfile } from "@/Pages/Dashboard/UserDashboard/MyProfile";
+import { UpdateParcel } from "@/Pages/Dashboard/UserDashboard/UpdateParcel";
+import axios from "axios";
 export const Routing = createBrowserRouter([
   {
     path: "/",
@@ -107,6 +109,12 @@ export const Routing = createBrowserRouter([
       {
         path: "myprofile",
         element: <MyProfile />,
+      },
+      {
+        path: "update/:id",
+        element: <UpdateParcel />,
+        loader: ({ params }) =>
+          axios.get(`http://localhost:5000/booking/${params.id}`),
       },
     ],
   },

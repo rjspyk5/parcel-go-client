@@ -1,14 +1,16 @@
 import { useAuth } from "@/Hooks/useAuth";
 import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
+import { useNavigate } from "react-router-dom";
 
 export const MyParcels = () => {
+  const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["myparcel"],
     queryFn: async () => {
-      const result = await axiosPublic.get(`/booking/${user?.email}`);
+      const result = await axiosPublic.get(`/bookings/${user?.email}`);
       return result.data;
     },
   });
@@ -80,7 +82,10 @@ export const MyParcels = () => {
                       />
                     </svg>
                   </button>
-                  <button className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none">
+                  <button
+                    onClick={() => navigate(`/dashboard/update/${el._id}`)}
+                    className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
