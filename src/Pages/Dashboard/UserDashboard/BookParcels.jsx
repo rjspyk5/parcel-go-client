@@ -4,6 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useState } from "react";
 import moment from "moment";
+import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
 
 const schema = yup
   .object({
@@ -14,6 +15,7 @@ const schema = yup
   .required();
 
 export const BookParcels = () => {
+  const axiosPublic = useAxiosPublic();
   const {
     user: { displayName, email },
   } = useAuth();
@@ -35,15 +37,17 @@ export const BookParcels = () => {
         : parcelWeight * 50
       : parcelWeight;
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     data.senderName = displayName;
     data.senderEmail = email;
     data.parcelWeight = parcelWeight;
     data.price = price;
     data.bookingDate = moment().format("YYYY-MM-DD");
     data.status = "pending";
-
-    console.log(data);
+    const result = await axiosPublic.post("/booking", data);
+    if (result.status === 200) {
+      alert("booking successfull");
+    }
   };
   return (
     <div>
