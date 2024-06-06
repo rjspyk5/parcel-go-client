@@ -5,17 +5,9 @@ import { useNavigate } from "react-router-dom";
 
 export const MyParcels = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
 
-  const handleCancel = async (id) => {
-    const result = await axiosPublic.delete(`/booking/${id}`);
-    if (result.data.acknowledged) {
-      alert("delete sucessfull");
-      refetch();
-    }
-  };
-
-  const { user } = useAuth();
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["myparcel"],
     queryFn: async () => {
@@ -23,6 +15,16 @@ export const MyParcels = () => {
       return result.data;
     },
   });
+
+  const handleCancel = async (id, status) => {
+    if (status === "pending") {
+      const result = await axiosPublic.delete(`/booking/${id}`);
+      if (result.data.acknowledged) {
+        refetch();
+        alert("cancel booking successfull");
+      }
+    }
+  };
 
   return (
     <div className=" overflow-x-auto">
@@ -76,7 +78,7 @@ export const MyParcels = () => {
               <td className="px-1 md:px-3 py-4 text-xs md:text-sm">
                 <div className="flex items-center gap-x-2">
                   <button
-                    onClick={() => handleCancel(el._id)}
+                    onClick={() => handleCancel(el._id, el.status)}
                     className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
                   >
                     <svg

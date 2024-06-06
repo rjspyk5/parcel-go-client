@@ -14,11 +14,8 @@ const schema = yup
     recieverAdressLongitude: yup.number(),
   })
   .required();
-
 export const UpdateParcel = () => {
-  const { data: d } = useLoaderData();
-  console.log(d);
-
+  const { data: bookingData } = useLoaderData();
   const axiosPublic = useAxiosPublic();
   const {
     user: { displayName, email },
@@ -90,6 +87,7 @@ export const UpdateParcel = () => {
               <input
                 required
                 {...register("senderNumber")}
+                defaultValue={bookingData?.senderNumber}
                 type="number"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
@@ -105,6 +103,7 @@ export const UpdateParcel = () => {
                 Name<span className="text-red-500">*</span>
               </label>
               <input
+                defaultValue={bookingData?.recieverName}
                 required
                 {...register("recieverName")}
                 type="text"
@@ -121,6 +120,7 @@ export const UpdateParcel = () => {
                 Mobile Number<span className="text-red-500">*</span>
               </label>
               <input
+                defaultValue={bookingData?.recieverNumber}
                 {...register("recieverNumber")}
                 type="number"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
@@ -131,6 +131,7 @@ export const UpdateParcel = () => {
                 Delivery Adress<span className="text-red-500">*</span>
               </label>
               <input
+                defaultValue={bookingData?.recieverDeliveryAdress}
                 required
                 {...register("recieverDeliveryAdress")}
                 type="text"
@@ -142,6 +143,7 @@ export const UpdateParcel = () => {
                 Adress Latitute<span className="text-red-500">*</span>
               </label>
               <input
+                defaultValue={bookingData?.recieverAdressLatitute}
                 required
                 {...register("recieverAdressLatitute")}
                 type="text"
@@ -163,6 +165,7 @@ export const UpdateParcel = () => {
                 Adress Longitude<span className="text-red-500">*</span>
               </label>
               <input
+                defaultValue={bookingData?.recieverAdressLongitude}
                 required
                 {...register("recieverAdressLongitude")}
                 type="text"
@@ -191,6 +194,7 @@ export const UpdateParcel = () => {
                 Parcel Type
               </label>
               <input
+                defaultValue={bookingData?.parcleType}
                 {...register("parcleType")}
                 type="text"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
@@ -202,6 +206,7 @@ export const UpdateParcel = () => {
                 Parcel Weight(kg)<span className="text-red-500">*</span>
               </label>
               <input
+                defaultValue={bookingData?.parcelWeight}
                 required
                 onChange={(e) => {
                   parcel.onChange(e);
@@ -217,6 +222,7 @@ export const UpdateParcel = () => {
               </label>
               <input
                 required
+                defaultValue={bookingData?.reqDeliveryDate}
                 {...register("reqDeliveryDate")}
                 type="date"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
