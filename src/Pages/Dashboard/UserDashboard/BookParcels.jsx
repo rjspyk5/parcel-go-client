@@ -3,12 +3,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useState } from "react";
+import moment from "moment";
 
 const schema = yup
   .object({
-    senderNumber: yup.number().integer().required(),
-    recieverNumber: yup.number().integer(),
-    recieverName: yup.string().required(),
+    recieverName: yup.string(),
     recieverAdressLatitute: yup.number(),
     recieverAdressLongitude: yup.number(),
   })
@@ -18,7 +17,7 @@ export const BookParcels = () => {
   const {
     user: { displayName, email },
   } = useAuth();
-  console.log(displayName, email);
+
   const {
     register,
     handleSubmit,
@@ -26,14 +25,26 @@ export const BookParcels = () => {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
+  const [parcelWeight, setParcelWeight] = useState(0);
+  const parcel = register("parcelWeight");
+  const price =
+    parcelWeight > 0
+      ? parcelWeight > 2
+        ? 150
+        : parcelWeight * 50
+      : parcelWeight;
+
   const onSubmit = (data) => {
     data.senderName = displayName;
     data.senderEmail = email;
+    data.parcelWeight = parcelWeight;
+    data.price = price;
+    data.bookingDate = moment().format("YYYY-MM-DD");
+    data.status = "pending";
+
     console.log(data);
   };
-  const [price, setprice] = useState(0);
-  const parcelWeight = register("parcelWeight");
-
   return (
     <div>
       <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
@@ -47,7 +58,6 @@ export const BookParcels = () => {
               <input
                 {...register("senderName")}
                 disabled
-                value={displayName}
                 defaultValue={displayName}
                 type="text"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
@@ -70,20 +80,10 @@ export const BookParcels = () => {
               </label>
               <input
                 required
-                {...register("senderNumber", { min: 9 })}
+                {...register("senderNumber")}
                 type="number"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-              />{" "}
-              {errors.senderNumber && (
-                <p role="alert" className="text-red-500">
-                  {errors.senderNumber?.message}
-                </p>
-              )}
-              {errors.senderNumber?.type === "min" && (
-                <span className="text-red-500">
-                  Minimum length have to be 10
-                </span>
-              )}
+              />
             </div>
           </div>
           <h2 className="text-lg my-8 font-semibold text-gray-700 capitalize dark:text-white">
@@ -92,8 +92,11 @@ export const BookParcels = () => {
 
           <div className="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2 md:grid-cols-3">
             <div>
-              <label className="text-gray-700 dark:text-gray-200">Name</label>
+              <label className="text-gray-700 dark:text-gray-200">
+                Name<span className="text-red-500">*</span>
+              </label>
               <input
+                required
                 {...register("recieverName")}
                 type="text"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
@@ -107,20 +110,14 @@ export const BookParcels = () => {
 
             <div>
               <label className="text-gray-700 dark:text-gray-200">
-                Number<span className="text-red-500">*</span>
+                Mobile Number<span className="text-red-500">*</span>
               </label>
               <input
                 {...register("recieverNumber")}
                 type="number"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
-              {errors.recieverNumber && (
-                <p role="alert" className="text-red-500">
-                  {errors.recieverNumber?.message}
-                </p>
-              )}
             </div>
-
             <div>
               <label className="text-gray-700 dark:text-gray-200">
                 Delivery Adress<span className="text-red-500">*</span>
@@ -135,31 +132,43 @@ export const BookParcels = () => {
 
             <div>
               <label className="text-gray-700 dark:text-gray-200">
-                Adress Latitute
+                Adress Latitute<span className="text-red-500">*</span>
               </label>
               <input
+                required
                 {...register("recieverAdressLatitute")}
                 type="text"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
-              {errors.recieverAdressLatitute && (
+
+              {errors?.recieverAdressLatitute?.ref?.value === "" ? (
                 <p role="alert" className="text-red-500">
-                  {errors.recieverAdressLatitute?.message}
+                  This filed is requiered
+                </p>
+              ) : (
+                <p role="alert" className="text-red-500">
+                  Value must be number type
                 </p>
               )}
             </div>
             <div>
               <label className="text-gray-700 dark:text-gray-200">
-                Adress Longitude
+                Adress Longitude<span className="text-red-500">*</span>
               </label>
               <input
+                required
                 {...register("recieverAdressLongitude")}
                 type="text"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
-              {errors.recieverAdressLongitude && (
+
+              {errors?.recieverAdressLongitude?.ref?.value === "" ? (
                 <p role="alert" className="text-red-500">
-                  {errors.recieverAdressLongitude?.message}
+                  This filed is requiered
+                </p>
+              ) : (
+                <p role="alert" className="text-red-500">
+                  Value must be number type
                 </p>
               )}
             </div>
@@ -186,20 +195,21 @@ export const BookParcels = () => {
                 Parcel Weight(kg)<span className="text-red-500">*</span>
               </label>
               <input
+                required
                 onChange={(e) => {
-                  parcelWeight.onChange(e);
-                  setprice(e.target.value);
+                  parcel.onChange(e);
+                  setParcelWeight(e.target.value);
                 }}
                 type="number"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
               />
             </div>
-
             <div>
               <label className="text-gray-700 dark:text-gray-200">
                 Requested Date
               </label>
               <input
+                required
                 {...register("reqDeliveryDate")}
                 type="date"
                 className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
@@ -208,10 +218,7 @@ export const BookParcels = () => {
           </div>
 
           <div className="flex justify-between mt-6">
-            <p>
-              Estimated price :
-              {price > 0 ? (price > 2 ? 150 : price * 50) : price}
-            </p>
+            <p>Estimated price :{price}</p>
             <button className="px-8 py-2.5 leading-5 text-white transition-colors duration-300 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600">
               Book Now
             </button>
