@@ -33,7 +33,6 @@ export const BookParcels = () => {
   };
   const [price, setprice] = useState(0);
   const parcelWeight = register("parcelWeight");
-
   return (
     <div>
       <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
