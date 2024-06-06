@@ -50,9 +50,6 @@ export const BookParcels = () => {
     }
   };
 
-  const [price, setprice] = useState(0);
-  const parcelWeight = register("parcelWeight");
-
   return (
     <div>
       <section className="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
@@ -115,7 +112,6 @@ export const BookParcels = () => {
                 </p>
               )}
             </div>
-
             <div>
               <label className="text-gray-700 dark:text-gray-200">
                 Mobile Number<span className="text-red-500">*</span>
