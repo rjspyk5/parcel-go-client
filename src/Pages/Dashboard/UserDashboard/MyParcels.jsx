@@ -6,6 +6,15 @@ import { useNavigate } from "react-router-dom";
 export const MyParcels = () => {
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
+
+  const handleCancel = async (id) => {
+    const result = await axiosPublic.delete(`/booking/${id}`);
+    if (result.data.acknowledged) {
+      alert("delete sucessfull");
+      refetch();
+    }
+  };
+
   const { user } = useAuth();
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["myparcel"],
@@ -66,7 +75,10 @@ export const MyParcels = () => {
               </td>
               <td className="px-1 md:px-3 py-4 text-xs md:text-sm">
                 <div className="flex items-center gap-x-2">
-                  <button className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none">
+                  <button
+                    onClick={() => handleCancel(el._id)}
+                    className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       fill="none"
