@@ -1,16 +1,18 @@
+import { useAuth } from "@/Hooks/useAuth";
 import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 
 export const MyParcels = () => {
   const axiosPublic = useAxiosPublic();
+  const { user } = useAuth();
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["myparcel"],
     queryFn: async () => {
-      const result = await axiosPublic.get("/booking");
+      const result = await axiosPublic.get(`/booking/${user?.email}`);
       return result.data;
     },
   });
-  console.log(data);
+
   return (
     <div className=" overflow-x-auto">
       <table className=" divide-y divide-gray-200  w-full dark:divide-gray-700">
@@ -28,7 +30,6 @@ export const MyParcels = () => {
             <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
               Booking Date
             </th>
-
             <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal  text-left  text-gray-500 dark:text-gray-400">
               Delivery HeroID
             </th>
@@ -41,7 +42,7 @@ export const MyParcels = () => {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-          {data.map((el) => (
+          {data?.map((el) => (
             <tr key={el._id}>
               <td className="md:px-3 px-1  py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                 {el.parcleType}
