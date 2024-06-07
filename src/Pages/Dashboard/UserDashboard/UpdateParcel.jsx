@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { useState } from "react";
 import moment from "moment";
 import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 
 const schema = yup
   .object({
@@ -15,6 +15,7 @@ const schema = yup
   })
   .required();
 export const UpdateParcel = () => {
+  const { id } = useParams();
   const { data: bookingData } = useLoaderData();
   const axiosPublic = useAxiosPublic();
   const {
@@ -43,11 +44,12 @@ export const UpdateParcel = () => {
     data.senderEmail = email;
     data.parcelWeight = parcelWeight;
     data.price = price;
-    data.bookingDate = moment().format("YYYY-MM-DD");
+    data.bookingDate = bookingData.bookingDate;
     data.status = "pending";
-    const result = await axiosPublic.post("/booking", data);
-    if (result.status === 200) {
-      alert("booking successfull");
+    console.log(data);
+    const result = await axiosPublic.patch(`/booking/${id}`, data);
+    if (result.data.acknowledged) {
+      alert("update successfull");
     }
   };
 
