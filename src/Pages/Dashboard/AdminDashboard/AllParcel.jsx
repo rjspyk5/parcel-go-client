@@ -1,8 +1,10 @@
 import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
+import { useDeliveryMan } from "@/Hooks/useDeliveryMan";
 import { Modal } from "@/components/Modal/Modal";
 import { useQuery } from "@tanstack/react-query";
 
 export const AllParcel = () => {
+  const [deliveryHeros, deliveryManLoading] = useDeliveryMan();
   const axiosSequre = useAxiosSequre();
   const { data, refetch, isLoading } = useQuery({
     queryKey: ["allParcels"],
@@ -66,7 +68,9 @@ export const AllParcel = () => {
                       {el.status}
                     </td>
                     <td className="px-1 md:px-3 py-4 text-xs md:text-sm">
-                      <Modal />
+                      <Modal
+                        deliveryHeroData={{ deliveryHeros, deliveryManLoading }}
+                      />
                     </td>
                   </tr>
                 );

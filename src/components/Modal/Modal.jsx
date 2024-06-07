@@ -9,7 +9,9 @@ import {
 
 import { DialogClose } from "@radix-ui/react-dialog";
 
-export const Modal = () => {
+export const Modal = ({
+  deliveryHeroData: { deliveryHeros, deliveryManLoading },
+}) => {
   return (
     <div>
       <Dialog>
