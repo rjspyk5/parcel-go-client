@@ -46,7 +46,6 @@ export const UpdateParcel = () => {
     data.price = price;
     data.bookingDate = bookingData.bookingDate;
     data.status = "pending";
-    console.log(data);
     const result = await axiosPublic.patch(`/booking/${id}`, data);
     if (result.data.acknowledged) {
       alert("update successfull");
