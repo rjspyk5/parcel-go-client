@@ -6,94 +6,72 @@ import {
   DialogHeader,
   DialogTrigger,
 } from "@/components/ui/dialog";
-
-import { CalendarIcon } from "@radix-ui/react-icons";
-import { addDays, format } from "date-fns";
-
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-
 import { DialogClose } from "@radix-ui/react-dialog";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 export const Modal = ({
   deliveryHeroData: { deliveryHeros, deliveryManLoading },
 }) => {
-  const [date, setDate] = useState();
-  console.log(date);
-
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+  const onSubmit = (data) => console.log(data);
   return (
     <div>
       <Dialog>
         <DialogTrigger>Open</DialogTrigger>
         <DialogContent>
-          <DialogHeader>
-            <DialogDescription>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant={"outline"}
-                    className={cn(
-                      "w-[240px] justify-start text-left font-normal",
-                      !date && "text-muted-foreground"
-                    )}
-                  >
-                    <CalendarIcon className="mr-2 h-4 w-4" />
-                    {date ? format(date, "PPP") : <span>Pick a date</span>}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent
-                  align="start"
-                  className="flex w-auto flex-col space-y-2 p-2"
+          <form onSubmit={handleSubmit(onSubmit)}>
+            <DialogHeader>
+              <DialogDescription>
+                <input
+                  placeholder="Select a date"
+                  {...register("approxDeliveryDate", { required: true })}
+                  type="date"
+                />
+
+                <br />
+                {errors.approxDeliveryDate?.type === "required" && (
+                  <span className="block" role="alert">
+                    Approx Delivery Date is required
+                  </span>
+                )}
+                <select
+                  required
+                  {...register("deliveryHeorId", { required: true })}
                 >
-                  <Select
-                    onValueChange={(value) =>
-                      setDate(addDays(new Date(), parseInt(value)))
-                    }
-                  >
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select" />
-                    </SelectTrigger>
-                    <SelectContent position="popper">
-                      <SelectItem value="0">Today</SelectItem>
-                      <SelectItem value="1">Tomorrow</SelectItem>
-                      <SelectItem value="3">In 3 days</SelectItem>
-                      <SelectItem value="7">In a week</SelectItem>
-                    </SelectContent>
-                  </Select>
-                  <div className="rounded-md border">
-                    <Calendar
-                      mode="single"
-                      selected={date}
-                      onSelect={setDate}
-                    />
-                  </div>
-                </PopoverContent>
-              </Popover>
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <DialogClose>
-              <input
-                value="Assign"
-                onClick={() => console.log("test")}
-                type="submit"
-              />
-            </DialogClose>
-          </DialogFooter>
+                  {deliveryHeros?.map((el) => {
+                    return (
+                      <option key={el._id} value={el._id}>
+                        {el.name}
+                      </option>
+                    );
+                  })}
+                </select>
+                {errors.deliveryHeorId?.type === "required" && (
+                  <span className="block" role="alert">
+                    First name is required
+                  </span>
+                )}
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <DialogClose>
+                <input
+                  disabled={
+                    errors.approxDeliveryDate?.type === "required" ||
+                    errors.deliveryHeorId?.type === "required"
+                      ? true
+                      : false
+                  }
+                  value="Assign"
+                  type="submit"
+                />
+              </DialogClose>
+            </DialogFooter>
+          </form>
         </DialogContent>
       </Dialog>
     </div>
