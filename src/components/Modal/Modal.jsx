@@ -8,7 +8,6 @@ import {
 } from "@/components/ui/dialog";
 import { DialogClose } from "@radix-ui/react-dialog";
 import { useForm } from "react-hook-form";
-
 export const Modal = ({
   deliveryHeroData: { deliveryHeros, deliveryManLoading },
 }) => {
