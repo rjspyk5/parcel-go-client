@@ -21,7 +21,6 @@ export const AllUser = () => {
               <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
                 Spented Amount
               </th>
-
               <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
                 Action
               </th>
@@ -43,7 +42,6 @@ export const AllUser = () => {
                   <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 ">
                     {el.totalSpendMoney}
                   </td>
-
                   <td className="px-1 md:px-3 py-4 text-xs md:text-sm">
                     <button>Make Admin</button>
                     <button>Make DeliveryHero</button>
