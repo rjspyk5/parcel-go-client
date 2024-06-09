@@ -33,10 +33,10 @@ export const AllDelivery = () => {
                     {el?.number || "not given"}
                   </td>
                   <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300">
-                    Lead Developer
+                    {el.totlaDeliverd}
                   </td>
                   <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 ">
-                    ameliaand
+                    {el.averageReview || 0}
                   </td>
                 </tr>
               );
