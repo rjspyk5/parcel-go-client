@@ -7,7 +7,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export const ProfileDropDown = ({ user }) => {
@@ -21,7 +21,7 @@ export const ProfileDropDown = ({ user }) => {
       <DropdownMenuTrigger>
         <Avatar>
           <AvatarImage src={user?.photoURL} />
-          <AvatarFallback>CN</AvatarFallback>
+          <AvatarFallback>user</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
@@ -29,7 +29,9 @@ export const ProfileDropDown = ({ user }) => {
           {user ? user.displayName : "Anonymous"}
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Dashboard</DropdownMenuItem>
+        <DropdownMenuItem>
+          <NavLink to="/dashboard">Dashboard</NavLink>
+        </DropdownMenuItem>
         <button onClick={handleLogOut} className="w-full">
           {" "}
           <DropdownMenuItem>Logout</DropdownMenuItem>
