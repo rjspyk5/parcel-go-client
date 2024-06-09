@@ -17,8 +17,8 @@ export const Navbar = () => {
         to="/"
         className={({ isActive }) =>
           isActive
-            ? "border px-2  h-7 font-bold rounded-md shadow-sm  bg-orange-500  text-white"
-            : "hover:bg-yellow-300 hover:text-black font-bold h-7 px-2  rounded-md"
+            ? "border px-2  h-7 font-bold rounded-md shadow-sm  bg-[#f15a25]  text-white"
+            : "hover:bg-[#f15a25] hover:text-black font-bold h-7 px-2  rounded-md"
         }
       >
         Home
@@ -27,8 +27,8 @@ export const Navbar = () => {
         to="/dashboard"
         className={({ isActive }) =>
           isActive
-            ? "border px-2 border-yellow-400  h-7 font-bold rounded-md shadow-sm  bg-yellow-300  text-black"
-            : "hover:bg-yellow-300 hover:text-black h-7 font-bold px-2 rounded-md "
+            ? "border px-2 border-yellow-400  h-7 font-bold rounded-md shadow-sm  bg-[#f15a25]  text-black"
+            : "hover:bg-[#f15a25] hover:text-black h-7 font-bold px-2 rounded-md "
         }
       >
         Dashboard
