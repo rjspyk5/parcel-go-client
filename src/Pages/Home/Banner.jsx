@@ -1,4 +1,5 @@
 import banner from "../../assets/image/banner2.jpg";
+import { Typewriter } from "react-simple-typewriter";
 export const Banner = () => {
   return (
     <div className="">
@@ -12,8 +13,19 @@ export const Banner = () => {
           <div className="flex items-center justify-center w-full h-full bg-gray-900/40">
             <div className="text-center">
               <h1 className="text-3xl font-semibold text-white lg:text-4xl">
-                Build your new <span className="text-blue-400">Saas</span>{" "}
-                Project
+                Delivering Your{" "}
+                <span className="text-[#f15a25] lg:text-5xl text-4xl">
+                  <Typewriter
+                    words={["Parcel", "Packages", "Anything"]}
+                    loop={false}
+                    cursor
+                    cursorStyle="_"
+                    typeSpeed={70}
+                    deleteSpeed={50}
+                    delaySpeed={1000}
+                  />
+                </span>{" "}
+                with Care!
               </h1>
               <section className="relative w-full max-w-md px-5 py-4 mx-auto rounded-md">
                 <div className="relative">

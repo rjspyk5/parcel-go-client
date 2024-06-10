@@ -55,6 +55,7 @@ export const Dashboard = () => {
             <span className="hidden lg:block ">My Profile</span>
           </NavLink>
         </li>
+        <hr />
       </ul>
     </>
   );
@@ -175,7 +176,7 @@ export const Dashboard = () => {
             </div>
           </div>
           <div className="flex">
-            <div className="w-[20%] border bg-accent min-h-screen shadow-2xl">
+            <div className="w-[20%]  border bg-accent min-h-screen shadow-2xl">
               {role === "user"
                 ? userMenu
                 : role === "deliveryHero"
