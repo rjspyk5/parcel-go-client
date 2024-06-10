@@ -2,8 +2,18 @@ import { ReactCount } from "@/components/ReactCount/ReactCount";
 import door from "../../../assets/image/icon/door.png";
 import fast from "../../../assets/image/icon/fast.png";
 import sequre from "../../../assets/image/icon/sequre.png";
+import { useEffect, useState } from "react";
+import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
 
 export const FeaturedSection = () => {
+  const axiosSequre = useAxiosSequre();
+  const [totalUser, settotalUser] = useState(0);
+  useEffect(() => {
+    axiosSequre
+      .get("http://localhost:5000/usercount")
+      .then((el) => settotalUser(el.result.result));
+  }, []);
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-14 lg:grid-cols-3">
       <div className="border flex flex-col justify-center gap-3 items-center shadow backdrop-blur-md rounded-md p-14 text-center">
@@ -41,7 +51,8 @@ export const FeaturedSection = () => {
         </h1>
 
         <div className="flex text-lg font-bold gap-2">
-          Successfully delivered <ReactCount endCount={6} refName="counter3" />
+          Successfully delivered{" "}
+          <ReactCount endCount={totalUser} refName="counter3" />
         </div>
       </div>
     </div>
