@@ -37,7 +37,7 @@ export const Navbar = () => {
   );
   return (
     <div className="sticky top-0 z-50">
-      <div className="flex backdrop-blur-xl shadow-md py-3 justify-between  border-b">
+      <div className="flex  backdrop-blur-xl shadow-md py-[9px] justify-between  border-b">
         {/* left side  */}
         <div className="flex  items-center">
           <Sheet open={open} onOpenChange={setOpen}>

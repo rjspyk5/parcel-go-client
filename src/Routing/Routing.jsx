@@ -4,9 +4,7 @@ import { ErrorPage } from "@/components/ErrorPage/ErrorPage";
 import { Login } from "@/components/Login/Login";
 import { Registration } from "@/components/Registration/Registration";
 import { Home } from "@/Pages/Home/Home";
-
 import { Dashboard } from "@/Layout/Dashboard";
-
 import { PrivateRoute } from "@/components/privateRoute/PrivateRoute";
 import { AdminPrivateRoute } from "@/components/adminPrivateRoute/adminPrivateRoute";
 import { DeliveryMainPrivateRoute } from "@/components/deliveryManPrivateRoute/deliveryMainPrivateRoute";
@@ -27,7 +25,11 @@ export const Routing = createBrowserRouter([
     element: <Root />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "/", element: <Home /> },
+      {
+        path: "/",
+        element: <Home />,
+        loader: () => axios("http://localhost:5000/countdelivery"),
+      },
       {
         path: "/login",
         element: <Login />,

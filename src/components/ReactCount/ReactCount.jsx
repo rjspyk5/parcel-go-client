@@ -8,12 +8,11 @@ export const ReactCount = ({ endCount, refName }) => {
     duration: 1,
     easing: "easeOutCubic",
     enableScrollSpy: true,
-    scrollSpyDelay: 1000,
+    scrollSpyDelay: 500,
   });
   return (
-    <h2>
-      <span className="font-bold" id={refName} />
-      <span>+</span>
+    <h2 className="flex items-center">
+      <span className="font-bold text-3xl text-[#f15a25]" id={refName} />+
     </h2>
   );
 };

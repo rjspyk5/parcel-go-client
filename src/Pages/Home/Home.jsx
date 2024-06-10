@@ -2,8 +2,11 @@ import { SectionHeading } from "@/components/sectionHeading/SectionHeading";
 import { Banner } from "./Banner";
 import { TopDeliveryHero } from "./TopDeliveryHero/TopDeliveryHero";
 import { FeaturedSection } from "./FeaturedSection/FeaturedSection";
+import { useLoaderData } from "react-router-dom";
 
 export const Home = () => {
+  const { data } = useLoaderData();
+
   return (
     <div>
       <Banner />
@@ -12,7 +15,7 @@ export const Home = () => {
           heading="Experience Our Features"
           subheading="Real-time updates, secure tracking, and dedicated support make us your top choice. Join our satisfied users today!"
         />
-        <FeaturedSection />
+        <FeaturedSection count={data} />
       </div>
       <div className="py-10">
         <SectionHeading
