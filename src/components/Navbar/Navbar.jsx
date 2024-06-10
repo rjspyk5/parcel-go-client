@@ -17,8 +17,8 @@ export const Navbar = () => {
         to="/"
         className={({ isActive }) =>
           isActive
-            ? "border px-2  h-7 font-bold rounded-md shadow-sm  bg-[#f15a25]  text-white"
-            : "hover:bg-[#f15a25] hover:text-black font-bold h-7 px-2  rounded-md"
+            ? "border px-2 h-9 flex transition-all duration-300 items-center font-bold md:rounded-md shadow-sm  bg-[#f15a25]  text-white"
+            : "hover:bg-[#f15a25] transition-all duration-300 hover:text-white flex items-center font-bold h-9 px-2  md:rounded-md"
         }
       >
         Home
@@ -27,8 +27,8 @@ export const Navbar = () => {
         to="/dashboard"
         className={({ isActive }) =>
           isActive
-            ? "border px-2 border-yellow-400  h-7 font-bold rounded-md shadow-sm  bg-[#f15a25]  text-black"
-            : "hover:bg-[#f15a25] hover:text-black h-7 font-bold px-2 rounded-md "
+            ? "border px-2 h-9 transition-all duration-300 flex items-center font-bold md:rounded-md shadow-sm  bg-[#f15a25]  text-white"
+            : "hover:bg-accent hover:underline underline-offset-2 transition-all duration-300  flex items-center  font-bold h-9 px-2  md:rounded-md"
         }
       >
         Dashboard
@@ -48,8 +48,8 @@ export const Navbar = () => {
               </Button>
             </SheetTrigger>
 
-            <SheetContent side="left">
-              <div className="flex flex-col items-start ">{menu}</div>
+            <SheetContent className="p-0" side="left">
+              <div className="flex flex-col mt-12 *:w-full  ">{menu}</div>
             </SheetContent>
           </Sheet>
           <div className="flex items-center ">
@@ -68,7 +68,9 @@ export const Navbar = () => {
             <ProfileDropDown user={user} />
           ) : (
             <NavLink to="/login">
-              <Button>Sign In</Button>
+              <Button className="bg-[#f15a25] dark:text-white transion-all hover:bg-[#f1254e] duration-200  hover:shadow-lg">
+                Sign In
+              </Button>
             </NavLink>
           )}
         </div>
