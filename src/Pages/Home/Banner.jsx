@@ -1,11 +1,12 @@
+import banner from "../../assets/image/banner.jpg";
 export const Banner = () => {
   return (
-    <div>
+    <div className="">
       <header>
         <div
           className="w-full bg-center bg-cover h-[38rem]"
           style={{
-            backgroundImage: 'url("https://i.ibb.co/yRwpcVb/island.jpg")',
+            backgroundImage: `url(${banner})`,
           }}
         >
           <div className="flex items-center justify-center w-full h-full bg-gray-900/40">

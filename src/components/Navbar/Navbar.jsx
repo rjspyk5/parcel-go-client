@@ -17,8 +17,8 @@ export const Navbar = () => {
         to="/"
         className={({ isActive }) =>
           isActive
-            ? "border px-2 h-9 flex transition-all duration-300 items-center font-bold md:rounded-md shadow-sm  bg-[#f15a25]  text-white"
-            : "hover:bg-[#f15a25] transition-all duration-300 hover:text-white flex items-center font-bold h-9 px-2  md:rounded-md"
+            ? "border px-2 h-9 transition-all duration-300 flex items-center font-bold md:rounded-md shadow-sm  bg-[#f15a25]  text-white"
+            : "hover:bg-accent hover:underline underline-offset-2 transition-all duration-300  flex items-center  font-bold h-9 px-2  md:rounded-md"
         }
       >
         Home
@@ -35,29 +35,28 @@ export const Navbar = () => {
       </NavLink>
     </>
   );
-
   return (
-    <div className="sticky top-0">
-      <div className="flex backdrop-blur-xl shadow-md py-[10px]  justify-between  border-b">
+    <div className="sticky top-0 z-50">
+      <div className="flex backdrop-blur-xl shadow-md py-3 justify-between  border-b">
         {/* left side  */}
-        <div className="flex gap-3 items-center">
+        <div className="flex  items-center">
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
                 <HamburgerMenuIcon />
               </Button>
             </SheetTrigger>
-
             <SheetContent className="p-0" side="left">
               <div className="flex flex-col mt-12 *:w-full  ">{menu}</div>
             </SheetContent>
           </Sheet>
-          <div className="flex items-center ">
+          <Link
+            to="/"
+            className="flex rounded-md pr-2 hover:bg-accent font-bold text-lg  items-center "
+          >
             <img className="w-10 h-10" src={logo} alt="logo" />
-            <Link to="/" className="font-bold text-lg ">
-              ParcelGo
-            </Link>
-          </div>
+            ParcelGo
+          </Link>
         </div>
         {/* Middle side */}
         <div className="mr-4 hidden gap-2 md:flex md:items-center">{menu}</div>
