@@ -1,10 +1,10 @@
-import banner from "../../assets/image/banner.jpg";
+import banner from "../../assets/image/banner2.jpg";
 export const Banner = () => {
   return (
     <div className="">
       <header>
         <div
-          className="w-full bg-center bg-cover h-[38rem]"
+          className="w-full bg-center  bg-cover h-[38rem]"
           style={{
             backgroundImage: `url(${banner})`,
           }}
