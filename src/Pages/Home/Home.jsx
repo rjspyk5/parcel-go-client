@@ -2,7 +2,6 @@ import { SectionHeading } from "@/components/sectionHeading/SectionHeading";
 import { Banner } from "./Banner";
 import { TopDeliveryHero } from "./TopDeliveryHero/TopDeliveryHero";
 import { FeaturedSection } from "./FeaturedSection/FeaturedSection";
-import { ReactCount } from "@/components/ReactCount/ReactCount";
 
 export const Home = () => {
   return (
@@ -22,7 +21,6 @@ export const Home = () => {
         />
         <TopDeliveryHero />
       </div>
-      <ReactCount />
     </div>
   );
 };

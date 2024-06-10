@@ -1,8 +1,8 @@
-import CountUp, { useCountUp } from "react-countup";
+import { useCountUp } from "react-countup";
 
-export const ReactCount = ({ endCount }) => {
+export const ReactCount = ({ endCount, refName }) => {
   useCountUp({
-    ref: "counter",
+    ref: refName,
     end: endCount,
     start: 0,
     duration: 1,
@@ -11,9 +11,9 @@ export const ReactCount = ({ endCount }) => {
     scrollSpyDelay: 1000,
   });
   return (
-    <div className="font-bold">
-      <br />
-      +<span id="counter" />
-    </div>
+    <h2>
+      <span className="font-bold" id={refName} />
+      <span>+</span>
+    </h2>
   );
 };
