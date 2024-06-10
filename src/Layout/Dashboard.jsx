@@ -1,31 +1,59 @@
 import { useRoleCheker } from "@/Hooks/useRoleCheker";
 import { NavLink, Outlet, Link } from "react-router-dom";
-import { useState } from "react";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
-
 import { useAuth } from "@/Hooks/useAuth";
-
-import logo from "../assets/image/update image/logo2.png";
+import logo from "../assets/image/logo.png";
 import { ProfileDropDown } from "@/components/ProfileDropDown/ProfileDropDown";
 import { ToogleTheme } from "@/components/Theme/ToogleTheme";
-
+import { FaPeopleCarry } from "react-icons/fa";
+import { FaBoxOpen } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+import { FaUsers } from "react-icons/fa";
+import { IoMdBicycle } from "react-icons/io";
+import { IoBarChart } from "react-icons/io5";
+import { MdRateReview } from "react-icons/md";
 export const Dashboard = () => {
   const [role, isLoading] = useRoleCheker();
-  const [open, setOpen] = useState(false);
   const { user } = useAuth();
   const userMenu = (
     <>
-      <ul>
-        <li>
-          <NavLink to="/dashboard/bookparcel">Book a Parcel</NavLink>
+      <ul className="">
+        <li className=" ">
+          <NavLink
+            to="/dashboard/bookparcel"
+            className={({ isActive }) =>
+              isActive
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
+                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+            }
+          >
+            <FaPeopleCarry />{" "}
+            <span className="hidden lg:block ">Book Parcel</span>
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/myparcel">My Parcel</NavLink>
+          <NavLink
+            to="/dashboard/myparcel"
+            className={({ isActive }) =>
+              isActive
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
+                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+            }
+          >
+            <FaBoxOpen /> <span className="hidden lg:block ">My Parcel </span>
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/myprofile">My Profile</NavLink>
+          <NavLink
+            to="/dashboard/myprofile"
+            className={({ isActive }) =>
+              isActive
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
+                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+            }
+          >
+            <FaUser />
+            <span className="hidden lg:block ">My Profile</span>
+          </NavLink>
         </li>
       </ul>
     </>
@@ -34,16 +62,56 @@ export const Dashboard = () => {
     <>
       <ul>
         <li>
-          <NavLink to="/dashboard/allparcel">All Parcels</NavLink>
+          <NavLink
+            to="/dashboard/allparcel"
+            className={({ isActive }) =>
+              isActive
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
+                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+            }
+          >
+            <FaBoxOpen />
+            <span className="hidden lg:block ">All Parcels </span>
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/alluser">All Users</NavLink>
+          <NavLink
+            to="/dashboard/alluser"
+            className={({ isActive }) =>
+              isActive
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
+                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+            }
+          >
+            <FaUsers />
+            <span className="hidden lg:block ">All Users </span>
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/alldelivery">All Delivery</NavLink>
+          <NavLink
+            to="/dashboard/alldelivery"
+            className={({ isActive }) =>
+              isActive
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
+                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+            }
+          >
+            <IoMdBicycle />
+            <span className="hidden lg:block ">All Delivery</span>
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/statistics">Statistics</NavLink>
+          <NavLink
+            to="/dashboard/statistics"
+            className={({ isActive }) =>
+              isActive
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
+                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+            }
+          >
+            <IoBarChart />
+            <span className="hidden lg:block "> Statistics </span>
+          </NavLink>
         </li>
       </ul>
     </>
@@ -52,10 +120,30 @@ export const Dashboard = () => {
     <>
       <ul>
         <li>
-          <NavLink to="/dashboard/mydelivery">My Delivery List</NavLink>
+          <NavLink
+            to="/dashboard/mydelivery"
+            className={({ isActive }) =>
+              isActive
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
+                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+            }
+          >
+            <FaPeopleCarry />{" "}
+            <span className="hidden lg:block ">My Delivery</span>
+          </NavLink>
         </li>
         <li>
-          <NavLink to="/dashboard/reviews">My Reviews</NavLink>
+          <NavLink
+            to="/dashboard/reviews"
+            className={({ isActive }) =>
+              isActive
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
+                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+            }
+          >
+            <MdRateReview />
+            <span className="hidden lg:block ">All My Reviews </span>
+          </NavLink>
         </li>
       </ul>
     </>
@@ -67,16 +155,16 @@ export const Dashboard = () => {
       ) : (
         <>
           {" "}
-          <div className="sticky top-0 z-50">
+          <div className="sticky border shadow-lg top-0 z-50">
             <div className="flex justify-between bg-accent  backdrop-blur-xl py-[9px]  ">
               {/* left side  */}
               <div className="flex   items-center ">
                 <Link
-                  to="/"
+                  to="/dashboard"
                   className="flex rounded-md pr-2 hover:bg-accent font-bold text-lg  items-center "
                 >
                   <img className="w-10 h-10" src={logo} alt="logo" />
-                  ParcelGo
+                  Dashboard
                 </Link>
               </div>
               {/* end side */}
@@ -87,7 +175,7 @@ export const Dashboard = () => {
             </div>
           </div>
           <div className="flex">
-            <div className="w-[20%] bg-accent min-h-screen shadow-2xl">
+            <div className="w-[20%] border bg-accent min-h-screen shadow-2xl">
               {role === "user"
                 ? userMenu
                 : role === "deliveryHero"
