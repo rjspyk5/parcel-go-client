@@ -1,5 +1,4 @@
 import { useDeliveryMan } from "@/Hooks/useDeliveryMan";
-
 export const AllDelivery = () => {
   const [alluser, isLoading] = useDeliveryMan();
   return (

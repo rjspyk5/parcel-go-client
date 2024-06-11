@@ -64,6 +64,19 @@ export const Dashboard = () => {
       <ul>
         <li>
           <NavLink
+            to="/dashboard/statistics"
+            className={({ isActive }) =>
+              isActive
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
+                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+            }
+          >
+            <IoBarChart />
+            <span className="hidden lg:block "> Statistics </span>
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="/dashboard/allparcel"
             className={({ isActive }) =>
               isActive
@@ -99,19 +112,6 @@ export const Dashboard = () => {
           >
             <IoMdBicycle />
             <span className="hidden lg:block ">All Delivery</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
-            to="/dashboard/statistics"
-            className={({ isActive }) =>
-              isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
-                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
-            }
-          >
-            <IoBarChart />
-            <span className="hidden lg:block "> Statistics </span>
           </NavLink>
         </li>
       </ul>
