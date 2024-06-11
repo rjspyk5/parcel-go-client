@@ -1,13 +1,15 @@
 import { useUser } from "@/Hooks/useUser";
-import { useQuery } from "@tanstack/react-query";
+import { SectionHeading } from "@/components/sectionHeading/SectionHeading";
 
 export const AllUser = () => {
   const [user, isLoading, refetch] = useUser();
   return (
-    <div>
-      <div className=" overflow-x-auto">
-        <table className=" divide-y divide-gray-200  w-full dark:divide-gray-700">
-          <thead className="bg-gray-50 dark:bg-gray-800">
+    <div className="p-4">
+      <h1 className="text-center font-bold text-3xl mb-4">All Users</h1>
+
+      <div className=" overflow-x-auto rounded-md shadow-xl">
+        <table className=" divide-y divide-gray-200 rounded-md  w-full dark:divide-gray-700">
+          <thead className="bg-gray-200 dark:bg-gray-800">
             <tr>
               <th className="md:px-3 px-1 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
                 User's Name

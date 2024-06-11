@@ -13,12 +13,12 @@ export const AllParcel = () => {
       return result.data;
     },
   });
-
   return (
-    <div>
-      <div className=" overflow-x-auto">
+    <div className="p-4">
+      <h1 className="text-center font-bold text-3xl mb-4">All Parcel</h1>
+      <div className=" overflow-x-auto rounded-md shadow-xl">
         <table className=" divide-y divide-gray-200  w-full dark:divide-gray-700">
-          <thead className="bg-gray-50 dark:bg-gray-800">
+          <thead className="bg-gray-200 dark:bg-gray-800">
             <tr>
               <th className="md:px-3 px-1 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
                 User's Name
