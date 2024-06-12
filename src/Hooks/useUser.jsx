@@ -10,5 +10,6 @@ export const useUser = () => {
       return result.data;
     },
   });
+
   return [data, isLoading, refetch];
 };

@@ -1,8 +1,14 @@
 import { useUser } from "@/Hooks/useUser";
 import { SectionHeading } from "@/components/sectionHeading/SectionHeading";
-
+import { useState } from "react";
 export const AllUser = () => {
   const [user, isLoading, refetch] = useUser();
+  const [perPageView, setperPageView] = useState(5);
+  const totalPage = user?.userCount / perPageView;
+  // const pages = [...Array(totalPage).keys()];
+  // console.log(pages);
+  // console.log(totalPage);
+
   return (
     <div className="p-4">
       <h1 className="text-center font-bold text-3xl mb-4">All Users</h1>
@@ -29,7 +35,7 @@ export const AllUser = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-            {user?.map((el) => {
+            {user?.result?.map((el) => {
               return (
                 <tr key={el._id}>
                   <td className="md:px-3 px-1  py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
