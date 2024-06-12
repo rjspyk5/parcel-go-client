@@ -7,9 +7,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
 export const ProfileDropDown = ({ user }) => {
   const navigate = useNavigate();
   const { logOut } = useAuth();
@@ -20,7 +19,7 @@ export const ProfileDropDown = ({ user }) => {
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar>
-          <AvatarImage src={user?.photoURL} />
+          <AvatarImage className="w-9 h-9 rounded-full" src={user?.photoURL} />
           <AvatarFallback>user</AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
