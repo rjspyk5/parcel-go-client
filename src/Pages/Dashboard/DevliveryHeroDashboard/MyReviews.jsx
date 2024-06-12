@@ -7,13 +7,14 @@ export const MyReviews = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 mg:grid-cols-3 lg:grid-cols-4 gap-2">
         <div className="border shadow-xl p-2 rounded-md">
+          <div className="flex gap"></div>
           <Avatar>
             <AvatarImage
               src="https://github.com/shadcn.png"
               className="w-9 h-9 rounded-full"
-              alt="@shadcn"
+              alt="user"
             />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback>user</AvatarFallback>
           </Avatar>
         </div>
       </div>
