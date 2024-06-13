@@ -10,14 +10,24 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { key } from "localforage";
 export const AllUser = () => {
   const [user, isLoading, refetch] = useUser();
   const [perPageView, setperPageView] = useState(5);
+  const [currentPage, setcurrentPage] = useState(1);
+  const totalPage = user?.userCount && Math.ceil(user?.userCount / perPageView);
+  const pages = [...Array(totalPage).keys()];
 
-  const totalPage = user?.userCount / perPageView;
-  // const pages = [...Array(totalPage).keys()];
-  // console.log(pages);
-  // console.log(totalPage);
+  const handleNext = () => {
+    if (currentPage <= totalPage) {
+      setcurrentPage(currentPage + 1);
+    }
+  };
+  const handlePrev = () => {
+    if (currentPage > 1) {
+      setcurrentPage(currentPage + 1);
+    }
+  };
 
   return (
     <div className="p-4">
@@ -72,26 +82,43 @@ export const AllUser = () => {
       </div>
       <Pagination>
         <PaginationContent>
+          <button
+            onClick={() => currentPage > 1 && setcurrentPage(currentPage - 1)}
+          >
+            <PaginationItem>
+              <PaginationPrevious href="#" />
+            </PaginationItem>
+          </button>
+
+          {pages.map((el) => {
+            return (
+              <button key={el} onClick={() => setcurrentPage(el + 1)}>
+                <PaginationItem>
+                  <PaginationLink
+                    className={currentPage === el + 1 && "bg-red-500"}
+                  >
+                    {el + 1}
+                  </PaginationLink>
+                </PaginationItem>
+              </button>
+            );
+          })}
           <PaginationItem>
-            <PaginationPrevious href="#" />
+            <PaginationLink href="#">2</PaginationLink>
           </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">1</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#" isActive>
-              2
-            </PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">3</PaginationLink>
-          </PaginationItem>
+
           <PaginationItem>
             <PaginationEllipsis />
           </PaginationItem>
-          <PaginationItem>
-            <PaginationNext href="#" />
-          </PaginationItem>
+          <button
+            onClick={() =>
+              currentPage < totalPage.length && setcurrentPage(currentPage + 1)
+            }
+          >
+            <PaginationItem>
+              <PaginationNext href="#" />
+            </PaginationItem>
+          </button>
         </PaginationContent>
       </Pagination>
     </div>
