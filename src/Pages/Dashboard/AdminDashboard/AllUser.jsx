@@ -17,18 +17,6 @@ export const AllUser = () => {
   const [currentPage, setcurrentPage] = useState(1);
   const totalPage = user?.userCount && Math.ceil(user?.userCount / perPageView);
   const pages = [...Array(totalPage).keys()];
-
-  const handleNext = () => {
-    if (currentPage <= totalPage) {
-      setcurrentPage(currentPage + 1);
-    }
-  };
-  const handlePrev = () => {
-    if (currentPage > 1) {
-      setcurrentPage(currentPage + 1);
-    }
-  };
-
   return (
     <div className="p-4">
       <h1 className="text-center font-bold text-3xl mb-4">All Users</h1>
