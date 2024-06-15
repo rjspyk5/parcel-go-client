@@ -69,7 +69,11 @@ export const AllParcel = () => {
                     </td>
                     <td className="px-1 md:px-3 py-4 text-xs md:text-sm">
                       <Modal
-                        deliveryHeroData={{ deliveryHeros, deliveryManLoading }}
+                        deliveryHeroData={{
+                          deliveryHeros,
+                          deliveryManLoading,
+                          bookingId: el._id,
+                        }}
                       />
                     </td>
                   </tr>

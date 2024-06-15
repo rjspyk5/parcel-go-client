@@ -81,7 +81,7 @@ export const AllUser = () => {
           </tbody>
         </table>
       </div>
-      <Pagination>
+      <Pagination className="my-8">
         <PaginationContent>
           <button
             onClick={() => currentPage > 1 && setcurrentPage(currentPage - 1)}
@@ -96,7 +96,9 @@ export const AllUser = () => {
               <button key={el} onClick={() => setcurrentPage(el + 1)}>
                 <PaginationItem>
                   <PaginationLink
-                    className={currentPage === el + 1 && "bg-[#f15a25]"}
+                    className={
+                      currentPage === el + 1 && "bg-[#f15a25] text-white"
+                    }
                   >
                     {el + 1}
                   </PaginationLink>
