@@ -74,6 +74,7 @@ export const Routing = createBrowserRouter([
             <AllUser />
           </AdminPrivateRoute>
         ),
+        loader: () => fetch("http://localhost:5000/countuser"),
       },
       {
         path: "allparcel",

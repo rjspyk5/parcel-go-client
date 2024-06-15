@@ -1,5 +1,5 @@
 import { useUser } from "@/Hooks/useUser";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import {
   Pagination,
@@ -10,13 +10,26 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
-import { key } from "localforage";
+import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
+import { useLoaderData } from "react-router-dom";
+
 export const AllUser = () => {
-  const [user, isLoading, refetch] = useUser();
+  const { userCount } = useLoaderData();
+  const axiosSequre = useAxiosSequre();
+  const [user, setuser] = useState([]);
   const [perPageView, setperPageView] = useState(5);
   const [currentPage, setcurrentPage] = useState(1);
-  const totalPage = user?.userCount && Math.ceil(user?.userCount / perPageView);
+  const totalPage = userCount && Math.ceil(userCount / perPageView);
   const pages = [...Array(totalPage).keys()];
+
+  useEffect(() => {
+    axiosSequre
+      .get(`/user?page=${currentPage}&size=${perPageView}`)
+      .then((result) => {
+        setuser(result.data);
+      });
+  }, []);
+
   return (
     <div className="p-4">
       <h1 className="text-center font-bold text-3xl mb-4">All Users</h1>
@@ -43,7 +56,7 @@ export const AllUser = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-            {user?.result?.map((el) => {
+            {user?.map((el) => {
               return (
                 <tr key={el._id}>
                   <td className="md:px-3 px-1  py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
@@ -83,7 +96,7 @@ export const AllUser = () => {
               <button key={el} onClick={() => setcurrentPage(el + 1)}>
                 <PaginationItem>
                   <PaginationLink
-                    className={currentPage === el + 1 && "bg-red-500"}
+                    className={currentPage === el + 1 && "bg-[#f15a25]"}
                   >
                     {el + 1}
                   </PaginationLink>
@@ -91,9 +104,6 @@ export const AllUser = () => {
               </button>
             );
           })}
-          <PaginationItem>
-            <PaginationLink href="#">2</PaginationLink>
-          </PaginationItem>
 
           <PaginationItem>
             <PaginationEllipsis />
