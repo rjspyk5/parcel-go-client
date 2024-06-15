@@ -28,7 +28,7 @@ export const AllUser = () => {
       .then((result) => {
         setuser(result.data);
       });
-  }, []);
+  }, [currentPage]);
 
   return (
     <div className="p-4">
@@ -87,7 +87,7 @@ export const AllUser = () => {
             onClick={() => currentPage > 1 && setcurrentPage(currentPage - 1)}
           >
             <PaginationItem>
-              <PaginationPrevious href="#" />
+              <PaginationPrevious />
             </PaginationItem>
           </button>
 
@@ -104,17 +104,13 @@ export const AllUser = () => {
               </button>
             );
           })}
-
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
           <button
             onClick={() =>
-              currentPage < totalPage.length && setcurrentPage(currentPage + 1)
+              currentPage < totalPage && setcurrentPage(currentPage + 1)
             }
           >
             <PaginationItem>
-              <PaginationNext href="#" />
+              <PaginationNext />
             </PaginationItem>
           </button>
         </PaginationContent>
