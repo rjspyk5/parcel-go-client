@@ -1,6 +1,5 @@
 import { useUser } from "@/Hooks/useUser";
 import { useEffect, useState } from "react";
-
 import {
   Pagination,
   PaginationContent,
@@ -12,7 +11,6 @@ import {
 } from "@/components/ui/pagination";
 import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
 import { useLoaderData } from "react-router-dom";
-
 export const AllUser = () => {
   const { userCount } = useLoaderData();
   const axiosSequre = useAxiosSequre();
@@ -30,9 +28,49 @@ export const AllUser = () => {
       });
   }, [currentPage]);
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const startDate = e.target.startDate.value;
+    const endDate = e.target.endDate.value;
+  };
+
   return (
     <div className="p-4">
       <h1 className="text-center font-bold text-3xl mb-4">All Users</h1>
+      <div className="my-5">
+        <form
+          className="flex md:justify-end flex-col md:flex-row gap-4 md:items-center"
+          onSubmit={handleSearch}
+          action=""
+        >
+          <div className="flex flex-col  md:flex-row gap-2 md:items-center items-start">
+            <label htmlFor="startDate">From</label>
+            <input
+              required
+              className="px-2 w-full py-1 border rounded-md"
+              type="date"
+              name="startDate"
+              id=""
+            />
+          </div>
+          <div className="flex flex-col md:flex-row gap-2 md:items-center items-start">
+            <label htmlFor="endDate">To </label>
+            <input
+              required
+              className="px-2 w-full py-1 border rounded-md"
+              type="date"
+              name="endDate"
+              id=""
+            />
+          </div>
+
+          <input
+            type="submit"
+            className="bg-orange-600 px-3 py-[6px] text-white  rounded-md text-center"
+            value="Search"
+          />
+        </form>
+      </div>
 
       <div className=" overflow-x-auto rounded-md shadow-xl">
         <table className=" divide-y divide-gray-200 rounded-md  w-full dark:divide-gray-700">
