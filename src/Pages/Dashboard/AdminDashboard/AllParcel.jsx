@@ -2,26 +2,27 @@ import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
 import { useDeliveryMan } from "@/Hooks/useDeliveryMan";
 import { Modal } from "@/components/Modal/Modal";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 export const AllParcel = () => {
   const [deliveryHeros, deliveryManLoading] = useDeliveryMan();
   const axiosSequre = useAxiosSequre();
+  const [allParcel, setallParcel] = useState([]);
   const { data, refetch, isLoading } = useQuery({
     queryKey: ["allParcels"],
     queryFn: async () => {
       const result = await axiosSequre.get("/bookings");
+      setallParcel(result.data);
       return result.data;
     },
   });
   const handleSearch = (e) => {
     e.preventDefault();
-
     const startDate = e.target.startDate.value;
     const endDate = e.target.endDate.value;
-
     axiosSequre
       .get(`/bookings?start=${startDate}&end=${endDate}`)
-      .then((result) => console.log(result.data));
+      .then((result) => setallParcel(result.data));
   };
   return (
     <div className="p-4">
@@ -89,8 +90,8 @@ export const AllParcel = () => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-            {data &&
-              data.map((el) => {
+            {allParcel &&
+              allParcel.map((el) => {
                 return (
                   <tr key={el._id}>
                     <td className="md:px-3 px-1  py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
