@@ -19,20 +19,25 @@ export const AllUser = () => {
   const [currentPage, setcurrentPage] = useState(1);
   const totalPage = userCount && Math.ceil(userCount / perPageView);
   const pages = [...Array(totalPage).keys()];
+  const handleSearch = (e) => {
+    e.preventDefault();
 
+    const startDate = e.target.startDate.value;
+    const endDate = e.target.endDate.value;
+    console.log(startDate);
+    axiosSequre
+      .get(
+        `/user?page=${currentPage}&size=${perPageView}&start=${startDate}&end=${endDate}`
+      )
+      .then((result) => setuser(result.data));
+  };
   useEffect(() => {
     axiosSequre
       .get(`/user?page=${currentPage}&size=${perPageView}`)
       .then((result) => {
         setuser(result.data);
       });
-  }, [currentPage]);
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    const startDate = e.target.startDate.value;
-    const endDate = e.target.endDate.value;
-  };
+  }, [currentPage, perPageView]);
 
   return (
     <div className="p-4">
