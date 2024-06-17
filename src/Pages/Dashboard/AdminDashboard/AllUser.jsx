@@ -20,13 +20,19 @@ export const AllUser = () => {
   const totalPage = userCount && Math.ceil(userCount / perPageView);
   const pages = [...Array(totalPage).keys()];
 
+  const handleManage = async (id, rolee) => {
+    const result = await axiosSequre.patch(`/user/${id}`, { role: rolee });
+    if (result.data.acknowledged) {
+      alert("admin make sucessfull");
+    }
+  };
   useEffect(() => {
     axiosSequre
       .get(`/user?page=${currentPage}&size=${perPageView}`)
       .then((result) => {
         setuser(result.data);
       });
-  }, [currentPage, perPageView]);
+  }, [currentPage, perPageView, handleManage]);
 
   return (
     <div className="p-4">
@@ -69,9 +75,20 @@ export const AllUser = () => {
                   <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 ">
                     {el.totalSpendMoney}
                   </td>
-                  <td className="px-1 md:px-3 py-4 text-xs md:text-sm">
-                    <button>Make Admin</button>
-                    <button>Make DeliveryHero</button>
+                  <td className="px-1 md:px-3 py-4   ">
+                    <button
+                      onClick={() => handleManage(el._id, "admin")}
+                      className=" text-orange-700 text-[10px] sm:text-sm md:text-sm bg-[#ff880025] px-2 rounded-lg py01"
+                    >
+                      Make Admin
+                    </button>
+                    <br />
+                    <button
+                      onClick={() => handleManage(el._id, "deliveryHero")}
+                      className=" text-orange-700 text-[10px] sm:text-sm md:text-sm mt-2 bg-[#ff880027] px-2 rounded-lg"
+                    >
+                      Make DeliveryMan
+                    </button>
                   </td>
                 </tr>
               );
