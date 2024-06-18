@@ -1,5 +1,9 @@
-import React from "react";
+import { Barchart } from "@/components/BarChart/Barchart";
 
 export const Statistics = () => {
-  return <div>Statistics</div>;
+  return (
+    <div>
+      <Barchart />
+    </div>
+  );
 };
