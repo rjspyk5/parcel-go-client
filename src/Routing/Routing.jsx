@@ -93,7 +93,7 @@ export const Routing = createBrowserRouter([
         ),
       },
       {
-        path: "statistics",
+        path: "dashboard",
         element: (
           <AdminPrivateRoute>
             <Statistics />

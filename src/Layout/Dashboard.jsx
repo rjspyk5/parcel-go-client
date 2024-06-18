@@ -64,7 +64,7 @@ export const Dashboard = () => {
       <ul>
         <li>
           <NavLink
-            to="/dashboard/statistics"
+            to="/dashboard"
             className={({ isActive }) =>
               isActive
                 ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
