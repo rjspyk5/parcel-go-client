@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
+import { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
 export const Barchart = () => {
+  const axiosSequre = useAxiosSequre();
   const [chartData, setChartData] = useState({
     series: [
       {
-        data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380],
+        data: [],
       },
     ],
     options: {
@@ -24,25 +26,33 @@ export const Barchart = () => {
         enabled: false,
       },
       xaxis: {
-        categories: [
-          "South Korea",
-          "Canada",
-          "United Kingdom",
-          "Netherlands",
-          "Italy",
-          "France",
-          "Japan",
-          "United States",
-          "China",
-          "Germany",
-        ],
+        categories: [],
       },
     },
   });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axiosSequre.get("/booking-stats");
+      const dateData = result.data.map((el) => el._id);
+      const countData = result.data.map((el) => el.count);
+      setChartData(() => ({
+        ...chartData,
+        series: [{ data: countData }],
+        options: {
+          ...chartData.options,
+          xaxis: {
+            categories: dateData,
+          },
+        },
+      }));
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div id="chart">
-      h
       <ReactApexChart
         options={chartData.options}
         series={chartData.series}
