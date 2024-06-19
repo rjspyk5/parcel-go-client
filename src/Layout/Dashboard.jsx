@@ -178,9 +178,9 @@ export const Dashboard = () => {
           </div>
           <div className="flex">
             <div className="w-[20%]  border bg-accent min-h-screen shadow-2xl">
-              {role.role === "user"
+              {role?.role === "user"
                 ? userMenu
-                : role.role === "deliveryHero"
+                : role?.role === "deliveryHero"
                 ? deliveryHeroMenu
                 : adminMenu}
             </div>
