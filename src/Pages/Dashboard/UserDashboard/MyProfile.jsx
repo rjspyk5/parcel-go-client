@@ -33,8 +33,9 @@ export const MyProfile = () => {
       }
     };
     handleImageUpload()
+      .then(() => console.log("image up"))
       .then(() => updateInfo(data.image))
-      .then(() => console.log("update"))
+      .then(() => window.location.reload())
       .catch((er) => console.log(er));
   };
 
