@@ -140,7 +140,9 @@ export const MyParcels = () => {
                                 Pay
                               </button>
 
-                              <ModalForReview />
+                              <ModalForReview
+                                devieryHeroId={el.deliveryHeorId}
+                              />
                             </td>
                           </tr>
                         ))}

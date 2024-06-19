@@ -12,13 +12,14 @@ import {
 import { DialogClose } from "@radix-ui/react-dialog";
 import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Rating } from "@smastrom/react-rating";
+import { Rating, Star } from "@smastrom/react-rating";
+import moment from "moment";
 
-export const ModalForReview = () => {
+export const ModalForReview = ({ devieryHeroId }) => {
   const closeModal = useRef(null);
   const axiosSequre = useAxiosSequre();
   const [rating, setrating] = useState(0);
-  const { user } = useAuth(); // Assume user object has name and image
+  const { user } = useAuth();
   const {
     register,
     formState: { errors },
@@ -27,8 +28,13 @@ export const ModalForReview = () => {
   } = useForm();
 
   const onSubmit = async (data) => {
-    const result = await axiosSequre.post(`/reviews`, data);
-    if (result?.data?.acknowledged) {
+    data.reviewGivenDate = moment().format("YYYY-MM-DD");
+    data.devieryHeroId = devieryHeroId;
+    data.reviewGiverName = user?.displayName;
+    data.reviewGiverImage = user?.photoURL;
+
+    const result = await axiosSequre.post(`/review`, data);
+    if (result?.data?.insertedId) {
       if (closeModal.current) {
         closeModal.current.click();
       }
@@ -40,13 +46,19 @@ export const ModalForReview = () => {
     setrating(e);
   };
 
+  const myStyles = {
+    itemShapes: Star,
+    activeFillColor: "#f15a25",
+    inactiveFillColor: "#f15b2533",
+  };
+
   return (
     <div>
       <Dialog>
         <DialogTrigger>
-          <button className="bg-orange-600 text-white px-4 py-2 rounded-md">
+          <span className="bg-orange-600 text-white px-4 py-2 rounded-md">
             Review
-          </button>
+          </span>
         </DialogTrigger>
         <DialogContent>
           <form onSubmit={handleSubmit(onSubmit)}>
@@ -57,32 +69,25 @@ export const ModalForReview = () => {
               <DialogDescription>
                 <div className="flex items-center space-x-4 mb-4">
                   <img
-                    src={user.image}
+                    src={user.photoURL}
                     alt="User Avatar"
                     className="w-12 h-12 rounded-full"
                   />
                   <span className="text-lg text-gray-800 dark:text-gray-200">
-                    Rakib
+                    {user.displayName}
                   </span>
-                  <input
-                    type="hidden"
-                    {...register("userName")}
-                    defaultValue={user.name}
-                  />
-                  <input
-                    type="hidden"
-                    {...register("userImage")}
-                    defaultValue={user.image}
-                  />
                 </div>
+                <input disabled defaultValue={devieryHeroId} />
                 <div className="mb-4">
                   <label className="block pb-2 text-lg text-gray-800 dark:text-gray-200">
                     Rating
                   </label>
                   <Rating
+                    spaceBetween="medium"
                     onChange={ratingChanged}
                     value={rating}
-                    className="max-w-32 mx-auto"
+                    className="w-72 mx-auto"
+                    itemStyles={myStyles}
                   />
                   <input
                     type="hidden"
