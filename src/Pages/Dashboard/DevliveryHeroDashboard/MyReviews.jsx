@@ -1,6 +1,21 @@
+import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
+import { useRoleCheker } from "@/Hooks/useRoleCheker";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { useEffect, useState } from "react";
 
 export const MyReviews = () => {
+  const [userInfo] = useRoleCheker();
+  const axiosSequre = useAxiosSequre();
+  const [reviews, setreviews] = useState([]);
+
+  useEffect(() => {
+    userInfo &&
+      axiosSequre
+        .get(`/reviews/${userInfo._id}`)
+        .then((el) => setreviews(el.data))
+        .catch((er) => console.log(er));
+  }, [userInfo]);
+
   return (
     <div className="p-4">
       <h1 className="text-center font-bold text-3xl mb-4">My Reviews</h1>
