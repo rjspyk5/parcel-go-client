@@ -43,14 +43,16 @@ export const MyProfile = () => {
       {" "}
       <div className="flex justify-center items-center min-h-[300px] flex-grow p-6 ">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full  max-w-4xl">
-          <div className="col-span-1 rounded-md shadow-xl border p-4 flex flex-col items-center">
+          <div className="col-span-1 rounded-md shadow-xl border p-4 overflow-hidden flex flex-col items-center">
             <div className="w-24 h-24 rounded-full bg-gray-300 dark:bg-gray-600 mb-4 flex items-center justify-center">
-              <span className="text-gray-500 dark:text-gray-300">
-                Profile Pic
-              </span>
+              <img
+                className="w-24 h-24 rounded-full"
+                src={user.photoURL}
+                alt=""
+              />
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
-              <label className="flex items-center justify-center py-2 px-4  w-full mb-2 text-center  bg-white border-2 border-dashed rounded-lg cursor-pointer dark:border-gray-600 dark:bg-gray-900">
+              <label className="flex items-center justify-center py-2   w-full mb-2 text-center  bg-white border-2 border-dashed rounded-lg cursor-pointer dark:border-gray-600 dark:bg-gray-900">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="w-6 h-6 text-gray-300 dark:text-gray-500"
@@ -66,10 +68,12 @@ export const MyProfile = () => {
                   />
                 </svg>
 
-                <h2 className="mx-3 text-gray-400">{profilePhotoName}</h2>
+                <h2 className="mx-3 text-gray-400 overflow-hidden">
+                  {profilePhotoName}
+                </h2>
 
                 <input
-                  {...register("image")}
+                  {...register("image", { required: true })}
                   id="dropzone-file"
                   type="file"
                   onChange={(e) =>
@@ -79,10 +83,15 @@ export const MyProfile = () => {
                   className=" opacity-0 w-0 h-0 overflow-hidden"
                 />
               </label>
+              {errors.image && (
+                <p className="text-center my-1 text-red-500">
+                  This field is required
+                </p>
+              )}
               <input
                 type="submit"
                 value="Update"
-                className="bg-green-600 text-white py-2 px-4 rounded w-full hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600"
+                className="bg-orange-600 cursor-pointer text-white py-2 px-4 rounded w-full hover:bg-orange-700 dark:bg-orange-500 dark:hover:bg-orange-600"
               />
             </form>
           </div>
