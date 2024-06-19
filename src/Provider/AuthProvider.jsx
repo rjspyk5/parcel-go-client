@@ -38,11 +38,10 @@ export const AuthProvider = ({ children }) => {
   };
   const logOut = () => {
     setloading(true);
-
     return signOut(auth);
   };
 
-  const updateInfo = (name, photo) => {
+  const updateInfo = (photo, name) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,

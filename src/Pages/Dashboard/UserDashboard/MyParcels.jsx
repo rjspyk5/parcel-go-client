@@ -28,7 +28,7 @@ export const MyParcels = () => {
 
   return (
     <>
-      <div className="dark:bg-gray-800 min-h-screen flex justify-center items-center">
+      <div className="dark:bg-gray-800 flex justify-center items-center">
         <div className="w-full py-12 px-4 sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-lg">
             <div className="flex flex-col">
@@ -40,43 +40,43 @@ export const MyParcels = () => {
                         <tr>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-left text-xs md:text-sm  tracking-wider"
+                            className="px-6 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
                           >
                             Parcel Type
                           </th>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-left text-xs md:text-sm  tracking-wider"
+                            className="px-6 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
                           >
                             Req. Delivery Date
                           </th>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-left text-xs md:text-sm  tracking-wider"
+                            className="px-6 py-3 text-left text-xs md:text-sm  font-normal tracking-wider"
                           >
                             Approx. Delivery Date
                           </th>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-left text-xs md:text-sm  tracking-wider"
+                            className="px-6 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
                           >
                             Booking Date
                           </th>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-left text-xs md:text-sm  tracking-wider"
+                            className="px-6 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
                           >
                             Delivery HeroID
                           </th>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-left text-xs md:text-sm  tracking-wider"
+                            className="px-6 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
                           >
                             Status
                           </th>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-left text-xs md:text-sm  tracking-wider"
+                            className="px-6 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
                           >
                             Action
                           </th>
@@ -88,8 +88,8 @@ export const MyParcels = () => {
                             key={el._id}
                             className="transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
                           >
-                            <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm font-medium text-gray-900 dark:text-gray-200">
-                              {el.parcelType}
+                            <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400">
+                              {el.parcleType}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
                               {el.reqDeliveryDate}
@@ -101,7 +101,7 @@ export const MyParcels = () => {
                               {el.bookingDate}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
-                              {el.deliveryHeroID}
+                              {el.assignedDeliveryHero || "Not assigned yet"}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
                               {el.status}
@@ -151,7 +151,7 @@ export const MyParcels = () => {
         </div>
       </div>
 
-      <div className=" overflow-x-auto">
+      {/* <div className=" overflow-x-auto">
         <table className=" divide-y divide-gray-200  w-full dark:divide-gray-700">
           <thead className="bg-gray-50 dark:bg-gray-800">
             <tr>
@@ -240,7 +240,7 @@ export const MyParcels = () => {
             ))}
           </tbody>
         </table>
-      </div>
+      </div> */}
     </>
   );
 };

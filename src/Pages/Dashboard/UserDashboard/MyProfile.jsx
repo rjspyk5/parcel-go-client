@@ -1,4 +1,43 @@
+import { useAuth } from "@/Hooks/useAuth";
+import axios from "axios";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 export const MyProfile = () => {
+  const { updateInfo, user } = useAuth();
+
+  const url = `https://api.imgbb.com/1/upload?key=${
+    import.meta.env.VITE_IMG_API
+  }`;
+  const [profilePhotoName, setprofilePhotoName] = useState(
+    "Upload Profile Photo"
+  );
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+    const handleImageUpload = async () => {
+      if (data.image.length > 0) {
+        const imageFile = { image: data.image[0] };
+        const im = await axios.post(url, imageFile, {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        });
+        data.image = im.data.data.display_url;
+      } else {
+        data.image = "https://iili.io/Jbv2kkF.jpg";
+      }
+    };
+    handleImageUpload()
+      .then(() => updateInfo(data.image))
+      .then(() => console.log("update"))
+      .catch((er) => console.log(er));
+  };
+
   return (
     <div>
       {" "}
@@ -10,16 +49,42 @@ export const MyProfile = () => {
                 Profile Pic
               </span>
             </div>
-            <input type="file" id="profilePicUpload" className="hidden" />
-            <label
-              htmlFor="profilePicUpload"
-              className="bg-blue-600 text-white py-2 px-4 rounded w-full mb-2 text-center cursor-pointer hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
-            >
-              Upload Profile Picture
-            </label>
-            <button className="bg-green-600 text-white py-2 px-4 rounded w-full hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600">
-              Update
-            </button>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <label className="flex items-center justify-center py-2 px-4  w-full mb-2 text-center  bg-white border-2 border-dashed rounded-lg cursor-pointer dark:border-gray-600 dark:bg-gray-900">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6 text-gray-300 dark:text-gray-500"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
+                  />
+                </svg>
+
+                <h2 className="mx-3 text-gray-400">{profilePhotoName}</h2>
+
+                <input
+                  {...register("image")}
+                  id="dropzone-file"
+                  type="file"
+                  onChange={(e) =>
+                    e.target.files.length &&
+                    setprofilePhotoName(e.target.files[0].name)
+                  }
+                  className=" opacity-0 w-0 h-0 overflow-hidden"
+                />
+              </label>
+              <input
+                type="submit"
+                value="Update"
+                className="bg-green-600 text-white py-2 px-4 rounded w-full hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600"
+              />
+            </form>
           </div>
 
           <div className="md:col-span-2 shadow-xl border p-4 bg-white dark:bg-gray-700 dark:border-gray-600">
@@ -33,7 +98,7 @@ export const MyProfile = () => {
                     Name :
                   </td>
                   <td className="px-4 py-2 dark:text-gray-200">
-                    Rakibul Islam
+                    {user?.displayName}
                   </td>
                 </tr>
                 <tr className="border-b dark:border-gray-600">
@@ -41,7 +106,7 @@ export const MyProfile = () => {
                     Email :
                   </td>
                   <td className="px-4 py-2 dark:text-gray-200">
-                    test@gmail.com
+                    {user?.email}
                   </td>
                 </tr>
               </tbody>
