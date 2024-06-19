@@ -9,7 +9,8 @@ export const useRoleCheker = () => {
     queryKey: ["userCheaker"],
     queryFn: async () => {
       const result = await axiosSequre.get(`/user/${user?.email}`);
-      return result.data?.role;
+
+      return result.data;
     },
   });
   return [userRole, isLoading];

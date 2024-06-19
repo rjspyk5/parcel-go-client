@@ -10,7 +10,7 @@ export const AdminPrivateRoute = ({ children }) => {
     return "Loading...........";
   }
 
-  if (user && role == "admin") {
+  if (user && role.role == "admin") {
     return children;
   }
 

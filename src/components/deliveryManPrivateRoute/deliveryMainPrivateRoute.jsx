@@ -7,7 +7,7 @@ export const DeliveryMainPrivateRoute = ({ children }) => {
   if (loading || isLoading) {
     return "Loading...........";
   }
-  if (user && role === "deliveryHero") {
+  if (user && role.role === "deliveryHero") {
     return children;
   }
   return <Navigate to="/login" />;
