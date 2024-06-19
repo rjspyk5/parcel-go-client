@@ -7,8 +7,10 @@ export const PrivateRoute = ({ children }) => {
   if (loading) {
     return "Loading............";
   }
+
   if (!loading && user) {
     return children;
   }
+
   return <Navigate to="/login" />;
 };

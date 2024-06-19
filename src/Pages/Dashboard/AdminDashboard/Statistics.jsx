@@ -4,8 +4,8 @@ import { Linechart } from "@/components/LineChart/LineChart";
 export const Statistics = () => {
   return (
     <div>
-      <Barchart />
-      <Linechart />
+      {/* <Barchart />
+      <Linechart /> */}
     </div>
   );
 };

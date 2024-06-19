@@ -4,7 +4,7 @@ import { useAuth } from "./useAuth";
 
 export const useRoleCheker = () => {
   const axiosSequre = useAxiosSequre();
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const { data: userRole, isLoading } = useQuery({
     queryKey: ["userCheaker"],
     queryFn: async () => {
