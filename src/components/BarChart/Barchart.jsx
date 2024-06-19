@@ -22,11 +22,23 @@ export const Barchart = () => {
           horizontal: true,
         },
       },
+      title: {
+        text: "Total booking by date",
+        align: "center",
+      },
       dataLabels: {
         enabled: false,
       },
       xaxis: {
         categories: [],
+        title: {
+          text: "Total Booked on that date",
+        },
+      },
+      yaxis: {
+        title: {
+          text: "Date",
+        },
       },
     },
   });
