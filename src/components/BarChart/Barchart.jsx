@@ -25,6 +25,10 @@ export const Barchart = () => {
       title: {
         text: "Total booking by date",
         align: "center",
+        style: {
+          fontSize: "16px",
+          color: "#374151", // dark:text-gray-300
+        },
       },
       dataLabels: {
         enabled: false,
@@ -33,11 +37,17 @@ export const Barchart = () => {
         categories: [],
         title: {
           text: "Total Booked on that date",
+          style: {
+            color: "#374151", // dark:text-gray-300
+          },
         },
       },
       yaxis: {
         title: {
           text: "Date",
+          style: {
+            color: "#374151", // dark:text-gray-300
+          },
         },
       },
     },
@@ -48,11 +58,11 @@ export const Barchart = () => {
       const result = await axiosSequre.get("/booking-stats");
       const dateData = result.data.map((el) => el._id);
       const countData = result.data.map((el) => el.count);
-      setChartData(() => ({
-        ...chartData,
+      setChartData((prevChartData) => ({
+        ...prevChartData,
         series: [{ data: countData }],
         options: {
-          ...chartData.options,
+          ...prevChartData.options,
           xaxis: {
             categories: dateData,
           },
@@ -61,10 +71,10 @@ export const Barchart = () => {
     };
 
     fetchData();
-  }, []);
+  }, [axiosSequre]);
 
   return (
-    <div id="chart">
+    <div>
       <ReactApexChart
         options={chartData.options}
         series={chartData.series}

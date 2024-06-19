@@ -1,6 +1,7 @@
 import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
 import { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
+
 export const Linechart = () => {
   const axiosSequre = useAxiosSequre();
   const [chartData, setChartData] = useState({
@@ -33,7 +34,7 @@ export const Linechart = () => {
           show: false,
         },
       },
-      colors: ["#77B6EA", "#545454"],
+      colors: ["#f97316", "#fb923c"], // Adjusted for theme colors
       dataLabels: {
         enabled: true,
       },
@@ -43,11 +44,15 @@ export const Linechart = () => {
       title: {
         text: "Average High & Low Temperature",
         align: "left",
+        style: {
+          fontSize: "16px",
+          color: "#374151", // dark:text-gray-300
+        },
       },
       grid: {
         borderColor: "#e7e7e7",
         row: {
-          colors: ["#f3f3f3", "transparent"], // takes an array which will be repeated on columns
+          colors: ["#f3f3f3", "transparent"],
           opacity: 0.5,
         },
       },
@@ -58,11 +63,17 @@ export const Linechart = () => {
         categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
         title: {
           text: "Month",
+          style: {
+            color: "#374151", // dark:text-gray-300
+          },
         },
       },
       yaxis: {
         title: {
           text: "Temperature",
+          style: {
+            color: "#374151", // dark:text-gray-300
+          },
         },
         min: 5,
         max: 40,
@@ -73,21 +84,21 @@ export const Linechart = () => {
         floating: true,
         offsetY: -25,
         offsetX: -5,
+        labels: {
+          colors: "#374151", // dark:text-gray-300
+        },
       },
     },
   });
 
   return (
     <div>
-      <div id="chart">
-        <ReactApexChart
-          options={chartData.options}
-          series={chartData.series}
-          type="line"
-          height={350}
-        />
-      </div>
-      <div id="html-dist"></div>
+      <ReactApexChart
+        options={chartData.options}
+        series={chartData.series}
+        type="line"
+        height={350}
+      />
     </div>
   );
 };

@@ -1,5 +1,6 @@
 import { useAuth } from "@/Hooks/useAuth";
 import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
+import { ModalForReview } from "@/components/ModalForReview/ModalForReview";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
@@ -138,6 +139,8 @@ export const MyParcels = () => {
                               >
                                 Pay
                               </button>
+
+                              <ModalForReview />
                             </td>
                           </tr>
                         ))}

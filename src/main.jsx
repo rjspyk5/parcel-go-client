@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
+import "@smastrom/react-rating/style.css";
 import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import { Routing } from "./Routing/Routing.jsx";
