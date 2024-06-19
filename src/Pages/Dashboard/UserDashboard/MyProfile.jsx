@@ -41,9 +41,9 @@ export const MyProfile = () => {
   return (
     <div>
       {" "}
-      <div className="flex justify-center items-center flex-grow p-6 bg-gray-100 dark:bg-gray-800">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full max-w-4xl">
-          <div className="col-span-1 shadow-xl border p-4 bg-white dark:bg-gray-700 dark:border-gray-600 flex flex-col items-center">
+      <div className="flex justify-center items-center min-h-[300px] flex-grow p-6 ">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full  max-w-4xl">
+          <div className="col-span-1 rounded-md shadow-xl border p-4 flex flex-col items-center">
             <div className="w-24 h-24 rounded-full bg-gray-300 dark:bg-gray-600 mb-4 flex items-center justify-center">
               <span className="text-gray-500 dark:text-gray-300">
                 Profile Pic
@@ -87,8 +87,8 @@ export const MyProfile = () => {
             </form>
           </div>
 
-          <div className="md:col-span-2 shadow-xl border p-4 bg-white dark:bg-gray-700 dark:border-gray-600">
-            <h2 className="text-xl font-bold mb-4 dark:text-white">
+          <div className="md:col-span-2 rounded-md shadow-xl border p-4  ">
+            <h2 className="text-xl font-bold mb-4 text-center dark:text-white">
               User Information
             </h2>
             <table className="table-auto w-full">
