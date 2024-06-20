@@ -1,5 +1,5 @@
 import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
 export const Linechart = () => {
@@ -34,7 +34,7 @@ export const Linechart = () => {
           show: false,
         },
       },
-      colors: ["#f97316", "#fb923c"], // Adjusted for theme colors
+      colors: ["#f97316", "#fb923c"],
       dataLabels: {
         enabled: true,
       },
@@ -46,7 +46,7 @@ export const Linechart = () => {
         align: "left",
         style: {
           fontSize: "16px",
-          color: "#374151", // dark:text-gray-300
+          color: "#374151",
         },
       },
       grid: {

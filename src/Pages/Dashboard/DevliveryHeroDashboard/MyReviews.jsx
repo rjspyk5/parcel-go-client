@@ -1,8 +1,9 @@
 import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
 import { useRoleCheker } from "@/Hooks/useRoleCheker";
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
+import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import { Rating, Star } from "@smastrom/react-rating";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 export const MyReviews = () => {
   const [userInfo] = useRoleCheker();
@@ -13,13 +14,17 @@ export const MyReviews = () => {
     activeFillColor: "#f15a25",
     inactiveFillColor: "#f15b2533",
   };
-  useEffect(() => {
-    userInfo &&
-      axiosSequre
-        .get(`/reviews/${userInfo?._id}`)
-        .then((el) => setreviews(el.data))
-        .catch((er) => console.log(er));
-  }, [userInfo]);
+
+  const { data, refetch } = useQuery({
+    queryKey: ["deliverymanallreviews"],
+    queryFn: async () => {
+      userInfo &&
+        axiosSequre
+          .get(`/reviews/${userInfo?._id}`)
+          .then((el) => setreviews(el.data))
+          .catch((er) => console.log(er));
+    },
+  });
 
   return (
     <div className="p-4">

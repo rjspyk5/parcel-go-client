@@ -1,5 +1,6 @@
 import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
 export const Barchart = () => {
@@ -27,7 +28,7 @@ export const Barchart = () => {
         align: "center",
         style: {
           fontSize: "16px",
-          color: "#374151", // dark:text-gray-300
+          color: "#374151",
         },
       },
       dataLabels: {
@@ -38,7 +39,7 @@ export const Barchart = () => {
         title: {
           text: "Total Booked on that date",
           style: {
-            color: "#374151", // dark:text-gray-300
+            color: "#374151",
           },
         },
       },
@@ -46,15 +47,16 @@ export const Barchart = () => {
         title: {
           text: "Date",
           style: {
-            color: "#374151", // dark:text-gray-300
+            color: "#374151",
           },
         },
       },
     },
   });
 
-  useEffect(() => {
-    const fetchData = async () => {
+  const { data, refetch } = useQuery({
+    queryKey: ["bookingstatictis"],
+    queryFn: async () => {
       const result = await axiosSequre.get("/booking-stats");
       const dateData = result.data.map((el) => el._id);
       const countData = result.data.map((el) => el.count);
@@ -68,10 +70,8 @@ export const Barchart = () => {
           },
         },
       }));
-    };
-
-    fetchData();
-  }, [axiosSequre]);
+    },
+  });
 
   return (
     <div>
