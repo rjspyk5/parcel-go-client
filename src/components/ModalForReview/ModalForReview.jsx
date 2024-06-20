@@ -33,13 +33,12 @@ export const ModalForReview = ({ devieryHeroId }) => {
     data.reviewGiverName = user?.displayName;
     data.reviewGiverImage = user?.photoURL;
 
-    const result = await axiosSequre.patch(`/review`, data);
+    const result = await axiosSequre.post(`/review`, data);
     if (result?.data?.insertedId) {
       if (closeModal.current) {
         closeModal.current.click();
       }
     }
-    console.log(result.data);
   };
 
   const ratingChanged = (e) => {

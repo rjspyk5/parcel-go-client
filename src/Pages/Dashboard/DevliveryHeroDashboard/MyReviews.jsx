@@ -16,7 +16,7 @@ export const MyReviews = () => {
   useEffect(() => {
     userInfo &&
       axiosSequre
-        .get(`/reviews/${userInfo._id}`)
+        .get(`/reviews/${userInfo?._id}`)
         .then((el) => setreviews(el.data))
         .catch((er) => console.log(er));
   }, [userInfo]);

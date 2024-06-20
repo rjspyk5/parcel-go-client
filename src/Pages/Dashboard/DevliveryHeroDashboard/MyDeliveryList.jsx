@@ -1,18 +1,20 @@
 import { useAuth } from "@/Hooks/useAuth";
 import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
+import { useRoleCheker } from "@/Hooks/useRoleCheker";
 import { useQuery } from "@tanstack/react-query";
 
 export const MyDeliveryList = () => {
   const { user, loading } = useAuth();
+  const [role] = useRoleCheker();
   const axiosSequre = useAxiosSequre();
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["assignedHeroDeliveries"],
     queryFn: async () => {
-      const result = await axiosSequre.get(`/assignedHero/${user?.email}`);
+      const result = await axiosSequre.get(`/assignedHero/${role?._id}`);
       return result.data;
     },
   });
-  console.log(data);
+
   return (
     <div className="p-4">
       <h1 className="text-center font-bold text-3xl mb-4">My Delivery</h1>
