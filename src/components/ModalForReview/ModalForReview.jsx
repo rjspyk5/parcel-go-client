@@ -1,5 +1,5 @@
 import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
-import { useAuth } from "@/Hooks/useAuth"; // Assume this hook provides user's name and image
+import { useAuth } from "@/Hooks/useAuth";
 import {
   Dialog,
   DialogContent,

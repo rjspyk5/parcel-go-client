@@ -1,6 +1,7 @@
 import { useAuth } from "@/Hooks/useAuth";
 import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
 import { useRoleCheker } from "@/Hooks/useRoleCheker";
+import { ModalForMap } from "@/components/ModalForMap/ModalForMap";
 import { useQuery } from "@tanstack/react-query";
 
 export const MyDeliveryList = () => {
@@ -74,7 +75,7 @@ export const MyDeliveryList = () => {
                       {el.recieverDeliveryAdress}
                     </td>
                     <td className="px-1 md:px-3 py-4 text-xs md:text-sm">
-                      Map
+                      <ModalForMap />
                     </td>
                     <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 ">
                       {el.reqDeliveryDate}
