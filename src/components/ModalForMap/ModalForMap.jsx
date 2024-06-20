@@ -11,7 +11,7 @@ import {
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-export function ModalForMap() {
+export function ModalForMap({ lat, lon }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -30,7 +30,7 @@ export function ModalForMap() {
         </DialogHeader>
         <MapContainer
           className="h-64 w-full"
-          center={[51.505, -0.09]}
+          center={[lat, lon]}
           zoom={14}
           scrollWheelZoom={false}
         >
@@ -38,7 +38,8 @@ export function ModalForMap() {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          <Marker position={[51.505, -0.09]}>
+
+          <Marker position={[lat, lon]}>
             <Popup>
               A pretty CSS3 popup. <br /> Easily customizable.
             </Popup>

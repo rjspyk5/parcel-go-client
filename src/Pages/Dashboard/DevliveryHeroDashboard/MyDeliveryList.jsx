@@ -75,7 +75,10 @@ export const MyDeliveryList = () => {
                       {el.recieverDeliveryAdress}
                     </td>
                     <td className="px-1 md:px-3 py-4 text-xs md:text-sm">
-                      <ModalForMap />
+                      <ModalForMap
+                        lon={el.recieverAdressLongitude}
+                        lat={el.recieverAdressLatitute}
+                      />
                     </td>
                     <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 ">
                       {el.reqDeliveryDate}
