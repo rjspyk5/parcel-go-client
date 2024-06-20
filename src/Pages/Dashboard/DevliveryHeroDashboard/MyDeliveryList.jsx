@@ -15,7 +15,13 @@ export const MyDeliveryList = () => {
       return result.data;
     },
   });
-
+  const handleManageDelivery = async (status, id) => {
+    console.log(id);
+    const result = await axiosSequre.patch(`/booking/${id}`, {
+      status: status,
+    });
+    console.log(result.data);
+  };
   return (
     <div className=" flex justify-center items-center">
       <div className="w-full py-8 px-2 sm:px-4 lg:px-6">
@@ -103,20 +109,33 @@ export const MyDeliveryList = () => {
                             </td>
                             <td className="px-4 py-2 whitespace-nowrap text-xs md:text-sm">
                               <div className="flex items-center gap-x-2">
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  className="bg-green-500 text-white hover:text-white hover:bg-green-600"
+                                <span
+                                  onClick={() =>
+                                    handleManageDelivery("delivered", el?._id)
+                                  }
                                 >
-                                  Delivery
-                                </Button>
-                                <Button
-                                  size="sm"
-                                  variant="outline"
-                                  className="bg-red-500 text-white hover:text-white hover:bg-red-600"
+                                  {" "}
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    className="bg-green-500 text-white hover:text-white hover:bg-green-600"
+                                  >
+                                    Delivery
+                                  </Button>
+                                </span>
+                                <span
+                                  onClick={() =>
+                                    handleManageDelivery("canceled", el?._id)
+                                  }
                                 >
-                                  Cancel
-                                </Button>
+                                  <Button
+                                    size="sm"
+                                    variant="outline"
+                                    className="bg-red-500 text-white hover:text-white hover:bg-red-600"
+                                  >
+                                    Cancel
+                                  </Button>
+                                </span>
                               </div>
                             </td>
                           </tr>
