@@ -16,6 +16,7 @@ export function ModalForMap({ lat, lon, adress }) {
     <Dialog>
       <DialogTrigger asChild>
         <Button
+          size="sm"
           variant="outline"
           className="bg-orange-500 text-white hover:text-white hover:bg-orange-600"
         >

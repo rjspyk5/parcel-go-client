@@ -46,7 +46,7 @@ export const Login = () => {
           className="  bg-cover bg-no-repeat container flex flex-col items-center justify-center min-h-screen px-6 mx-auto"
         >
           <div className="absolute  h-full w-full overflow-hidden bg-fixed bg-black bg-opacity-50"></div>
-          <div className="w-full max-w-md bg-[#b6b5b52f] rounded-lg backdrop-blur-lg p-10">
+          <div className="w-full max-w-md bg-[#b6b5b52f] rounded-lg backdrop-blur-lg px-8 py-5">
             <form onSubmit={handleSubmit(onSubmit)} className="">
               <h1 className="mt-3 text-2xl text-white font-semibold text-center capitalize sm:text-3xl">
                 sign In
@@ -77,7 +77,11 @@ export const Login = () => {
                   placeholder="Email address"
                 />
               </div>
-              {errors.email && <span>This field is required</span>}
+              {errors.email && (
+                <span className="text-red-500 mt-1 ml-1">
+                  This field is required
+                </span>
+              )}
 
               <div className="relative flex items-center mt-4">
                 <span className="absolute">
@@ -104,7 +108,11 @@ export const Login = () => {
                   placeholder="Password"
                 />
               </div>
-              {errors.pass && <span>This field is required</span>}
+              {errors.pass && (
+                <span className="text-red-500 mt-1 ml-1">
+                  This field is required
+                </span>
+              )}
 
               <div className="mt-6">
                 <button className="w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
