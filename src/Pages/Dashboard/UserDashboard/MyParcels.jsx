@@ -1,5 +1,6 @@
 import { useAuth } from "@/Hooks/useAuth";
 import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
+import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
 import { ModalForReview } from "@/components/ModalForReview/ModalForReview";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
@@ -7,19 +8,19 @@ import { useNavigate } from "react-router-dom";
 export const MyParcels = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
-  const axiosPublic = useAxiosPublic();
+  const axiosSequre = useAxiosSequre();
 
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["myparcel"],
     queryFn: async () => {
-      const result = await axiosPublic.get(`/bookings/${user?.email}`);
+      const result = await axiosSequre.get(`/bookings/${user?.email}`);
       return result.data;
     },
   });
 
   const handleCancel = async (id, status) => {
     if (status === "pending") {
-      const result = await axiosPublic.delete(`/booking/${id}`);
+      const result = await axiosSequre.delete(`/booking/${id}`);
       if (result.data.acknowledged) {
         refetch();
         alert("cancel booking successfull");

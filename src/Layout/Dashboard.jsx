@@ -156,7 +156,6 @@ export const Dashboard = () => {
         "Loading......"
       ) : (
         <>
-          {" "}
           <div className="sticky border shadow-lg top-0 z-50">
             <div className="flex justify-between bg-accent  backdrop-blur-xl py-[9px]  ">
               {/* left side  */}

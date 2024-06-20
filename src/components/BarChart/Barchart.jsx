@@ -70,6 +70,7 @@ export const Barchart = () => {
           },
         },
       }));
+      return result.data;
     },
   });
 

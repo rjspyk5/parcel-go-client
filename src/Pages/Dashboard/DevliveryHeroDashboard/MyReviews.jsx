@@ -18,11 +18,9 @@ export const MyReviews = () => {
   const { data, refetch } = useQuery({
     queryKey: ["deliverymanallreviews"],
     queryFn: async () => {
-      userInfo &&
-        axiosSequre
-          .get(`/reviews/${userInfo?._id}`)
-          .then((el) => setreviews(el.data))
-          .catch((er) => console.log(er));
+      const result = await axiosSequre.get(`/reviews/${userInfo?._id}`);
+      setreviews(result.data);
+      return result.data;
     },
   });
 
@@ -31,7 +29,7 @@ export const MyReviews = () => {
       <h1 className="text-center font-bold text-3xl mb-4">My Reviews</h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 mg:grid-cols-3  gap-2">
-        {reviews.map((el) => {
+        {reviews?.map((el) => {
           return (
             <div
               key={el._id}

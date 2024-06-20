@@ -11,15 +11,26 @@ import {
   signOut,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
+import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 export const AuthProvider = ({ children }) => {
   const [user, setuser] = useState(null);
+  const axiosPublic = useAxiosPublic();
 
   const [loading, setloading] = useState(true);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (curentUser) => {
       setuser(curentUser);
+      if (curentUser) {
+        axiosPublic.post("/jwt", { email: curentUser.email }).then((res) => {
+          if (res.data.token) {
+            localStorage.setItem("token", res.data.token);
+          }
+        });
+      } else {
+        localStorage.removeItem("token");
+      }
       setloading(false);
     });
 

@@ -114,7 +114,6 @@ export const MyDeliveryList = () => {
                                     handleManageDelivery("delivered", el?._id)
                                   }
                                 >
-                                  {" "}
                                   <Button
                                     size="sm"
                                     variant="outline"
