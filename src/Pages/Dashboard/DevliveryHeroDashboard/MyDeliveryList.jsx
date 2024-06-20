@@ -5,7 +5,6 @@ import { ModalForMap } from "@/components/ModalForMap/ModalForMap";
 import { useQuery } from "@tanstack/react-query";
 
 export const MyDeliveryList = () => {
-  const { user, loading } = useAuth();
   const [role] = useRoleCheker();
   const axiosSequre = useAxiosSequre();
   const { data, isLoading, refetch } = useQuery({
@@ -38,15 +37,15 @@ export const MyDeliveryList = () => {
               <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
                 Reciver Adress
               </th>
-              <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
-                Map
-              </th>
+
               <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
                 Req. Date
               </th>
-
               <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal  text-left  text-gray-500 dark:text-gray-400">
                 Approx. Date
+              </th>
+              <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
+                Map
               </th>
 
               <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
@@ -74,17 +73,18 @@ export const MyDeliveryList = () => {
                     <td className="px-1 md:px-3 py-4 text-xs md:text-sm">
                       {el.recieverDeliveryAdress}
                     </td>
-                    <td className="px-1 md:px-3 py-4 text-xs md:text-sm">
-                      <ModalForMap
-                        lon={el.recieverAdressLongitude}
-                        lat={el.recieverAdressLatitute}
-                      />
-                    </td>
                     <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 ">
                       {el.reqDeliveryDate}
                     </td>
                     <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 ">
                       {el.approxDeliveryDate}
+                    </td>
+                    <td className="px-1 md:px-3 py-4 text-xs md:text-sm">
+                      <ModalForMap
+                        adress={el.recieverDeliveryAdress}
+                        lon={el.recieverAdressLongitude}
+                        lat={el.recieverAdressLatitute}
+                      />
                     </td>
 
                     <td className="px-1 md:px-3 py-4 text-xs md:text-sm">

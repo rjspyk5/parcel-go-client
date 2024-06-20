@@ -11,7 +11,7 @@ import {
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-export function ModalForMap({ lat, lon }) {
+export function ModalForMap({ lat, lon, adress }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -40,9 +40,7 @@ export function ModalForMap({ lat, lon }) {
           />
 
           <Marker position={[lat, lon]}>
-            <Popup>
-              A pretty CSS3 popup. <br /> Easily customizable.
-            </Popup>
+            <Popup>{adress}</Popup>
           </Marker>
         </MapContainer>
         <DialogFooter className="sm:justify-end">
