@@ -7,6 +7,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "@/Hooks/useAuth";
 import { ToogleTheme } from "../Theme/ToogleTheme";
 import logo from "../../assets/image/logo.png";
+import { FaBell } from "react-icons/fa";
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -63,8 +64,13 @@ export const Navbar = () => {
         {/* end side */}
         <div className="flex gap-2 items-center">
           <ToogleTheme />
+
           {user ? (
-            <ProfileDropDown user={user} />
+            <>
+              {" "}
+              <ProfileDropDown user={user} />
+              <FaBell />
+            </>
           ) : (
             <NavLink to="/login">
               <Button className="bg-[#f15a25] dark:text-white transion-all hover:bg-[#f1254e] duration-200  hover:shadow-lg">
