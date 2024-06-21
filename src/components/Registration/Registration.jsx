@@ -7,6 +7,7 @@ import { GoogleLogin } from "../GoogleLogin/GoogleLogin";
 import { useAuth } from "@/Hooks/useAuth";
 import Swal from "sweetalert2";
 import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
+import { number } from "yup";
 
 export const Registration = () => {
   const axiosPublic = useAxiosPublic();
@@ -47,7 +48,7 @@ export const Registration = () => {
 
       .then(() => {
         if (data.name) {
-          return updateInfo(data.image, data.name);
+          return updateInfo(data.image, data.name, data.number);
         }
       })
       .then(() => {
@@ -56,6 +57,7 @@ export const Registration = () => {
           email: data.email,
           role: data.role,
           image: data.image,
+          number: data.number,
         });
       })
       .then(() => {
@@ -146,6 +148,41 @@ export const Registration = () => {
                   className=" opacity-0 w-0 h-0 overflow-hidden"
                 />
               </label>
+
+              <div className="relative flex items-center mt-4">
+                <span className="absolute">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2}
+                    stroke="currentColor"
+                    className="w-6 h-6 mx-3 text-gray-300 dark:text-gray-500"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"
+                    />
+                  </svg>
+                </span>
+
+                <input
+                  {...register("number", { required: true, minLength: 10 })}
+                  type="number"
+                  className="block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                  placeholder="Phone"
+                />
+              </div>
+              {errors.number && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.number?.type === "required" &&
+                    "This field is required"}
+                  {errors.number?.type === "minLength" &&
+                    "Have to be atleast 10"}
+                </p>
+              )}
+
               <div className="relative flex items-center mt-4">
                 <span className="absolute">
                   <svg
@@ -171,7 +208,11 @@ export const Registration = () => {
                   placeholder="Email address"
                 />
               </div>
-              {errors.email && <span>This field is required</span>}
+              {errors.email && (
+                <span className="text-red-500 text-xs mt-1">
+                  This field is required
+                </span>
+              )}
 
               <div className="relative flex items-center mt-4">
                 <span className="absolute">
@@ -204,6 +245,7 @@ export const Registration = () => {
                   {errors.pass?.type === "minLength" && "Have to be atleast 6"}
                 </p>
               )}
+
               <div className="mt-4">
                 <select
                   placeholder="Select"
@@ -228,7 +270,7 @@ export const Registration = () => {
             </form>
             <p className="mt-4 text-center text-white">or sign up with</p>
 
-            <GoogleLogin />
+            <GoogleLogin name={"Sign Up"} />
 
             <div className="mt-6 text-center ">
               <Link

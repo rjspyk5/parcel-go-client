@@ -104,7 +104,11 @@ export const AllParcel = () => {
                       {el.bookingDate}
                     </td>
                     <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 ">
-                      {el.reqDeliveryDate}
+                      {
+                        new Date(el?.reqDeliveryDate)
+                          .toISOString()
+                          .split("T")[0]
+                      }
                     </td>
                     <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 ">
                       {el.price}

@@ -2,7 +2,8 @@ import { useAuth } from "@/Hooks/useAuth";
 import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-export const GoogleLogin = () => {
+
+export const GoogleLogin = ({ name }) => {
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   const { googleLogin } = useAuth();
@@ -14,6 +15,7 @@ export const GoogleLogin = () => {
           email: res?.user?.email,
           role: "user",
           image: res?.user?.photoURL,
+          number: res?.user?.phoneNumber,
         };
         return axiosPublic.post("/user", data);
       })
@@ -57,7 +59,7 @@ export const GoogleLogin = () => {
         />
       </svg>
 
-      <span className="mx-2">Sign Up with Google</span>
+      <span className="mx-2">{name} with Google</span>
     </button>
   );
 };

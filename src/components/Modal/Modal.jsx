@@ -34,7 +34,9 @@ export const Modal = ({
   return (
     <div>
       <Dialog>
-        <DialogTrigger>Manage</DialogTrigger>
+        <DialogTrigger className="bg-orange-500  hover:bg-orange-600 text-white px-2 py-1 rounded-md">
+          Manage
+        </DialogTrigger>
         <DialogContent>
           <form onSubmit={handleSubmit(onSubmit)}>
             <DialogHeader>

@@ -121,7 +121,7 @@ export const Login = () => {
               </div>
             </form>{" "}
             <p className="mt-4 text-center text-white">or sign in with</p>
-            <GoogleLogin />
+            <GoogleLogin name={"Sign In"} />
             <div className="mt-6 text-center ">
               <Link to="/reg" className="text-sm text-blue-500 hover:underline">
                 Don’t have an account yet? Sign up

@@ -14,6 +14,7 @@ import { MdRateReview } from "react-icons/md";
 export const Dashboard = () => {
   const [role, isLoading] = useRoleCheker();
   const { user } = useAuth();
+  console.log(user);
   const userMenu = (
     <>
       <ul className="">
@@ -112,7 +113,7 @@ export const Dashboard = () => {
             }
           >
             <IoMdBicycle />
-            <span className="hidden lg:block ">All Delivery</span>
+            <span className="hidden lg:block ">All Delivery Men</span>
           </NavLink>
         </li>
       </ul>

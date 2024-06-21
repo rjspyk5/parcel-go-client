@@ -53,10 +53,11 @@ export const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
-  const updateInfo = (photo, name) => {
+  const updateInfo = (photo, name, number) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
       photoURL: photo,
+      phoneNumber: number,
     });
   };
 
