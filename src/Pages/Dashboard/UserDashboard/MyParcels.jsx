@@ -29,7 +29,7 @@ export const MyParcels = () => {
 
   return (
     <>
-      <div className="dark:bg-gray-800 flex justify-center items-center">
+      <div className="flex justify-center items-center">
         <div className="w-full py-12 px-4 sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-lg">
             <div className="flex flex-col">
@@ -106,7 +106,7 @@ export const MyParcels = () => {
                               {el.bookingDate}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
-                              {el.assignedDeliveryHero || "Not assigned yet"}
+                              {el.assignedDeliveryHero || "Not assigned"}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
                               {el.status}
@@ -122,7 +122,7 @@ export const MyParcels = () => {
                                     onClick={() =>
                                       navigate(`/dashboard/update/${el._id}`)
                                     }
-                                    className="bg-orange-500 hover:bg-orange-600 text-white px-1 py-1 rounded-md"
+                                    className="bg-blue-500 w-full hover:bg-blue-600 text-white px-1 py-1 rounded-md"
                                   >
                                     Update
                                   </button>
@@ -134,28 +134,26 @@ export const MyParcels = () => {
                                     onClick={() =>
                                       handleCancel(el._id, el.status)
                                     }
-                                    className="bg-red-500 hover:bg-red-600 text-white px-1 py-1 rounded-md"
+                                    className="bg-red-500 w-full hover:bg-red-600 text-white px-1 py-1 rounded-md"
                                   >
                                     Cancel
                                   </button>
                                 </>
                               )}
-
-                              <button
-                                type="button"
-                                disabled={
-                                  el.status === "pending" ? false : true
-                                }
-                                className="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded-md"
-                              >
-                                Pay
-                              </button>
-
                               {el.status === "delivered" && (
                                 <ModalForReview
                                   devieryHeroId={el.deliveryHeorId}
                                 />
                               )}
+                              <button
+                                type="button"
+                                disabled={
+                                  el.status === "pending" ? false : true
+                                }
+                                className="bg-green-500 w-full hover:bg-green-600 text-white px-2 py-1 rounded-md"
+                              >
+                                Pay
+                              </button>
                             </td>
                           </tr>
                         ))}

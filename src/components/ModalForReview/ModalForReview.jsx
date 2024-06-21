@@ -54,11 +54,10 @@ export const ModalForReview = ({ devieryHeroId }) => {
 
   return (
     <Dialog>
-      <DialogTrigger>
-        <span className="bg-orange-500 hover:bg-orange-600 text-white px-1 py-1 rounded-md">
-          Review
-        </span>
-      </DialogTrigger>
+      <span className="bg-orange-500 w-full  hover:bg-orange-600 text-white px-1 py-1 rounded-md">
+        <DialogTrigger style={{ width: "100%" }}>Review</DialogTrigger>{" "}
+      </span>
+
       <DialogContent>
         <form onSubmit={handleSubmit(onSubmit)}>
           <DialogHeader>
