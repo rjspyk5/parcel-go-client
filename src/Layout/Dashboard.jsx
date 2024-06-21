@@ -131,7 +131,7 @@ export const Dashboard = () => {
             }
           >
             <FaPeopleCarry />{" "}
-            <span className="hidden lg:block ">My Delivery</span>
+            <span className="hidden lg:block ">My Delivery List</span>
           </NavLink>
         </li>
         <li>
@@ -144,7 +144,7 @@ export const Dashboard = () => {
             }
           >
             <MdRateReview />
-            <span className="hidden lg:block ">All My Reviews </span>
+            <span className="hidden lg:block ">My Reviews </span>
           </NavLink>
         </li>
       </ul>
