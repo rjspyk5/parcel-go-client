@@ -13,6 +13,7 @@ export const GoogleLogin = () => {
           name: res?.user?.displayName,
           email: res?.user?.email,
           role: "user",
+          image: res?.user?.photoURL,
         };
         return axiosPublic.post("/user", data);
       })

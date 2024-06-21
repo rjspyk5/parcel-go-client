@@ -52,9 +52,10 @@ export const Registration = () => {
       })
       .then(() => {
         return axiosPublic.post("/user", {
-          name: data?.name,
+          name: data.name,
           email: data.email,
           role: data.role,
+          image: data.image,
         });
       })
       .then(() => {
@@ -197,11 +198,11 @@ export const Registration = () => {
                   placeholder="Password"
                 />
               </div>
-              {errors.pass && <span>This field is required</span>}
-              {errors.pass?.type === "minLength" && (
-                <span className="text-red-500">
-                  Minimum length have to be 6
-                </span>
+              {errors.pass && (
+                <p className="text-red-500 text-xs mt-1">
+                  {errors.pass?.type === "required" && "This field is required"}
+                  {errors.pass?.type === "minLength" && "Have to be atleast 6"}
+                </p>
               )}
               <div className="mt-4">
                 <select
