@@ -172,7 +172,7 @@ export const Dashboard = () => {
               {/* end side */}
               <div className="flex  gap-2 items-center">
                 <ToogleTheme />
-                <ProfileDropDown user={user} />
+                <ProfileDropDown />
               </div>
             </div>
           </div>
