@@ -106,7 +106,7 @@ export const MyParcels = () => {
                               {el.bookingDate}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
-                              {el.assignedDeliveryHero || "Not assigned"}
+                              {el.deliveryHeorId || "Not assigned"}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
                               {el.status}
