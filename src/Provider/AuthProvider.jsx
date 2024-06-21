@@ -26,12 +26,13 @@ export const AuthProvider = ({ children }) => {
         axiosPublic.post("/jwt", { email: curentUser.email }).then((res) => {
           if (res.data.token) {
             localStorage.setItem("token", res.data.token);
+            setloading(false);
           }
         });
       } else {
         localStorage.removeItem("token");
+        setloading(false);
       }
-      setloading(false);
     });
 
     return () => {

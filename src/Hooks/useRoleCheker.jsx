@@ -7,6 +7,7 @@ export const useRoleCheker = () => {
   const { user, loading } = useAuth();
   const { data: userRole, isLoading } = useQuery({
     queryKey: ["userCheaker"],
+    enabled: !loading,
     queryFn: async () => {
       const result = await axiosSequre.get(`/user/${user?.email}`);
 
