@@ -121,7 +121,15 @@ export const MyProfile = () => {
                     Email :
                   </td>
                   <td className="px-4 py-2 dark:text-gray-200">
-                    {user?.email}
+                    {userRole?.email}
+                  </td>
+                </tr>
+                <tr className="border-b dark:border-gray-600">
+                  <td className="px-4 py-2 font-semibold dark:text-gray-300">
+                    Mobile :
+                  </td>
+                  <td className="px-4 py-2 dark:text-gray-200">
+                    {userRole?.number}
                   </td>
                 </tr>
               </tbody>

@@ -30,7 +30,7 @@ export const TopDeliveryHero = () => {
                 >
                   <Avatar>
                     <AvatarImage
-                      src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=731&q=80"
+                      src={el.image}
                       className="object-cover object-center w-40 h-40 mx-auto rounded-full"
                       alt="DeliveryHero"
                     />

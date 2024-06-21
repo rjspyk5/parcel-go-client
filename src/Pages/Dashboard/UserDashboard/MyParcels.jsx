@@ -19,12 +19,16 @@ export const MyParcels = () => {
 
   const handleCancel = async (id, status) => {
     if (status === "pending") {
-      const result = await axiosSequre.delete(`/booking/${id}`);
+      const result = await axiosSequre.patch(`/booking/${id}`, {
+        status: "canceled",
+      });
+
       if (result.data.acknowledged) {
         refetch();
         alert("cancel booking successfull");
       }
     }
+    console.log(id);
   };
 
   return (
@@ -145,15 +149,17 @@ export const MyParcels = () => {
                                   devieryHeroId={el.deliveryHeorId}
                                 />
                               )}
-                              <button
-                                type="button"
-                                disabled={
-                                  el.status === "pending" ? false : true
-                                }
-                                className="bg-green-500 w-full hover:bg-green-600 text-white px-2 py-1 rounded-md"
-                              >
-                                Pay
-                              </button>
+                              {el.status !== "canceled" && (
+                                <button
+                                  type="button"
+                                  disabled={
+                                    el.status === "pending" ? false : true
+                                  }
+                                  className="bg-green-500 w-full hover:bg-green-600 text-white px-2 py-1 rounded-md"
+                                >
+                                  Pay
+                                </button>
+                              )}
                             </td>
                           </tr>
                         ))}
