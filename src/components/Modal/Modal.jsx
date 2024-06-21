@@ -11,7 +11,7 @@ import { DialogClose } from "@radix-ui/react-dialog";
 import { useRef } from "react";
 import { useForm } from "react-hook-form";
 export const Modal = ({
-  deliveryHeroData: { deliveryHeros, deliveryManLoading, bookingId },
+  deliveryHeroData: { deliveryHeros, deliveryManLoading, bookingId, refetch },
 }) => {
   const closeModal = useRef(null);
   const axiosSequre = useAxiosSequre();
@@ -26,6 +26,7 @@ export const Modal = ({
     const result = await axiosSequre.patch(`/booking/${bookingId}`, data);
     if (result?.data?.acknowledged) {
       if (closeModal.current) {
+        refetch();
         closeModal.current.click();
       }
     }

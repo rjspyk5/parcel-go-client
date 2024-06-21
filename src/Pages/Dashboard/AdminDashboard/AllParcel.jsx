@@ -122,6 +122,7 @@ export const AllParcel = () => {
                           deliveryHeros,
                           deliveryManLoading,
                           bookingId: el._id,
+                          refetch,
                         }}
                       />
                     </td>
