@@ -1,9 +1,13 @@
 import { useAuth } from "@/Hooks/useAuth";
+import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
+import { useRoleCheker } from "@/Hooks/useRoleCheker";
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 export const MyProfile = () => {
   const { updateInfo, user } = useAuth();
+  const axiosPublic = useAxiosPublic();
+  const [userRole, isLoading, refetch] = useRoleCheker();
 
   const url = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMG_API
@@ -33,9 +37,10 @@ export const MyProfile = () => {
       }
     };
     handleImageUpload()
-      .then(() => console.log("image up"))
-      .then(() => updateInfo(data.image))
-      .then(() => window.location.reload())
+      .then(() =>
+        axiosPublic.patch(`/userprofile/${user?.email}`, { image: data.image })
+      )
+      .then(() => refetch())
       .catch((er) => console.log(er));
   };
 
@@ -48,7 +53,7 @@ export const MyProfile = () => {
             <div className="w-24 h-24 rounded-full bg-gray-300 dark:bg-gray-600 mb-4 flex items-center justify-center">
               <img
                 className="w-24 h-24 rounded-full"
-                src={user.photoURL}
+                src={userRole?.image}
                 alt=""
               />
             </div>
@@ -108,7 +113,7 @@ export const MyProfile = () => {
                     Name :
                   </td>
                   <td className="px-4 py-2 dark:text-gray-200">
-                    {user?.displayName}
+                    {userRole?.name}
                   </td>
                 </tr>
                 <tr className="border-b dark:border-gray-600">

@@ -5,7 +5,11 @@ import { useAuth } from "./useAuth";
 export const useRoleCheker = () => {
   const axiosSequre = useAxiosSequre();
   const { user, loading } = useAuth();
-  const { data: userRole, isLoading } = useQuery({
+  const {
+    data: userRole,
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["userCheaker"],
     enabled: !loading,
     queryFn: async () => {
@@ -14,5 +18,5 @@ export const useRoleCheker = () => {
       return result.data;
     },
   });
-  return [userRole, isLoading];
+  return [userRole, isLoading, refetch];
 };

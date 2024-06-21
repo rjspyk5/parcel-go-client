@@ -17,7 +17,7 @@ export const ProfileDropDown = () => {
     logOut().then(() => navigate("/login"));
   };
   const [userRole] = useRoleCheker();
-  console.log(userRole);
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
