@@ -8,10 +8,12 @@ import { useAuth } from "@/Hooks/useAuth";
 import { ToogleTheme } from "../Theme/ToogleTheme";
 import logo from "../../assets/image/logo.png";
 import { FaBell } from "react-icons/fa";
+import { useRoleCheker } from "@/Hooks/useRoleCheker";
 
 export const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { user } = useAuth();
+  const { userRole } = useRoleCheker();
   const menu = (
     <>
       <NavLink
