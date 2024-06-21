@@ -43,13 +43,14 @@ export const UpdateParcel = () => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const [parcelWeight, setParcelWeight] = useState(
-    bookingData?.parcelWeight || 0
-  );
+  const parcelWeight = watch("parcelWeight", bookingData?.parcelWeight);
+  const price =
+    parcelWeight > 0 ? (parcelWeight > 2 ? 150 : parcelWeight * 50) : 0;
 
   const onSubmit = async (data) => {
     data.senderName = displayName;
@@ -75,7 +76,7 @@ export const UpdateParcel = () => {
         {" "}
         <div className="max-w-4xl mx-auto p-6 bg-white rounded-md shadow-md dark:bg-gray-800">
           <h1 className="text-2xl font-bold text-gray-700 dark:text-white mb-4">
-            Book a Parcel
+            Update Parcel Info
           </h1>
           <form onSubmit={handleSubmit(onSubmit)}>
             <h2 className="text-lg font-semibold text-gray-700 dark:text-white mb-2">
@@ -259,6 +260,7 @@ export const UpdateParcel = () => {
                   Parcel Weight (kg)<span className="text-red-500">*</span>
                 </label>
                 <input
+                  defaultValue={bookingData?.parcelWeight}
                   {...register("parcelWeight")}
                   type="number"
                   className={`block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 focus:border-orange-500 focus:ring-orange-300 focus:ring-opacity-40 dark:focus:border-orange-300 focus:outline-none focus:ring ${
@@ -281,7 +283,11 @@ export const UpdateParcel = () => {
                   Requested Delivery Date<span className="text-red-500">*</span>
                 </label>
                 <input
-                  defaultValue={bookingData?.reqDeliveryDate}
+                  defaultValue={
+                    new Date(bookingData?.reqDeliveryDate)
+                      .toISOString()
+                      .split("T")[0]
+                  }
                   {...register("reqDeliveryDate")}
                   type="date"
                   className={`block w-full px-4 py-2 mt-2 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 focus:border-orange-500 focus:ring-orange-300 focus:ring-opacity-40 dark:focus:border-orange-300 focus:outline-none focus:ring ${
@@ -301,7 +307,7 @@ export const UpdateParcel = () => {
             <div className="mt-6 flex items-center justify-between">
               <p className="text-lg text-gray-700 dark:text-gray-200">
                 Estimated Price:{" "}
-                {/* <span className="font-semibold">{price} Tk</span> */}
+                <span className="font-semibold">{price} Tk</span>
               </p>
               <button
                 type="submit"
