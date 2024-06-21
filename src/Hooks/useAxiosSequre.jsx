@@ -16,11 +16,11 @@ export const useAxiosSequre = () => {
     }
   );
 
-  axios.interceptors.response.use(
+  axiosSequre.interceptors.response.use(
     (response) => response,
     (error) => {
       if (error.response.status === 401 || error.response.status === 403) {
-        logOut.then(() => navigate("/login"));
+        logOut().then(() => navigate("/login"));
       }
       return Promise.reject(error);
     }
