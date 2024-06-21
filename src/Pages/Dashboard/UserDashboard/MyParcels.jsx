@@ -93,7 +93,11 @@ export const MyParcels = () => {
                               {el.parcleType}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
-                              {el.reqDeliveryDate}
+                              {
+                                new Date(el?.reqDeliveryDate)
+                                  .toISOString()
+                                  .split("T")[0]
+                              }
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
                               {el.approxDeliveryDate}
@@ -107,42 +111,51 @@ export const MyParcels = () => {
                             <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
                               {el.status}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-right text-xs md:text-sm font-medium">
+                            <td className="px-6 py-4 space-x-1 flex text-xs md:text-sm font-medium">
+                              {el.status === "pending" && (
+                                <>
+                                  <button
+                                    type="button"
+                                    disabled={
+                                      el.status === "pending" ? false : true
+                                    }
+                                    onClick={() =>
+                                      navigate(`/dashboard/update/${el._id}`)
+                                    }
+                                    className="bg-orange-500 hover:bg-orange-600 text-white px-1 py-1 rounded-md"
+                                  >
+                                    Update
+                                  </button>
+                                  <button
+                                    type="button"
+                                    disabled={
+                                      el.status === "pending" ? false : true
+                                    }
+                                    onClick={() =>
+                                      handleCancel(el._id, el.status)
+                                    }
+                                    className="bg-red-500 hover:bg-red-600 text-white px-1 py-1 rounded-md"
+                                  >
+                                    Cancel
+                                  </button>
+                                </>
+                              )}
+
                               <button
                                 type="button"
                                 disabled={
                                   el.status === "pending" ? false : true
                                 }
-                                onClick={() => handleCancel(el._id, el.status)}
-                                className="text-gray-500 transition-colors duration-200 dark:hover:text-red-500 dark:text-gray-300 hover:text-red-500 focus:outline-none"
-                              >
-                                Cancel
-                              </button>
-                              <button
-                                type="button"
-                                disabled={
-                                  el.status === "pending" ? false : true
-                                }
-                                onClick={() =>
-                                  navigate(`/dashboard/update/${el._id}`)
-                                }
-                                className="text-gray-500 transition-colors duration-200 dark:hover:text-yellow-500 dark:text-gray-300 hover:text-yellow-500 focus:outline-none"
-                              >
-                                Update
-                              </button>
-                              <button
-                                type="button"
-                                disabled={
-                                  el.status === "pending" ? false : true
-                                }
-                                className="text-gray-500 transition-colors duration-200 dark:hover:text-green-500 dark:text-gray-300 hover:text-green-500 focus:outline-none"
+                                className="bg-green-500 hover:bg-green-600 text-white px-2 py-1 rounded-md"
                               >
                                 Pay
                               </button>
 
-                              <ModalForReview
-                                devieryHeroId={el.deliveryHeorId}
-                              />
+                              {el.status === "delivered" && (
+                                <ModalForReview
+                                  devieryHeroId={el.deliveryHeorId}
+                                />
+                              )}
                             </td>
                           </tr>
                         ))}

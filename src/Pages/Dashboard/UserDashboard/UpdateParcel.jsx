@@ -282,6 +282,7 @@ export const UpdateParcel = () => {
                 <label className="text-gray-700 dark:text-gray-200">
                   Requested Delivery Date<span className="text-red-500">*</span>
                 </label>
+
                 <input
                   defaultValue={
                     new Date(bookingData?.reqDeliveryDate)

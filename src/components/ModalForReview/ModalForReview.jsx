@@ -53,86 +53,84 @@ export const ModalForReview = ({ devieryHeroId }) => {
   };
 
   return (
-    <div>
-      <Dialog>
-        <DialogTrigger>
-          <span className="bg-orange-600 text-white px-4 py-2 rounded-md">
-            Review
-          </span>
-        </DialogTrigger>
-        <DialogContent>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <DialogHeader>
-              <DialogTitle className="text-2xl text-center font-bold text-gray-800 dark:text-gray-200">
-                Submit Your Review
-              </DialogTitle>
-              <DialogDescription>
-                <div className="flex items-center space-x-4 mb-4">
-                  <img
-                    src={user.photoURL}
-                    alt="User Avatar"
-                    className="w-12 h-12 rounded-full"
-                  />
-                  <span className="text-lg text-gray-800 dark:text-gray-200">
-                    {user.displayName}
+    <Dialog>
+      <DialogTrigger>
+        <span className="bg-orange-500 hover:bg-orange-600 text-white px-1 py-1 rounded-md">
+          Review
+        </span>
+      </DialogTrigger>
+      <DialogContent>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <DialogHeader>
+            <DialogTitle className="text-2xl text-center font-bold text-gray-800 dark:text-gray-200">
+              Submit Your Review
+            </DialogTitle>
+            <DialogDescription>
+              <div className="flex items-center space-x-4 mb-4">
+                <img
+                  src={user.photoURL}
+                  alt="User Avatar"
+                  className="w-12 h-12 rounded-full"
+                />
+                <span className="text-lg text-gray-800 dark:text-gray-200">
+                  {user.displayName}
+                </span>
+              </div>
+              <input disabled defaultValue={devieryHeroId} />
+              <div className="mb-4">
+                <label className="block pb-2 text-lg text-gray-800 dark:text-gray-200">
+                  Rating
+                </label>
+                <Rating
+                  spaceBetween="medium"
+                  onChange={ratingChanged}
+                  value={rating}
+                  className="w-72 mx-auto"
+                  itemStyles={myStyles}
+                />
+                <input
+                  type="hidden"
+                  {...register("rating", { required: true })}
+                />
+                {errors.rating && (
+                  <span className="block text-red-500 py-2" role="alert">
+                    This field is required
                   </span>
-                </div>
-                <input disabled defaultValue={devieryHeroId} />
-                <div className="mb-4">
-                  <label className="block pb-2 text-lg text-gray-800 dark:text-gray-200">
-                    Rating
-                  </label>
-                  <Rating
-                    spaceBetween="medium"
-                    onChange={ratingChanged}
-                    value={rating}
-                    className="w-72 mx-auto"
-                    itemStyles={myStyles}
-                  />
-                  <input
-                    type="hidden"
-                    {...register("rating", { required: true })}
-                  />
-                  {errors.rating && (
-                    <span className="block text-red-500 py-2" role="alert">
-                      This field is required
-                    </span>
-                  )}
-                </div>
-                <div className="mb-4">
-                  <label className="block pb-2 text-lg text-gray-800 dark:text-gray-200">
-                    Feedback
-                  </label>
-                  <textarea
-                    className="w-full p-3 rounded-md border-2"
-                    placeholder="Your feedback"
-                    {...register("feedback", { required: true })}
-                    aria-invalid={errors.feedback ? "true" : "false"}
-                  />
-                  {errors.feedback && (
-                    <span className="block text-red-500 py-2" role="alert">
-                      This field is required
-                    </span>
-                  )}
-                </div>
-              </DialogDescription>
-            </DialogHeader>
-            <DialogFooter className="space-x-4">
-              <input
-                className="bg-orange-600 px-4 py-2 text-white rounded-md"
-                value="Submit"
-                type="submit"
-              />
-              <DialogClose
-                className="bg-red-700 px-4 py-2 text-white rounded-md"
-                ref={closeModal}
-              >
-                Close
-              </DialogClose>
-            </DialogFooter>
-          </form>
-        </DialogContent>
-      </Dialog>
-    </div>
+                )}
+              </div>
+              <div className="mb-4">
+                <label className="block pb-2 text-lg text-gray-800 dark:text-gray-200">
+                  Feedback
+                </label>
+                <textarea
+                  className="w-full p-3 rounded-md border-2"
+                  placeholder="Your feedback"
+                  {...register("feedback", { required: true })}
+                  aria-invalid={errors.feedback ? "true" : "false"}
+                />
+                {errors.feedback && (
+                  <span className="block text-red-500 py-2" role="alert">
+                    This field is required
+                  </span>
+                )}
+              </div>
+            </DialogDescription>
+          </DialogHeader>
+          <DialogFooter className="space-x-4">
+            <input
+              className="bg-orange-600 px-4 py-2 text-white rounded-md"
+              value="Submit"
+              type="submit"
+            />
+            <DialogClose
+              className="bg-red-700 px-4 py-2 text-white rounded-md"
+              ref={closeModal}
+            >
+              Close
+            </DialogClose>
+          </DialogFooter>
+        </form>
+      </DialogContent>
+    </Dialog>
   );
 };
