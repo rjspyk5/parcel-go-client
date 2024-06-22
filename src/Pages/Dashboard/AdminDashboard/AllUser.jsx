@@ -63,7 +63,7 @@ export const AllUser = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="w-full py-8 px-2 sm:px-4 lg:px-6">
+      <div className="w-full py-5 px-2 sm:px-4 lg:px-6">
         <div className="bg-white  dark:bg-gray-900 overflow-hidden shadow-md rounded-lg">
           <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-t-lg">
             <div className="p-6 bg-accent border-b border-gray-200 dark:border-gray-700">
