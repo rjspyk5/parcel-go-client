@@ -1,11 +1,12 @@
 import { useAuth } from "@/Hooks/useAuth";
 import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export const GoogleLogin = ({ name }) => {
   const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
+  const { state } = useLocation();
   const { googleLogin } = useAuth();
   const handleLogin = () => {
     googleLogin()
@@ -20,12 +21,13 @@ export const GoogleLogin = ({ name }) => {
         return axiosPublic.post("/user", data);
       })
       .then(() => {
-        return Swal.fire({
+        state ? navigate(state) : navigate("/");
+        Swal.fire({
           icon: "success",
           title: "Successfully Login",
         });
       })
-      .then(() => navigate("/"))
+
       .catch((er) =>
         Swal.fire({
           icon: "error",

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginimg from "../../assets/image/login3.jpg";
 import { GoogleLogin } from "../GoogleLogin/GoogleLogin";
 import { useAuth } from "@/Hooks/useAuth";
@@ -6,12 +6,13 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
 export const Login = () => {
+  const { state } = useLocation();
   const { user, login, loading } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (user) {
-      navigate("/");
+      state ? navigate(state) : navigate("/");
     }
   }, [loading]);
   const {
@@ -27,6 +28,7 @@ export const Login = () => {
           title: "Successfully login",
           timer: 2000,
         });
+        state ? navigate(state) : navigate("/");
       })
       .catch((er) => {
         Swal.fire({

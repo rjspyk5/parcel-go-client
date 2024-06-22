@@ -1,6 +1,6 @@
 import { useAuth } from "@/Hooks/useAuth";
 import { useRoleCheker } from "@/Hooks/useRoleCheker";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { RingSpinner } from "../Loading/RingSpinner";
 
 export const AdminPrivateRoute = ({ children }) => {

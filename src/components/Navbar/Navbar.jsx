@@ -20,7 +20,7 @@ export const Navbar = () => {
         className={({ isActive }) =>
           isActive
             ? "border px-2 h-9 transition-all duration-300 flex items-center font-bold md:rounded-md shadow-sm  bg-[#f15a25]  text-white"
-            : "hover:bg-accent hover:underline underline-offset-2 transition-all duration-300  flex items-center  font-bold h-9 px-2  md:rounded-md"
+            : "hover:bg-accent transition-all duration-300  flex items-center  font-bold h-9 px-2  md:rounded-md"
         }
       >
         Home
@@ -30,7 +30,7 @@ export const Navbar = () => {
         className={({ isActive }) =>
           isActive
             ? "border px-2 h-9 transition-all duration-300 flex items-center font-bold md:rounded-md shadow-sm  bg-[#f15a25]  text-white"
-            : "hover:bg-accent hover:underline underline-offset-2 transition-all duration-300  flex items-center  font-bold h-9 px-2  md:rounded-md"
+            : "hover:bg-accent transition-all duration-300  flex items-center  font-bold h-9 px-2  md:rounded-md"
         }
       >
         Dashboard

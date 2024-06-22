@@ -1,9 +1,10 @@
 import { useAuth } from "@/Hooks/useAuth";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { RingSpinner } from "../Loading/RingSpinner";
 
 export const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
+  const { pathname } = useLocation();
 
   if (loading) {
     return <RingSpinner />;
@@ -13,5 +14,5 @@ export const PrivateRoute = ({ children }) => {
     return children;
   }
 
-  return <Navigate to="/login" />;
+  return <Navigate state={pathname} to="/login" />;
 };
