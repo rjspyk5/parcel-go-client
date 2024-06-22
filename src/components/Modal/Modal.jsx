@@ -8,26 +8,36 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { DialogClose } from "@radix-ui/react-dialog";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 export const Modal = ({
   deliveryHeroData: { deliveryHeros, deliveryManLoading, bookingId, refetch },
 }) => {
   const closeModal = useRef(null);
+
   const axiosSequre = useAxiosSequre();
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
-
   const onSubmit = async (data) => {
     data.status = "On the way";
     const result = await axiosSequre.patch(`/booking/${bookingId}`, data);
     if (result?.data?.acknowledged) {
       if (closeModal.current) {
-        refetch();
         closeModal.current.click();
+
+        refetch();
+        reset();
+
+        Swal.fire({
+          icon: "success",
+          text: "Successfully Assigned Delivery Hero",
+          timer: 2000,
+        });
       }
     }
   };
@@ -54,13 +64,11 @@ export const Modal = ({
                   aria-invalid={errors.approxDeliveryDate ? "true" : "false"}
                   type="date"
                 />
-
                 {errors.approxDeliveryDate?.type === "required" && (
                   <span className="block text-red-500 py-2" role="alert">
                     This field is required
                   </span>
                 )}
-
                 <label>
                   <span className="block pb-2 mt-4 text-lg ">
                     Assign a Delivery Hero :

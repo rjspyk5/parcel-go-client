@@ -14,13 +14,11 @@ export const Login = () => {
       navigate("/");
     }
   }, [loading]);
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-
   const onSubmit = async (data) => {
     login(data.email, data.pass)
       .then(() => {
