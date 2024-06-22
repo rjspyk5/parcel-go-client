@@ -17,9 +17,7 @@ export const MyProfile = () => {
   const url = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMG_API
   }`;
-  const [profilePhotoName, setprofilePhotoName] = useState(
-    "Upload Profile Photo"
-  );
+  const [profilePhotoName, setprofilePhotoName] = useState("Upload Photo");
   const {
     register,
     handleSubmit,
@@ -58,7 +56,7 @@ export const MyProfile = () => {
       })
       .then(() => {
         reset();
-        setprofilePhotoName("Upload Profile Photo");
+        setprofilePhotoName("Upload Photo");
         Swal.fire({
           text: "Profile picture changed successfully",
           icon: "success",
@@ -81,7 +79,7 @@ export const MyProfile = () => {
           <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-lg">
             <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-t-lg">
               <div className="p-6 bg-accent  border-b border-gray-200 dark:border-gray-700">
-                <h1 className="text-3xl font-bold my-3 text-center">
+                <h1 className="md:text-3xl text-xl font-bold my-3 text-center">
                   My Profile
                 </h1>
                 <p className="mt-2 text-sm  text-center">
@@ -89,12 +87,12 @@ export const MyProfile = () => {
                 </p>
               </div>
             </div>
-            <div className="flex justify-center items-center min-h-[300px] flex-grow p-6 ">
+            <div className="flex justify-center items-center min-h-[300px] flex-grow md:p-6 p-2 ">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full  max-w-4xl">
                 <div className="col-span-1 rounded-md shadow-xl border p-4 overflow-hidden flex flex-col items-center">
-                  <div className="w-28 h-28 rounded-full bg-gray-300 dark:bg-gray-600 mb-4 flex items-center justify-center">
+                  <div className="md:w-28 w-20 h-20 md:h-28  rounded-full bg-gray-300 dark:bg-gray-600 mb-4 flex items-center justify-center">
                     <img
-                      className="w-28 h-28 rounded-full"
+                      className="md:w-28 w-20 h-20 md:h-28 rounded-full"
                       src={userRole?.image}
                       alt=""
                     />
@@ -144,33 +142,33 @@ export const MyProfile = () => {
                   </form>
                 </div>
 
-                <div className="md:col-span-2 rounded-md shadow-xl border p-4  ">
+                <div className="md:col-span-2 rounded-md shadow-xl border md:p-4 p-2 ">
                   <h2 className="text-xl font-bold mb-4 text-center dark:text-white">
                     User Information
                   </h2>
                   <table className="table-auto w-full">
                     <tbody>
                       <tr className="border-b dark:border-gray-600">
-                        <td className="px-4 py-2 font-semibold dark:text-gray-300">
+                        <td className="md:px-4 px-1 py-2 font-semibold dark:text-gray-300">
                           Name :
                         </td>
-                        <td className="px-4 py-2 dark:text-gray-200">
+                        <td className="md:px-4 px-1 dark:text-gray-200">
                           {userRole?.name}
                         </td>
                       </tr>
                       <tr className="border-b dark:border-gray-600">
-                        <td className="px-4 py-2 font-semibold dark:text-gray-300">
+                        <td className="md:px-4 px-1 font-semibold dark:text-gray-300">
                           Email :
                         </td>
-                        <td className="px-4 py-2 dark:text-gray-200">
+                        <td className="md:px-4 px-1 dark:text-gray-200">
                           {userRole?.email}
                         </td>
                       </tr>
                       <tr className="border-b dark:border-gray-600">
-                        <td className="px-4 py-2 font-semibold dark:text-gray-300">
+                        <td className="md:px-4 px-1 font-semibold dark:text-gray-300">
                           Mobile :
                         </td>
-                        <td className="px-4 py-2 dark:text-gray-200">
+                        <td className="md:px-4 px-1 dark:text-gray-200">
                           {userRole?.number}
                         </td>
                       </tr>
