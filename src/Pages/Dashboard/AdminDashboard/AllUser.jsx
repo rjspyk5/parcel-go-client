@@ -1,9 +1,7 @@
-import { useUser } from "@/Hooks/useUser";
 import { useEffect, useState } from "react";
 import {
   Pagination,
   PaginationContent,
-  PaginationEllipsis,
   PaginationItem,
   PaginationLink,
   PaginationNext,
@@ -13,20 +11,21 @@ import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { RingSpinner } from "@/components/Loading/RingSpinner";
+
 export const AllUser = () => {
   const { userCount } = useLoaderData();
   const axiosSequre = useAxiosSequre();
-  const [user, setuser] = useState([]);
-  const [perPageView, setperPageView] = useState(5);
-  const [currentPage, setcurrentPage] = useState(1);
+  const [user, setUser] = useState([]);
+  const [perPageView, setPerPageView] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
   const totalPage = userCount && Math.ceil(userCount / perPageView);
   const pages = [...Array(totalPage).keys()];
   const [loading, setLoading] = useState(true);
 
-  const handleManage = async (id, rolee) => {
+  const handleManage = async (id, role) => {
     Swal.fire({
       title: "Are you sure?",
-      text: "You want to make this action??",
+      text: "You want to make this action?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -37,7 +36,7 @@ export const AllUser = () => {
         if (result.isConfirmed) {
           setLoading(true);
           const result = await axiosSequre.patch(`/user/${id}`, {
-            role: rolee,
+            role: role,
           });
           return result;
         }
@@ -52,132 +51,146 @@ export const AllUser = () => {
         }
       });
   };
+
   useEffect(() => {
     axiosSequre
       .get(`/user?page=${currentPage}&size=${perPageView}`)
       .then((result) => {
-        setuser(result.data);
+        setUser(result.data);
       })
       .then(() => setLoading(false));
   }, [currentPage, perPageView, handleManage]);
 
   return (
-    <div className="p-4">
-      <h1 className="text-center font-bold text-3xl mb-4">All Users</h1>
+    <div className="flex justify-center items-center">
+      <div className="w-full py-8 px-2 sm:px-4 lg:px-6">
+        <div className="bg-white  dark:bg-gray-900 overflow-hidden shadow-md rounded-lg">
+          <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-t-lg">
+            <div className="p-6 bg-accent border-b border-gray-200 dark:border-gray-700">
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white text-center">
+                All Users
+              </h1>
+              <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 text-center">
+                Manage and track all users in one place.
+              </p>
+            </div>
+          </div>
 
-      {loading ? (
-        <RingSpinner />
-      ) : (
-        <>
-          {user.length > 0 ? (
+          {loading ? (
+            <RingSpinner />
+          ) : (
             <>
-              <div className=" overflow-x-auto rounded-md shadow-xl">
-                <table className=" divide-y divide-gray-200 rounded-md  w-full dark:divide-gray-700">
-                  <thead className="bg-gray-200 dark:bg-gray-800">
-                    <tr>
-                      <th className="md:px-3 px-1 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
-                        User's Name
-                      </th>
-                      <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
-                        Phone Number
-                      </th>
-                      <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
-                        Number Of Parcel Booked
-                      </th>
-                      <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
-                        Spented Amount
-                      </th>
-                      <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left  text-gray-500 dark:text-gray-400">
-                        Action
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                    {user?.map((el) => {
-                      return (
-                        <tr key={el._id}>
-                          <td className="md:px-3 px-1  py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                            {el.name}
-                          </td>
-                          <td className="px-1 md:px-3 py-4 text-xs md:text-smfont-medium text-gray-700 ">
-                            {el.number}
-                          </td>
-                          <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300">
-                            {el.numberOfParcelBooked}
-                          </td>
-                          <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 ">
-                            {el.totalSpendMoney}
-                          </td>
-                          <td className="px-1 md:px-3 py-4   ">
-                            <button
-                              onClick={() => handleManage(el._id, "admin")}
-                              className=" text-white text-[10px] sm:text-sm md:text-sm bg-green-500 hover:bg-green-600 px-2 rounded-lg py-1"
-                            >
-                              Make Admin
-                            </button>
-                            <br />
-                            <button
-                              onClick={() =>
-                                handleManage(el._id, "deliveryHero")
-                              }
-                              className=" text-white text-[10px] sm:text-sm md:text-sm mt-2 bg-orange-500 hover:bg-orange-600 px-2 rounded-lg py-1"
-                            >
-                              Make DeliveryMan
-                            </button>
-                          </td>
+              {user.length > 0 ? (
+                <>
+                  <div className="overflow-x-auto ">
+                    <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                      <thead className="bg-orange-500">
+                        <tr>
+                          <th className="md:px-3 px-1 py-3.5 text-xs md:text-sm font-normal text-left text-white">
+                            User's Name
+                          </th>
+                          <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
+                            Phone Number
+                          </th>
+                          <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
+                            Number Of Parcel Booked
+                          </th>
+                          <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
+                            Spent Amount
+                          </th>
+                          <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
+                            Action
+                          </th>
                         </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-              <Pagination className="my-8">
-                <PaginationContent>
-                  <button
-                    onClick={() =>
-                      currentPage > 1 && setcurrentPage(currentPage - 1)
-                    }
-                  >
-                    <PaginationItem>
-                      <PaginationPrevious />
-                    </PaginationItem>
-                  </button>
-
-                  {pages.map((el) => {
-                    return (
-                      <button key={el} onClick={() => setcurrentPage(el + 1)}>
-                        <PaginationItem>
-                          <PaginationLink
-                            className={
-                              currentPage === el + 1 &&
-                              "bg-[#f15a25] text-white"
-                            }
+                      </thead>
+                      <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                        {user.map((el) => (
+                          <tr
+                            key={el._id}
+                            className="transition-colors hover:bg-gray-100  dark:hover:bg-gray-800"
                           >
-                            {el + 1}
-                          </PaginationLink>
+                            <td className="md:px-3 px-1 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                              {el.name}
+                            </td>
+                            <td className="px-1 md:px-3 py-4 text-xs md:text-sm font-medium text-gray-700 dark:text-gray-300">
+                              {el.number}
+                            </td>
+                            <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300">
+                              {el.numberOfParcelBooked}
+                            </td>
+                            <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300">
+                              {el.totalSpendMoney}
+                            </td>
+                            <td className="px-1 md:px-3 py-4 text-xs md:text-sm">
+                              <button
+                                onClick={() => handleManage(el._id, "admin")}
+                                className="text-white bg-green-500 hover:bg-green-600 px-2 py-1 rounded-lg"
+                              >
+                                Make Admin
+                              </button>
+                              <br />
+                              <button
+                                onClick={() =>
+                                  handleManage(el._id, "deliveryHero")
+                                }
+                                className="text-white bg-orange-500 hover:bg-orange-600 px-2 py-1 rounded-lg mt-2"
+                              >
+                                Make DeliveryMan
+                              </button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <Pagination className="my-8">
+                    <PaginationContent>
+                      <button
+                        onClick={() =>
+                          currentPage > 1 && setCurrentPage(currentPage - 1)
+                        }
+                      >
+                        <PaginationItem>
+                          <PaginationPrevious />
                         </PaginationItem>
                       </button>
-                    );
-                  })}
-                  <button
-                    onClick={() =>
-                      currentPage < totalPage && setcurrentPage(currentPage + 1)
-                    }
-                  >
-                    <PaginationItem>
-                      <PaginationNext />
-                    </PaginationItem>
-                  </button>
-                </PaginationContent>
-              </Pagination>
+
+                      {pages.map((el) => (
+                        <button key={el} onClick={() => setCurrentPage(el + 1)}>
+                          <PaginationItem>
+                            <PaginationLink
+                              className={
+                                currentPage === el + 1 &&
+                                "bg-[#f15a25] text-white"
+                              }
+                            >
+                              {el + 1}
+                            </PaginationLink>
+                          </PaginationItem>
+                        </button>
+                      ))}
+                      <button
+                        onClick={() =>
+                          currentPage < totalPage &&
+                          setCurrentPage(currentPage + 1)
+                        }
+                      >
+                        <PaginationItem>
+                          <PaginationNext />
+                        </PaginationItem>
+                      </button>
+                    </PaginationContent>
+                  </Pagination>
+                </>
+              ) : (
+                <p className="min-h-96 flex justify-center items-center text-2xl md:text-3xl">
+                  No user found
+                </p>
+              )}
             </>
-          ) : (
-            <p className="min-h-96 flex justify-center items-center text-2xl md:text-3xl">
-              No user found
-            </p>
           )}
-        </>
-      )}
+        </div>
+      </div>
     </div>
   );
 };

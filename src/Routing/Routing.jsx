@@ -94,8 +94,12 @@ export const Routing = createBrowserRouter([
         ),
       },
       {
-        index: true,
-        element: <Statistics />,
+        path: "statistics",
+        element: (
+          <AdminPrivateRoute>
+            <Statistics />
+          </AdminPrivateRoute>
+        ),
       },
       // UserRotes
       {

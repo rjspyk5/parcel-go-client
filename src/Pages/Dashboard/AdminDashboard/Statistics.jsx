@@ -3,21 +3,30 @@ import { Linechart } from "@/components/LineChart/LineChart";
 
 export const Statistics = () => {
   return (
-    <div className="flex-1 p-6 space-y-8">
-      <h1 className="text-3xl font-bold text-orange-600 dark:text-orange-500 mb-4">
-        Statistics Dashboard
-      </h1>
-      <div className="bg-white dark:bg-gray-800 p-6 shadow rounded-lg">
-        <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
-          Total Booking by Date
-        </h2>
-        <Barchart />
-      </div>
-      <div className="bg-white dark:bg-gray-800 p-6 shadow rounded-lg">
-        <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
-          Average High & Low Temperature
-        </h2>
-        <Linechart />
+    <div className="flex justify-center items-center">
+      <div className="w-full py-8 px-2 sm:px-4 lg:px-6">
+        <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-lg">
+          <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-t-lg">
+            <div className="p-8 bg-accent border-b border-gray-200 dark:border-gray-700">
+              <h1 className="text-3xl font-bold text-center">Statistics</h1>
+            </div>
+          </div>
+
+          <div className="p-6 space-y-8">
+            <div className="bg-white dark:bg-gray-800 p-6 shadow rounded-lg">
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
+                Total Booking by Date
+              </h2>
+              <Barchart />
+            </div>
+            <div className="bg-white dark:bg-gray-800 p-6 shadow rounded-lg">
+              <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
+                Average High & Low Temperature
+              </h2>
+              <Linechart />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

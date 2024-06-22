@@ -1,4 +1,4 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { useState } from "react";
 import { useAuth } from "@/Hooks/useAuth";
 import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const schema = yup.object().shape({
   senderNumber: yup
@@ -32,6 +33,7 @@ const schema = yup.object().shape({
 });
 
 export const UpdateParcel = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
   const { data: bookingData } = useLoaderData();
   const axiosPublic = useAxiosPublic();
@@ -63,10 +65,18 @@ export const UpdateParcel = () => {
     try {
       const result = await axiosPublic.patch(`/booking/${id}`, data);
       if (result.data.acknowledged) {
-        alert("Update successful");
+        Swal.fire({
+          text: " Update Successfully",
+          icon: "success",
+        });
+
+        navigate("/dashboard/myparcel");
       }
     } catch (error) {
-      console.error("Error updating parcel", error);
+      Swal.fire({
+        text: "Something went wrong try again",
+        icon: "error",
+      });
     }
   };
 

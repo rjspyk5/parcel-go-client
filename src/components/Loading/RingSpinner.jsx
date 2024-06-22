@@ -2,7 +2,7 @@ import { Rings } from "react-loader-spinner";
 
 export const RingSpinner = () => {
   return (
-    <div className="flex min-h-72 items-center justify-center">
+    <div className="flex min-h-72 items-center flex-col justify-center">
       <Rings
         visible={true}
         height="80"
@@ -12,6 +12,7 @@ export const RingSpinner = () => {
         wrapperStyle={{}}
         wrapperClass=""
       />
+      <p className="font-semibold text-2xl"> Loading</p>
     </div>
   );
 };

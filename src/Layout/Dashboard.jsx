@@ -1,5 +1,5 @@
 import { useRoleCheker } from "@/Hooks/useRoleCheker";
-import { NavLink, Outlet, Link } from "react-router-dom";
+import { NavLink, Outlet, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/Hooks/useAuth";
 import logo from "../assets/image/logo.png";
 import { ProfileDropDown } from "@/components/ProfileDropDown/ProfileDropDown";
@@ -11,10 +11,28 @@ import { FaUsers } from "react-icons/fa";
 import { IoMdBicycle } from "react-icons/io";
 import { IoBarChart } from "react-icons/io5";
 import { MdRateReview } from "react-icons/md";
+import { useEffect } from "react";
 export const Dashboard = () => {
   const [role, isLoading] = useRoleCheker();
   const { user } = useAuth();
-  console.log(user);
+  const navigate = useNavigate();
+
+  const defaultRoute = () => {
+    if (role?.role === "admin") {
+      return "/dashboard/statistics";
+    } else if (role?.role === "deliveryHero") {
+      return "/dashboard/mydelivery";
+    } else {
+      return "/dashboard/bookparcel";
+    }
+  };
+
+  useEffect(() => {
+    if (!isLoading) {
+      navigate(defaultRoute());
+    }
+  }, []);
+
   const userMenu = (
     <>
       <ul className="">
@@ -65,7 +83,7 @@ export const Dashboard = () => {
       <ul>
         <li>
           <NavLink
-            to="/dashboard"
+            to="/dashboard/statistics"
             end
             className={({ isActive }) =>
               isActive
