@@ -41,7 +41,7 @@ export const MyParcels = () => {
                 <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                   <div className="overflow-hidden border-b border-gray-200 dark:border-gray-700">
                     <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                      <thead className="bg-orange-600 text-white">
+                      <thead className="bg-orange-500 text-white">
                         <tr>
                           <th
                             scope="col"
