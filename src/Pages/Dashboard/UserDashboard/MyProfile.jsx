@@ -1,6 +1,8 @@
 import { useAuth } from "@/Hooks/useAuth";
 import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
 import { useRoleCheker } from "@/Hooks/useRoleCheker";
+import { CustomLoading } from "@/components/Loading/CustomLoading";
+import { UploadSpinner } from "@/components/Loading/UploadSpinner";
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -8,6 +10,8 @@ export const MyProfile = () => {
   const { updateInfo, user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const [userRole, isLoading, refetch] = useRoleCheker();
+  const [loading, setloading] = useState(false);
+  const [uploadLoading, setuploadLoading] = useState(false);
 
   const url = `https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMG_API
@@ -22,7 +26,7 @@ export const MyProfile = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    setuploadLoading(true);
     const handleImageUpload = async () => {
       if (data.image.length > 0) {
         const imageFile = { image: data.image[0] };
@@ -37,15 +41,28 @@ export const MyProfile = () => {
       }
     };
     handleImageUpload()
-      .then(() =>
-        axiosPublic.patch(`/userprofile/${user?.email}`, { image: data.image })
-      )
-      .then(() => refetch())
-      .catch((er) => console.log(er));
+      .then(() => {
+        setuploadLoading(false);
+        setloading(true);
+        axiosPublic.patch(`/userprofile/${user?.email}`, { image: data.image });
+      })
+      .then(() => {
+        refetch();
+
+        setloading(false);
+      })
+      .catch((er) => {
+        setloading(false);
+        setuploadLoading(false);
+        console.log(er);
+      });
   };
 
   return (
-    <div>
+    <div className="relative">
+      {uploadLoading && <UploadSpinner />}
+      {!uploadLoading && loading && <CustomLoading />}
+
       <div className=" flex justify-center items-center">
         <div className="w-full py-8 px-2 sm:px-4 lg:px-6">
           <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-lg">
