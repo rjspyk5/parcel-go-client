@@ -6,6 +6,7 @@ import { UploadSpinner } from "@/components/Loading/UploadSpinner";
 import axios from "axios";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 export const MyProfile = () => {
   const { updateInfo, user } = useAuth();
   const axiosPublic = useAxiosPublic();
@@ -48,8 +49,11 @@ export const MyProfile = () => {
       })
       .then(() => {
         refetch();
-
         setloading(false);
+        Swal.fire({
+          text: "Profile picture changes successfully",
+          icon: "success",
+        });
       })
       .catch((er) => {
         setloading(false);
