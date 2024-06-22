@@ -327,13 +327,13 @@ export const UpdateParcel = () => {
               </div>
 
               <div className="mt-6 flex items-center justify-between">
-                <p className="text-lg text-gray-700 dark:text-gray-200">
+                <p className="md:text-lg text-sm text-gray-700 dark:text-gray-200">
                   Estimated Price:{" "}
                   <span className="font-semibold">{price} Tk</span>
                 </p>
                 <button
                   type="submit"
-                  className="px-4 py-2 text-white bg-orange-500 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+                  className="md:px-4 px-2 py-1 md:py-2 text-white bg-orange-500 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
                 >
                   Update Now
                 </button>

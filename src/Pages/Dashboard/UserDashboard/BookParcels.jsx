@@ -81,15 +81,17 @@ export const BookParcels = () => {
         <div className="w-full py-5 px-2 sm:px-4 lg:px-6">
           <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-lg">
             <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-t-lg">
-              <div className="p-6 bg-accent  border-b border-gray-200 dark:border-gray-700">
-                <h1 className="text-3xl font-bold  text-center">Book Parcel</h1>
+              <div className="md:p-6 p-3 bg-accent  border-b border-gray-200 dark:border-gray-700">
+                <h1 className="md:text-3xl text-xl font-bold  text-center">
+                  Book Parcel
+                </h1>
                 <p className="mt-2 text-sm  text-center">
                   Fill up the form for booking a parcel
                 </p>
               </div>
             </div>
 
-            <form className="p-8" onSubmit={handleSubmit(onSubmit)}>
+            <form className="md:p-8 p-3" onSubmit={handleSubmit(onSubmit)}>
               <h2 className="text-lg font-semibold text-gray-700 dark:text-white mb-2">
                 Sender Information
               </h2>
@@ -307,13 +309,13 @@ export const BookParcels = () => {
               </div>
 
               <div className="mt-6 flex items-center justify-between">
-                <p className="text-lg text-gray-700 dark:text-gray-200">
+                <p className="md:text-lg text-sm text-gray-700 dark:text-gray-200">
                   Estimated Price:{" "}
                   <span className="font-semibold">{price} Tk</span>
                 </p>
                 <button
                   type="submit"
-                  className="px-4 py-2 text-white bg-orange-500 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+                  className="md:px-4 px-2 py-1 md:py-2 text-white bg-orange-500 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
                 >
                   Book Now
                 </button>

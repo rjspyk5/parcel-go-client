@@ -184,7 +184,7 @@ export const Dashboard = () => {
               <div className="flex items-center">
                 <Link
                   to="/dashboard"
-                  className="flex rounded-md pr-2 hover:bg-accent font-bold text-lg items-center"
+                  className="flex rounded-md pr-2 hover:bg-accent font-bold md:text-lg text-base items-center"
                 >
                   <img className="w-10 h-10" src={logo} alt="logo" />
                   Dashboard
