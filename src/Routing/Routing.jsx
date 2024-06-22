@@ -29,7 +29,7 @@ export const Routing = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => axios("http://localhost:5000/countdelivery"),
+        loader: () => axios("https://parcelgo.vercel.app/countdelivery"),
       },
       {
         path: "/login",
@@ -75,7 +75,7 @@ export const Routing = createBrowserRouter([
             <AllUser />
           </AdminPrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/countuser"),
+        loader: () => fetch("https://parcelgo.vercel.app/countuser"),
       },
       {
         path: "allparcel",
@@ -118,7 +118,7 @@ export const Routing = createBrowserRouter([
         path: "update/:id",
         element: <UpdateParcel />,
         loader: ({ params }) =>
-          axios.get(`http://localhost:5000/booking/${params.id}`),
+          axios.get(`https://parcelgo.vercel.app/booking/${params.id}`),
       },
     ],
   },

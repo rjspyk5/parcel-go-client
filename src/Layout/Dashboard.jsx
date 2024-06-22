@@ -1,6 +1,5 @@
 import { useRoleCheker } from "@/Hooks/useRoleCheker";
 import { NavLink, Outlet, Link, useNavigate } from "react-router-dom";
-import { useAuth } from "@/Hooks/useAuth";
 import logo from "../assets/image/logo.png";
 import { ProfileDropDown } from "@/components/ProfileDropDown/ProfileDropDown";
 import { ToogleTheme } from "@/components/Theme/ToogleTheme";
@@ -14,7 +13,7 @@ import { MdRateReview } from "react-icons/md";
 import { useEffect } from "react";
 export const Dashboard = () => {
   const [role, isLoading] = useRoleCheker();
-  const { user } = useAuth();
+
   const navigate = useNavigate();
 
   const defaultRoute = () => {

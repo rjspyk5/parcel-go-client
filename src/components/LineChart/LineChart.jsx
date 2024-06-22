@@ -61,7 +61,7 @@ export const Linechart = () => {
         size: 1,
       },
       xaxis: {
-        categories: [], // Will be populated with fetched and upcoming data
+        categories: [],
         title: {
           text: "Date",
           style: {
@@ -70,12 +70,6 @@ export const Linechart = () => {
         },
       },
       yaxis: {
-        title: {
-          text: "Number of Parcels",
-          style: {
-            color: "#374151",
-          },
-        },
         min: 0,
         forceNiceScale: true,
       },

@@ -11,7 +11,7 @@ export const TopDeliveryHero = () => {
       return result.data;
     },
   });
-  console.log(data);
+
   const myStyles = {
     itemShapes: Star,
     activeFillColor: "#f15a25",
