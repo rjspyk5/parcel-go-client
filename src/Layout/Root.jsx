@@ -7,7 +7,6 @@ export const Root = () => {
   return (
     <div className="bodyFont">
       <Navbar />
-
       <Outlet />
       <Footer />
     </div>

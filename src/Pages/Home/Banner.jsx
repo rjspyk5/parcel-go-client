@@ -12,9 +12,9 @@ export const Banner = () => {
         >
           <div className="flex items-center justify-center w-full h-full bg-gray-900/40">
             <div className="text-center">
-              <h1 className="text-3xl  font-semibold text-white lg:text-4xl">
+              <h1 className="md:text-3xl text-xl font-semibold text-white lg:text-4xl">
                 Delivering Your{" "}
-                <span className="text-[#f15a25] lg:text-5xl text-4xl">
+                <span className="text-[#f15a25] lg:text-4xl text-3xl">
                   <Typewriter
                     words={["Parcel", "Packages", "Anything"]}
                     loop={false}
