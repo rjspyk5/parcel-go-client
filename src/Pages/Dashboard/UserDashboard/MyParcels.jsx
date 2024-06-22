@@ -54,15 +54,17 @@ export const MyParcels = () => {
   return (
     <>
       <div className="flex flex-col justify-center items-center">
-        <div className="w-full py-5 px-4 sm:px-6 lg:px-8">
+        <div className="w-full md:py-5 py-3 px-3 sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-t-lg">
-            <div className="p-6 bg-accent  border-b border-gray-200 dark:border-gray-700">
-              <h1 className="text-3xl font-bold my-3 text-center">My Parcel</h1>
+            <div className="md:p-6 p-3 bg-accent  border-b border-gray-200 dark:border-gray-700">
+              <h1 className="md:text-3xl text-xl font-bold my-3 text-center">
+                My Parcel
+              </h1>
               <p className="mt-2 text-sm  text-center">
                 View and manage your parcels.
               </p>
               <div className="flex  mt-4 justify-end">
-                <select className="border rounded-md  bg-white dark:bg-gray-700 p-2 ">
+                <select className="border rounded-md  bg-white dark:bg-gray-700 md:p-2 p-1">
                   <option value="all">All</option>
                   <option value="pending">Pending</option>
                   <option value="delivered">Delivered</option>
@@ -84,43 +86,43 @@ export const MyParcels = () => {
                         <tr>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
+                            className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
                           >
                             Parcel Type
                           </th>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
+                            className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
                           >
                             Req. Delivery Date
                           </th>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-left text-xs md:text-sm  font-normal tracking-wider"
+                            className="md:px-6 px-2py-3 text-left text-xs md:text-sm  font-normal tracking-wider"
                           >
                             Approx. Delivery Date
                           </th>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
+                            className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
                           >
                             Booking Date
                           </th>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
+                            className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
                           >
                             Delivery HeroID
                           </th>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
+                            className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
                           >
                             Status
                           </th>
                           <th
                             scope="col"
-                            className="px-6 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
+                            className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
                           >
                             Action
                           </th>
@@ -132,29 +134,29 @@ export const MyParcels = () => {
                             key={el._id}
                             className="transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
                           >
-                            <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400">
+                            <td className="md:px-6 px-2 py-4 whitespace-nowrap text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400">
                               {el.parcleType}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                            <td className="md:px-6 px-2 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
                               {
                                 new Date(el?.reqDeliveryDate)
                                   .toISOString()
                                   .split("T")[0]
                               }
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                            <td className="md:px-6 px-2py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
                               {el.approxDeliveryDate}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                            <td className="md:px-6 px-2 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
                               {el.bookingDate}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                            <td className="md:px-6 px-2 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
                               {el.deliveryHeorId || "Not assigned"}
                             </td>
-                            <td className="px-6 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                            <td className="md:px-6 px-2 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
                               {el.status}
                             </td>
-                            <td className="px-6 py-4 space-x-1 flex text-xs md:text-sm font-medium">
+                            <td className="md:px-6 px-2 py-4 space-x-1 flex text-xs md:text-sm font-medium">
                               {el.status === "pending" && (
                                 <>
                                   <button
