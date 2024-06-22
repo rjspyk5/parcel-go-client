@@ -14,15 +14,9 @@ export const Statistics = () => {
 
           <div className="p-6 space-y-8">
             <div className="bg-white dark:bg-gray-800 p-6 shadow rounded-lg">
-              <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
-                Total Booking by Date
-              </h2>
               <Barchart />
             </div>
             <div className="bg-white dark:bg-gray-800 p-6 shadow rounded-lg">
-              <h2 className="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">
-                Average High & Low Temperature
-              </h2>
               <Linechart />
             </div>
           </div>

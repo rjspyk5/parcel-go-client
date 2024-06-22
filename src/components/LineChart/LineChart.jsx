@@ -1,5 +1,6 @@
 import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
-import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
 
 export const Linechart = () => {
@@ -7,12 +8,12 @@ export const Linechart = () => {
   const [chartData, setChartData] = useState({
     series: [
       {
-        name: "High - 2013",
-        data: [28, 29, 33, 36, 32, 32, 33],
+        name: "Booked Parcels",
+        data: [],
       },
       {
-        name: "Low - 2013",
-        data: [12, 11, 14, 18, 17, 13, 13],
+        name: "Delivered Parcels",
+        data: [],
       },
     ],
     options: {
@@ -34,7 +35,7 @@ export const Linechart = () => {
           show: false,
         },
       },
-      colors: ["#f97316", "#fb923c"],
+      colors: ["#f97316", "#1ddb72"],
       dataLabels: {
         enabled: true,
       },
@@ -42,8 +43,8 @@ export const Linechart = () => {
         curve: "smooth",
       },
       title: {
-        text: "Average High & Low Temperature",
-        align: "left",
+        text: "Booked vs Delivered Parcels",
+        align: "center",
         style: {
           fontSize: "16px",
           color: "#374151",
@@ -60,23 +61,23 @@ export const Linechart = () => {
         size: 1,
       },
       xaxis: {
-        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+        categories: [], // Will be populated with fetched and upcoming data
         title: {
-          text: "Month",
+          text: "Date",
           style: {
-            color: "#374151", // dark:text-gray-300
+            color: "#374151",
           },
         },
       },
       yaxis: {
         title: {
-          text: "Temperature",
+          text: "Number of Parcels",
           style: {
-            color: "#374151", // dark:text-gray-300
+            color: "#374151",
           },
         },
-        min: 5,
-        max: 40,
+        min: 0,
+        forceNiceScale: true,
       },
       legend: {
         position: "top",
@@ -85,11 +86,39 @@ export const Linechart = () => {
         offsetY: -25,
         offsetX: -5,
         labels: {
-          colors: "#374151", // dark:text-gray-300
+          colors: "#374151",
         },
       },
     },
   });
+
+  const { data, refetch } = useQuery({
+    queryKey: ["bookingchart"],
+    queryFn: async () => {
+      const result = await axiosSequre.get("/bookingchart");
+      return result.data;
+    },
+  });
+
+  useEffect(() => {
+    const categories = data?.map((item) => item._id);
+    const bookedData = data?.map((item) => item.totalBooked);
+    const deliveredData = data?.map((item) => item.totalDelivered);
+    setChartData((prevChartData) => ({
+      ...prevChartData,
+      series: [
+        { ...prevChartData.series[0], data: bookedData },
+        { ...prevChartData.series[1], data: deliveredData },
+      ],
+      options: {
+        ...prevChartData.options,
+        xaxis: {
+          ...prevChartData.options.xaxis,
+          categories: categories,
+        },
+      },
+    }));
+  }, [data]);
 
   return (
     <div>
