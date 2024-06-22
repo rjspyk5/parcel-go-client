@@ -27,7 +27,7 @@ export const MyReviews = () => {
   return (
     <div className="flex justify-center items-center">
       <div className="w-full py-8 px-2 sm:px-4 lg:px-6">
-        <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-lg">
+        <div className="">
           <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-t-lg">
             <div className="p-6 bg-accent border-b border-gray-200 dark:border-gray-700">
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white text-center">
@@ -39,7 +39,7 @@ export const MyReviews = () => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 mg:grid-cols-3  gap-2">
+          <div className="grid mt-5 grid-cols-1 sm:grid-cols-2 mg:grid-cols-3  gap-5">
             {reviews?.map((el) => {
               return (
                 <div
