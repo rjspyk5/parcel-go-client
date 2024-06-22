@@ -28,10 +28,10 @@ export const Dashboard = () => {
   };
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoading && role) {
       navigate(defaultRoute());
     }
-  }, []);
+  }, [isLoading, role]);
 
   const userMenu = (
     <>
