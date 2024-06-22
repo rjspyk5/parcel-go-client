@@ -4,6 +4,8 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import moment from "moment";
 import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
   senderNumber: yup
@@ -30,6 +32,7 @@ const schema = yup.object().shape({
 });
 
 export const BookParcels = () => {
+  const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
   const {
@@ -37,6 +40,7 @@ export const BookParcels = () => {
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
@@ -56,10 +60,18 @@ export const BookParcels = () => {
     try {
       const result = await axiosPublic.post("/booking", data);
       if (result.status === 200) {
-        alert("Booking successful");
+        Swal.fire({
+          text: " Sucessfully Booking",
+          icon: "success",
+        });
+        reset();
+        navigate("/dashboard/myparcel");
       }
     } catch (error) {
-      console.error("Error booking parcel", error);
+      Swal.fire({
+        text: "Something went wrong try again",
+        icon: "error",
+      });
     }
   };
 

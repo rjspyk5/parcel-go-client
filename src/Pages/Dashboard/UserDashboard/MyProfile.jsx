@@ -24,6 +24,7 @@ export const MyProfile = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const onSubmit = (data) => {
@@ -45,13 +46,21 @@ export const MyProfile = () => {
       .then(() => {
         setuploadLoading(false);
         setloading(true);
+      })
+      .then(() => {
         axiosPublic.patch(`/userprofile/${user?.email}`, { image: data.image });
       })
       .then(() => {
         refetch();
+      })
+      .then(() => {
         setloading(false);
+      })
+      .then(() => {
+        reset();
+        setprofilePhotoName("Upload Profile Photo");
         Swal.fire({
-          text: "Profile picture changes successfully",
+          text: "Profile picture changed successfully",
           icon: "success",
         });
       })
@@ -65,7 +74,7 @@ export const MyProfile = () => {
   return (
     <div className="relative">
       {uploadLoading && <UploadSpinner />}
-      {!uploadLoading && loading && <CustomLoading />}
+      {uploadLoading ? "" : loading ? <CustomLoading /> : ""}
 
       <div className=" flex justify-center items-center">
         <div className="w-full py-8 px-2 sm:px-4 lg:px-6">
@@ -80,9 +89,9 @@ export const MyProfile = () => {
             <div className="flex justify-center items-center min-h-[300px] flex-grow p-6 ">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5 w-full  max-w-4xl">
                 <div className="col-span-1 rounded-md shadow-xl border p-4 overflow-hidden flex flex-col items-center">
-                  <div className="w-24 h-24 rounded-full bg-gray-300 dark:bg-gray-600 mb-4 flex items-center justify-center">
+                  <div className="w-28 h-28 rounded-full bg-gray-300 dark:bg-gray-600 mb-4 flex items-center justify-center">
                     <img
-                      className="w-24 h-24 rounded-full"
+                      className="w-28 h-28 rounded-full"
                       src={userRole?.image}
                       alt=""
                     />

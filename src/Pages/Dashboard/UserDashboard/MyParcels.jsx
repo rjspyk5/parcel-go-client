@@ -3,6 +3,7 @@ import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
 import { ModalForReview } from "@/components/ModalForReview/ModalForReview";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export const MyParcels = () => {
   const navigate = useNavigate();
@@ -19,16 +20,32 @@ export const MyParcels = () => {
 
   const handleCancel = async (id, status) => {
     if (status === "pending") {
-      const result = await axiosSequre.patch(`/booking/${id}`, {
-        status: "canceled",
-      });
-
-      if (result.data.acknowledged) {
-        refetch();
-        alert("cancel booking successfull");
-      }
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You want to cancel this booking",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#07db55",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes",
+      })
+        .then((result) => {
+          if (result.isConfirmed) {
+            return axiosSequre.patch(`/booking/${id}`, {
+              status: "canceled",
+            });
+          }
+        })
+        .then((result) => {
+          refetch();
+          if (result?.data.acknowledged) {
+            Swal.fire({
+              text: "Booking Canceled Sucessfully",
+              icon: "success",
+            });
+          }
+        });
     }
-    console.log(id);
   };
 
   return (
