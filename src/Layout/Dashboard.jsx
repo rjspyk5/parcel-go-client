@@ -179,7 +179,7 @@ export const Dashboard = () => {
       ) : (
         <>
           <div className="sticky border shadow-lg top-0 z-50">
-            <div className="flex justify-between bg-accent backdrop-blur-xl py-[9px]">
+            <div className="flex justify-between pr-[2%] md:pr-[2%] bg-accent backdrop-blur-xl py-[9px]">
               {/* left side */}
               <div className="flex items-center">
                 <Link
@@ -190,6 +190,13 @@ export const Dashboard = () => {
                   Dashboard
                 </Link>
               </div>
+              <Link
+                className="rounded-md bg-[#e3ebf4] dark:bg-slate-900 duration-300 hover:text-white hover:bg-orange-500 dark:hover:bg-orange-500 font-bold flex items-center px-2 py-1 bg-accent"
+                to="/"
+              >
+                Home
+              </Link>
+
               {/* end side */}
               <div className="flex gap-2 items-center">
                 <ToogleTheme />

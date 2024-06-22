@@ -51,7 +51,6 @@ export const Login = () => {
               <h1 className="mt-3 text-2xl text-white font-semibold text-center capitalize sm:text-3xl">
                 sign In
               </h1>
-
               <div className="relative flex items-center mt-8">
                 <span className="absolute">
                   <svg

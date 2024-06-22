@@ -83,14 +83,14 @@ export const UpdateParcel = () => {
   return (
     <>
       <div className=" flex justify-center items-center">
-        <div className="w-full py-8 px-2 sm:px-4 lg:px-6">
+        <div className="w-full py-4 px-2 sm:px-4 lg:px-6">
           <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-lg">
             <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-t-lg">
-              <div className="p-6 bg-orange-500  border-b border-gray-200 dark:border-gray-700">
-                <h1 className="text-3xl font-bold text-white text-center">
+              <div className="md:p-6 p-3  bg-accent  border-b border-gray-200 dark:border-gray-700">
+                <h1 className="md:text-3xl text-xl font-bold  text-center">
                   Update Parcel
                 </h1>
-                <p className="mt-2 text-sm text-white text-center">
+                <p className="mt-2 text-sm  text-center">
                   Change the data where you want to update
                 </p>
               </div>
@@ -326,14 +326,14 @@ export const UpdateParcel = () => {
                 </div>
               </div>
 
-              <div className="mt-6 flex items-center justify-between">
-                <p className="md:text-lg text-sm text-gray-700 dark:text-gray-200">
+              <div className="mt-6 flex flex-col md:flex-row gap-2 items-center justify-between">
+                <p className="text-lg  text-gray-700 dark:text-gray-200">
                   Estimated Price:{" "}
                   <span className="font-semibold">{price} Tk</span>
                 </p>
                 <button
                   type="submit"
-                  className="md:px-4 px-2 py-1 md:py-2 text-white bg-orange-500 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+                  className="px-4 w-full md:w-auto py-2 text-white bg-orange-500 rounded-md hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
                 >
                   Update Now
                 </button>
