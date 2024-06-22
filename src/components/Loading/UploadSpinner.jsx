@@ -2,7 +2,7 @@ import { RotatingLines } from "react-loader-spinner";
 
 export const UploadSpinner = () => {
   return (
-    <div className="flex min-h-96 items-center justify-center">
+    <div className="flex min-h-72 items-center justify-center">
       <RotatingLines
         visible={true}
         height="96"
