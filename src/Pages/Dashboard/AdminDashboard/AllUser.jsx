@@ -111,7 +111,7 @@ export const AllUser = () => {
                           <td className="px-1 md:px-3 py-4   ">
                             <button
                               onClick={() => handleManage(el._id, "admin")}
-                              className=" text-orange-700 text-[10px] sm:text-sm md:text-sm bg-[#ff880025] px-2 rounded-lg py01"
+                              className=" text-white text-[10px] sm:text-sm md:text-sm bg-green-500 hover:bg-green-600 px-2 rounded-lg py-1"
                             >
                               Make Admin
                             </button>
@@ -120,7 +120,7 @@ export const AllUser = () => {
                               onClick={() =>
                                 handleManage(el._id, "deliveryHero")
                               }
-                              className=" text-orange-700 text-[10px] sm:text-sm md:text-sm mt-2 bg-[#ff880027] px-2 rounded-lg"
+                              className=" text-white text-[10px] sm:text-sm md:text-sm mt-2 bg-orange-500 hover:bg-orange-600 px-2 rounded-lg py-1"
                             >
                               Make DeliveryMan
                             </button>
