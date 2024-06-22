@@ -11,6 +11,7 @@ import { IoMdBicycle } from "react-icons/io";
 import { IoBarChart } from "react-icons/io5";
 import { MdRateReview } from "react-icons/md";
 import { useEffect } from "react";
+import { RingSpinner } from "@/components/Loading/RingSpinner";
 export const Dashboard = () => {
   const [role, isLoading] = useRoleCheker();
 
@@ -171,7 +172,7 @@ export const Dashboard = () => {
   return (
     <div>
       {isLoading ? (
-        "Loading......"
+        <RingSpinner />
       ) : (
         <>
           <div className="sticky border shadow-lg top-0 z-50">
