@@ -46,7 +46,7 @@ export const Login = () => {
           className="  bg-cover bg-no-repeat container flex flex-col items-center justify-center min-h-screen px-6 mx-auto"
         >
           <div className="absolute  h-full w-full overflow-hidden bg-fixed bg-black bg-opacity-50"></div>
-          <div className="w-full max-w-md bg-[#b6b5b52f] rounded-lg backdrop-blur-lg px-8 py-5">
+          <div className="w-full m-5 max-w-md bg-[#b6b5b52f] rounded-lg backdrop-blur-lg px-8 py-5">
             <form onSubmit={handleSubmit(onSubmit)} className="">
               <h1 className="mt-3 text-2xl text-white font-semibold text-center capitalize sm:text-3xl">
                 sign In

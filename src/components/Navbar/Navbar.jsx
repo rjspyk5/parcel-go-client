@@ -39,7 +39,7 @@ export const Navbar = () => {
   );
   return (
     <div className="sticky top-0 z-50">
-      <div className="flex  backdrop-blur-xl shadow-md py-[9px] justify-between  border-b">
+      <div className="flex px-[4%] md:px-[10%] backdrop-blur-xl shadow-md py-[9px] justify-between  border-b">
         {/* left side  */}
         <div className="flex  items-center">
           <Sheet open={open} onOpenChange={setOpen}>
@@ -56,7 +56,7 @@ export const Navbar = () => {
             to="/"
             className="flex rounded-md pr-2 hover:bg-accent font-bold text-lg  items-center "
           >
-            <img className="w-10 h-10" src={logo} alt="logo" />
+            <img className="w-8 md:w-10 md:h-10 h-8" src={logo} alt="logo" />
             ParcelGo
           </Link>
         </div>
@@ -74,7 +74,7 @@ export const Navbar = () => {
             </>
           ) : (
             <NavLink to="/login">
-              <Button className="bg-[#f15a25] dark:text-white transion-all hover:bg-[#f1254e] duration-200  hover:shadow-lg">
+              <Button className="bg-[#f15a25]  dark:text-white transion-all hover:bg-[#f1254e] duration-200  hover:shadow-lg">
                 Sign In
               </Button>
             </NavLink>
