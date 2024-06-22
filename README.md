@@ -2,7 +2,7 @@
 
 ## Live Site URL
 
-[Parcel Go Live](http://www.parcelgo-live.com)
+[Parcel Go Live](https://parcel-go-a241e.web.app/)
 
 ## Admin Credentials
 
