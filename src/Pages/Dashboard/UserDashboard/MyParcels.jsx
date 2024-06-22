@@ -54,19 +54,27 @@ export const MyParcels = () => {
   return (
     <>
       <div className="flex flex-col justify-center items-center">
-        <div className="w-full py-12  px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-end mb-3">
-            <select className="border rounded-md  bg-white dark:bg-gray-700 p-2 ">
-              <option value="all">All</option>
-              <option value="pending">Pending</option>
-              <option value="delivered">Delivered</option>
-              <option value="On the way">On the Way</option>
-              <option value="canceled">Canceled</option>
-              <option value="return">Return</option>
-            </select>
+        <div className="w-full py-5 px-4 sm:px-6 lg:px-8">
+          <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-t-lg">
+            <div className="p-6 bg-accent  border-b border-gray-200 dark:border-gray-700">
+              <h1 className="text-3xl font-bold my-3 text-center">My Parcel</h1>
+              <p className="mt-2 text-sm  text-center">
+                View and manage your parcels.
+              </p>
+              <div className="flex  mt-4 justify-end">
+                <select className="border rounded-md  bg-white dark:bg-gray-700 p-2 ">
+                  <option value="all">All</option>
+                  <option value="pending">Pending</option>
+                  <option value="delivered">Delivered</option>
+                  <option value="On the way">On the Way</option>
+                  <option value="canceled">Canceled</option>
+                  <option value="return">Return</option>
+                </select>
+              </div>
+            </div>
           </div>
 
-          <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-lg">
+          <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md ">
             <div className="flex flex-col">
               <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

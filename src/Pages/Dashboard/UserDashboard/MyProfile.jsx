@@ -77,13 +77,16 @@ export const MyProfile = () => {
       {uploadLoading ? "" : loading ? <CustomLoading /> : ""}
 
       <div className=" flex justify-center items-center">
-        <div className="w-full py-8 px-2 sm:px-4 lg:px-6">
+        <div className="w-full py-5 px-2 sm:px-4 lg:px-6">
           <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-lg">
             <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-t-lg">
-              <div className="p-6 bg-orange-500  border-b border-gray-200 dark:border-gray-700">
-                <h1 className="text-3xl font-bold text-white text-center">
+              <div className="p-6 bg-accent  border-b border-gray-200 dark:border-gray-700">
+                <h1 className="text-3xl font-bold my-3 text-center">
                   My Profile
                 </h1>
+                <p className="mt-2 text-sm  text-center">
+                  Update your personal information and preferences.
+                </p>
               </div>
             </div>
             <div className="flex justify-center items-center min-h-[300px] flex-grow p-6 ">

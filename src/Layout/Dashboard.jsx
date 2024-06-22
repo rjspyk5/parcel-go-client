@@ -12,9 +12,9 @@ import { IoBarChart } from "react-icons/io5";
 import { MdRateReview } from "react-icons/md";
 import { useEffect } from "react";
 import { RingSpinner } from "@/components/Loading/RingSpinner";
+
 export const Dashboard = () => {
   const [role, isLoading] = useRoleCheker();
-
   const navigate = useNavigate();
 
   const defaultRoute = () => {
@@ -41,8 +41,8 @@ export const Dashboard = () => {
             to="/dashboard/bookparcel"
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
-                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
             }
           >
             <FaPeopleCarry />{" "}
@@ -54,8 +54,8 @@ export const Dashboard = () => {
             to="/dashboard/myparcel"
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
-                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
             }
           >
             <FaBoxOpen /> <span className="hidden lg:block ">My Parcel </span>
@@ -66,8 +66,8 @@ export const Dashboard = () => {
             to="/dashboard/myprofile"
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
-                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
             }
           >
             <FaUser />
@@ -78,6 +78,7 @@ export const Dashboard = () => {
       </ul>
     </>
   );
+
   const adminMenu = (
     <>
       <ul>
@@ -87,8 +88,8 @@ export const Dashboard = () => {
             end
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
-                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
             }
           >
             <IoBarChart />
@@ -100,8 +101,8 @@ export const Dashboard = () => {
             to="/dashboard/allparcel"
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
-                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
             }
           >
             <FaBoxOpen />
@@ -113,8 +114,8 @@ export const Dashboard = () => {
             to="/dashboard/alluser"
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
-                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
             }
           >
             <FaUsers />
@@ -126,8 +127,8 @@ export const Dashboard = () => {
             to="/dashboard/alldelivery"
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
-                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
             }
           >
             <IoMdBicycle />
@@ -137,6 +138,7 @@ export const Dashboard = () => {
       </ul>
     </>
   );
+
   const deliveryHeroMenu = (
     <>
       <ul>
@@ -145,8 +147,8 @@ export const Dashboard = () => {
             to="/dashboard/mydelivery"
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
-                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
             }
           >
             <FaPeopleCarry />{" "}
@@ -158,8 +160,8 @@ export const Dashboard = () => {
             to="/dashboard/reviews"
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2  h-9 transition-all duration-300 flex items-center font-bold  shadow-sm  bg-[#f15a25]  text-white"
-                : "hover:bg-[#f15b2558] space-x-2  transition-all duration-300  flex items-center  font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
             }
           >
             <MdRateReview />
@@ -169,6 +171,7 @@ export const Dashboard = () => {
       </ul>
     </>
   );
+
   return (
     <div>
       {isLoading ? (
@@ -176,34 +179,34 @@ export const Dashboard = () => {
       ) : (
         <>
           <div className="sticky border shadow-lg top-0 z-50">
-            <div className="flex justify-between bg-accent  backdrop-blur-xl py-[9px]  ">
-              {/* left side  */}
-              <div className="flex   items-center ">
+            <div className="flex justify-between bg-accent backdrop-blur-xl py-[9px]">
+              {/* left side */}
+              <div className="flex items-center">
                 <Link
                   to="/dashboard"
-                  className="flex rounded-md pr-2 hover:bg-accent font-bold text-lg  items-center "
+                  className="flex rounded-md pr-2 hover:bg-accent font-bold text-lg items-center"
                 >
                   <img className="w-10 h-10" src={logo} alt="logo" />
                   Dashboard
                 </Link>
               </div>
               {/* end side */}
-              <div className="flex  gap-2 items-center">
+              <div className="flex gap-2 items-center">
                 <ToogleTheme />
                 <ProfileDropDown />
               </div>
             </div>
           </div>
           <div className="flex">
-            <div className="w-[20%]  border bg-accent min-h-screen shadow-2xl">
+            <div className="fixed top-14 left-0 w-[20%] h-full border bg-accent shadow-2xl">
               {role?.role === "user"
                 ? userMenu
                 : role?.role === "deliveryHero"
                 ? deliveryHeroMenu
                 : adminMenu}
             </div>
-            <div className="overflow-hidden flex-grow w-full">
-              <Outlet></Outlet>
+            <div className="flex-grow ml-[20%] overflow-hidden">
+              <Outlet />
             </div>
           </div>
         </>
