@@ -38,8 +38,8 @@ export const AllParcel = () => {
       <div className="w-full py-5 px-2 sm:px-4 lg:px-6">
         <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-lg">
           <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-t-lg">
-            <div className="p-6  pb-0 bg-accent border-b border-gray-200 dark:border-gray-700">
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white text-center">
+            <div className="md:p-6 p-3  pb-0 bg-accent border-b border-gray-200 dark:border-gray-700">
+              <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white text-center">
                 All Parcel
               </h1>
               <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 text-center">

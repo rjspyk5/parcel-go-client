@@ -66,8 +66,8 @@ export const AllUser = () => {
       <div className="w-full py-5 px-2 sm:px-4 lg:px-6">
         <div className="bg-white  dark:bg-gray-900 overflow-hidden shadow-md rounded-lg">
           <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-t-lg">
-            <div className="p-6 bg-accent border-b border-gray-200 dark:border-gray-700">
-              <h1 className="text-3xl font-bold text-gray-900 dark:text-white text-center">
+            <div className="p-3 md:p-6 bg-accent border-b border-gray-200 dark:border-gray-700">
+              <h1 className="md:text-3xl text-xl font-bold text-gray-900 dark:text-white text-center">
                 All Users
               </h1>
               <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 text-center">
@@ -124,7 +124,7 @@ export const AllUser = () => {
                             <td className="px-1 md:px-3 py-4 text-xs md:text-sm">
                               <button
                                 onClick={() => handleManage(el._id, "admin")}
-                                className="text-white bg-green-500 hover:bg-green-600 px-2 py-1 rounded-lg"
+                                className="text-white bg-green-500 hover:bg-green-600 md:px-2 px-1 py-1 rounded-lg"
                               >
                                 Make Admin
                               </button>
@@ -133,7 +133,7 @@ export const AllUser = () => {
                                 onClick={() =>
                                   handleManage(el._id, "deliveryHero")
                                 }
-                                className="text-white bg-orange-500 hover:bg-orange-600 px-2 py-1 rounded-lg mt-2"
+                                className="text-white bg-orange-500 hover:bg-orange-600 md:px-2 px-1 py-1 rounded-lg mt-2"
                               >
                                 Make DeliveryMan
                               </button>

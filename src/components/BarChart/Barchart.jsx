@@ -27,7 +27,7 @@ export const Barchart = () => {
         text: "Total booking by date",
         align: "center",
         style: {
-          fontSize: "16px",
+          fontSize: "14px",
           color: "#374151",
         },
       },
@@ -37,7 +37,7 @@ export const Barchart = () => {
       xaxis: {
         categories: [],
         title: {
-          text: "Total Booked on that date",
+          text: "Booked",
           style: {
             color: "#374151",
           },

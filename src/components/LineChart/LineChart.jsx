@@ -46,7 +46,7 @@ export const Linechart = () => {
         text: "Booked vs Delivered Parcels",
         align: "center",
         style: {
-          fontSize: "16px",
+          fontSize: "14px",
           color: "#374151",
         },
       },
