@@ -1,6 +1,6 @@
 import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
 import { useQuery } from "@tanstack/react-query";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
 export const Linechart = () => {
@@ -86,34 +86,30 @@ export const Linechart = () => {
     },
   });
 
-  const { data, refetch } = useQuery({
+  const { data } = useQuery({
     queryKey: ["bookingchart"],
     queryFn: async () => {
       const result = await axiosSequre.get("/bookingchart");
+      const categories = result?.data?.map((item) => item._id);
+      const bookedData = result?.data?.map((item) => item.totalBooked);
+      const deliveredData = result?.data?.map((item) => item.totalDelivered);
+      setChartData((prevChartData) => ({
+        ...prevChartData,
+        series: [
+          { ...prevChartData.series[0], data: bookedData },
+          { ...prevChartData.series[1], data: deliveredData },
+        ],
+        options: {
+          ...prevChartData.options,
+          xaxis: {
+            ...prevChartData.options.xaxis,
+            categories: categories,
+          },
+        },
+      }));
       return result.data;
     },
   });
-
-  useEffect(() => {
-    const categories = data?.map((item) => item._id);
-    const bookedData = data?.map((item) => item.totalBooked);
-    const deliveredData = data?.map((item) => item.totalDelivered);
-    setChartData((prevChartData) => ({
-      ...prevChartData,
-      series: [
-        { ...prevChartData.series[0], data: bookedData },
-        { ...prevChartData.series[1], data: deliveredData },
-      ],
-      options: {
-        ...prevChartData.options,
-        xaxis: {
-          ...prevChartData.options.xaxis,
-          categories: categories,
-        },
-      },
-    }));
-  }, [data]);
-
   return (
     <div>
       <ReactApexChart
