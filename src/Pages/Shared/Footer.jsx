@@ -69,8 +69,7 @@ export const Footer = () => {
               </Link>
             </div>
             <p className="mt-4 text-sm text-gray-500">
-              Stay connected with us on social media for the latest updates,
-              book recommendations, and library news.
+              Stay connected with us on social media for the latest updates.
             </p>
           </div>
         </div>
