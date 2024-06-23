@@ -15,10 +15,10 @@ export const Statistics = () => {
           </div>
 
           <div className="p-6 space-y-8">
-            <div className="bg-white dark:bg-gray-800 p-6 shadow rounded-lg">
+            <div className="bg-white  p-6 shadow rounded-lg">
               <Barchart />
             </div>
-            <div className="bg-white dark:bg-gray-800 p-6 shadow rounded-lg">
+            <div className="bg-white  p-6 shadow rounded-lg">
               <Linechart />
             </div>
           </div>

@@ -2,26 +2,36 @@ import { SectionHeading } from "@/components/sectionHeading/SectionHeading";
 import { Banner } from "./Banner";
 import { TopDeliveryHero } from "./TopDeliveryHero/TopDeliveryHero";
 import { FeaturedSection } from "./FeaturedSection/FeaturedSection";
-import { useLoaderData } from "react-router-dom";
+import { Fade } from "react-awesome-reveal";
 
 export const Home = () => {
   return (
     <div>
-      <Banner />
+      <Fade>
+        {" "}
+        <Banner />
+      </Fade>
+
       <div className="px-[6%] md:px-[10%]">
         <div className="py-10">
           <SectionHeading
             heading="Experience Our Features"
             subheading="Real-time updates, secure tracking, and dedicated support make us your top choice. Join our satisfied users today!"
           />
-          <FeaturedSection />
+          <Fade>
+            {" "}
+            <FeaturedSection />
+          </Fade>
         </div>
         <div className="py-10">
           <SectionHeading
             heading="Top Delivery Heroes"
             subheading="Meet our top three delivery experts, ensuring swift and secure parcel delivery with dedication and reliability"
           />
-          <TopDeliveryHero />
+          <Fade>
+            {" "}
+            <TopDeliveryHero />
+          </Fade>
         </div>
       </div>
     </div>
