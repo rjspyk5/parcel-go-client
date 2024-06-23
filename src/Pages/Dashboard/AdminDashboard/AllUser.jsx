@@ -11,16 +11,16 @@ import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 import { RingSpinner } from "@/components/Loading/RingSpinner";
+import { useQuery } from "@tanstack/react-query";
 
 export const AllUser = () => {
   const { userCount } = useLoaderData();
   const axiosSequre = useAxiosSequre();
-  const [user, setUser] = useState([]);
   const [perPageView, setPerPageView] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
   const totalPage = userCount && Math.ceil(userCount / perPageView);
   const pages = [...Array(totalPage).keys()];
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handleManage = async (id, role) => {
     Swal.fire({
@@ -42,6 +42,7 @@ export const AllUser = () => {
         }
       })
       .then((result) => {
+        refetch();
         if (result.data.acknowledged) {
           setLoading(false);
           Swal.fire({
@@ -49,17 +50,21 @@ export const AllUser = () => {
             icon: "success",
           });
         }
+      })
+      .catch(() => {
+        setLoading(false);
       });
   };
 
-  useEffect(() => {
-    axiosSequre
-      .get(`/user?page=${currentPage}&size=${perPageView}`)
-      .then((result) => {
-        setUser(result.data);
-      })
-      .then(() => setLoading(false));
-  }, [currentPage, perPageView, handleManage]);
+  const { data, isLoading, refetch } = useQuery({
+    queryKey: [currentPage, perPageView, handleManage, "userwithpagination"],
+    queryFn: async () => {
+      const result = await axiosSequre.get(
+        `/user?page=${currentPage}&size=${perPageView}`
+      );
+      return result.data;
+    },
+  });
 
   return (
     <div className="flex justify-center items-center">
@@ -76,11 +81,11 @@ export const AllUser = () => {
             </div>
           </div>
 
-          {loading ? (
+          {isLoading || loading ? (
             <RingSpinner />
           ) : (
             <>
-              {user.length > 0 ? (
+              {data?.length > 0 ? (
                 <>
                   <div className="overflow-x-auto ">
                     <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
@@ -104,7 +109,7 @@ export const AllUser = () => {
                         </tr>
                       </thead>
                       <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                        {user.map((el) => (
+                        {data?.map((el) => (
                           <tr
                             key={el._id}
                             className="transition-colors hover:bg-gray-100  dark:hover:bg-gray-800"
@@ -183,9 +188,12 @@ export const AllUser = () => {
                   </Pagination>
                 </>
               ) : (
-                <p className="min-h-96 flex justify-center items-center text-2xl md:text-3xl">
-                  No user found
-                </p>
+                !isLoading &&
+                !loading && (
+                  <p className="min-h-96 flex justify-center items-center text-2xl md:text-3xl">
+                    No user found
+                  </p>
+                )
               )}
             </>
           )}
