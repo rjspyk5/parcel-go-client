@@ -1,5 +1,6 @@
 import { useAuth } from "@/Hooks/useAuth";
 import { useAxiosSequre } from "@/Hooks/useAxiosSequre";
+import { RingSpinner } from "@/components/Loading/RingSpinner";
 import { ModalForReview } from "@/components/ModalForReview/ModalForReview";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
@@ -81,142 +82,145 @@ export const MyParcels = () => {
               </div>
             </div>
           </div>
-
-          <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md ">
-            <div className="flex flex-col">
-              <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                  <div className="overflow-hidden border-b border-gray-200 dark:border-gray-700">
-                    <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                      <thead className="bg-orange-500 text-white">
-                        <tr>
-                          <th
-                            scope="col"
-                            className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
-                          >
-                            Parcel Type
-                          </th>
-                          <th
-                            scope="col"
-                            className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
-                          >
-                            Req. Delivery Date
-                          </th>
-                          <th
-                            scope="col"
-                            className="md:px-6 px-2py-3 text-left text-xs md:text-sm  font-normal tracking-wider"
-                          >
-                            Approx. Delivery Date
-                          </th>
-                          <th
-                            scope="col"
-                            className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
-                          >
-                            Booking Date
-                          </th>
-                          <th
-                            scope="col"
-                            className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
-                          >
-                            Delivery HeroID
-                          </th>
-                          <th
-                            scope="col"
-                            className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
-                          >
-                            Status
-                          </th>
-                          <th
-                            scope="col"
-                            className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
-                          >
-                            Action
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                        {data?.map((el) => (
-                          <tr
-                            key={el._id}
-                            className="transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
-                          >
-                            <td className="md:px-6 px-2 py-4 whitespace-nowrap text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400">
-                              {el.parcleType}
-                            </td>
-                            <td className="md:px-6 px-2 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
-                              {el?.reqDeliveryDate
-                                ? new Date(el.reqDeliveryDate)
-                                    .toISOString()
-                                    .split("T")[0]
-                                : "N/A"}
-                            </td>
-                            <td className="md:px-6 px-2py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
-                              {el.approxDeliveryDate}
-                            </td>
-                            <td className="md:px-6 px-2 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
-                              {el.bookingDate}
-                            </td>
-                            <td className="md:px-6 px-2 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
-                              {el.deliveryHeorId || "Not assigned"}
-                            </td>
-                            <td className="md:px-6 px-2 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
-                              {el.status}
-                            </td>
-                            <td className="md:px-6 px-2 py-4 space-x-1 flex text-xs md:text-sm font-medium">
-                              {el.status === "pending" && (
-                                <>
-                                  <button
-                                    type="button"
-                                    disabled={
-                                      el.status === "pending" ? false : true
-                                    }
-                                    onClick={() =>
-                                      navigate(`/dashboard/update/${el._id}`)
-                                    }
-                                    className="bg-blue-500 w-full hover:bg-blue-600 text-white px-1 py-1 rounded-md"
-                                  >
-                                    Update
-                                  </button>
-                                  <button
-                                    type="button"
-                                    disabled={
-                                      el.status === "pending" ? false : true
-                                    }
-                                    onClick={() =>
-                                      handleCancel(el._id, el.status)
-                                    }
-                                    className="bg-red-500 w-full hover:bg-red-600 text-white px-1 py-1 rounded-md"
-                                  >
-                                    Cancel
-                                  </button>
-                                </>
-                              )}
-                              {el.status === "delivered" && (
-                                <ModalForReview
-                                  devieryHeroId={el.deliveryHeorId}
-                                />
-                              )}
-                              {el.status !== "canceled" && (
-                                <button
-                                  type="button"
-                                  disabled={
-                                    el.status === "pending" ? false : true
-                                  }
-                                  className="bg-green-500 w-full hover:bg-green-600 text-white px-2 py-1 rounded-md"
-                                >
-                                  Pay
-                                </button>
-                              )}
-                            </td>
+          {isLoading ? (
+            <RingSpinner />
+          ) : (
+            <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md ">
+              <div className="flex flex-col">
+                <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                  <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
+                    <div className="overflow-hidden border-b border-gray-200 dark:border-gray-700">
+                      <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                        <thead className="bg-orange-500 text-white">
+                          <tr>
+                            <th
+                              scope="col"
+                              className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
+                            >
+                              Parcel Type
+                            </th>
+                            <th
+                              scope="col"
+                              className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
+                            >
+                              Req. Delivery Date
+                            </th>
+                            <th
+                              scope="col"
+                              className="md:px-6 px-2py-3 text-left text-xs md:text-sm  font-normal tracking-wider"
+                            >
+                              Approx. Delivery Date
+                            </th>
+                            <th
+                              scope="col"
+                              className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
+                            >
+                              Booking Date
+                            </th>
+                            <th
+                              scope="col"
+                              className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
+                            >
+                              Delivery HeroID
+                            </th>
+                            <th
+                              scope="col"
+                              className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
+                            >
+                              Status
+                            </th>
+                            <th
+                              scope="col"
+                              className="md:px-6 px-2 py-3 text-left text-xs md:text-sm font-normal  tracking-wider"
+                            >
+                              Action
+                            </th>
                           </tr>
-                        ))}
-                      </tbody>
-                    </table>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
+                          {data?.map((el) => (
+                            <tr
+                              key={el._id}
+                              className="transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+                            >
+                              <td className="md:px-6 px-2 py-4 whitespace-nowrap text-xs md:text-sm font-medium text-gray-500 dark:text-gray-400">
+                                {el.parcleType}
+                              </td>
+                              <td className="md:px-6 px-2 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                                {el?.reqDeliveryDate
+                                  ? new Date(el.reqDeliveryDate)
+                                      .toISOString()
+                                      .split("T")[0]
+                                  : "N/A"}
+                              </td>
+                              <td className="md:px-6 px-2py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                                {el.approxDeliveryDate}
+                              </td>
+                              <td className="md:px-6 px-2 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                                {el.bookingDate}
+                              </td>
+                              <td className="md:px-6 px-2 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                                {el.deliveryHeorId || "Not assigned"}
+                              </td>
+                              <td className="md:px-6 px-2 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                                {el.status}
+                              </td>
+                              <td className="md:px-6 px-2 py-4 space-x-1 flex text-xs md:text-sm font-medium">
+                                {el.status === "pending" && (
+                                  <>
+                                    <button
+                                      type="button"
+                                      disabled={
+                                        el.status === "pending" ? false : true
+                                      }
+                                      onClick={() =>
+                                        navigate(`/dashboard/update/${el._id}`)
+                                      }
+                                      className="bg-blue-500 w-full hover:bg-blue-600 text-white px-1 py-1 rounded-md"
+                                    >
+                                      Update
+                                    </button>
+                                    <button
+                                      type="button"
+                                      disabled={
+                                        el.status === "pending" ? false : true
+                                      }
+                                      onClick={() =>
+                                        handleCancel(el._id, el.status)
+                                      }
+                                      className="bg-red-500 w-full hover:bg-red-600 text-white px-1 py-1 rounded-md"
+                                    >
+                                      Cancel
+                                    </button>
+                                  </>
+                                )}
+                                {el.status === "delivered" && (
+                                  <ModalForReview
+                                    devieryHeroId={el.deliveryHeorId}
+                                  />
+                                )}
+                                {el.status !== "canceled" && (
+                                  <button
+                                    type="button"
+                                    disabled={
+                                      el.status === "pending" ? false : true
+                                    }
+                                    className="bg-green-500 w-full hover:bg-green-600 text-white px-2 py-1 rounded-md"
+                                  >
+                                    Pay
+                                  </button>
+                                )}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </div>
     </>
