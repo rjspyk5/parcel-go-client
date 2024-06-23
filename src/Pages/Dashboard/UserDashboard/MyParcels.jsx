@@ -84,8 +84,13 @@ export const MyParcels = () => {
                 </div>
               </div>
             </div>
+
             {isLoading ? (
               <RingSpinner />
+            ) : !isLoading && data.lenght < 1 ? (
+              <p className="min-h-96 flex justify-center items-center text-2xl md:text-3xl">
+                No Parcel available
+              </p>
             ) : (
               <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md ">
                 <div className="flex flex-col">

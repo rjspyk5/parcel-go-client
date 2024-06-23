@@ -3,7 +3,6 @@ import { RingSpinner } from "@/components/Loading/RingSpinner";
 import { Fade } from "react-awesome-reveal";
 export const AllDelivery = () => {
   const [alluser, isLoading] = useDeliveryMan();
-
   return (
     <Fade>
       <div className="flex justify-center items-center">
@@ -22,6 +21,10 @@ export const AllDelivery = () => {
 
             {isLoading ? (
               <RingSpinner />
+            ) : !isLoading && alluser.length < 1 ? (
+              <p className="min-h-96 flex justify-center items-center text-2xl md:text-3xl">
+                No DeliveryMan Available
+              </p>
             ) : (
               <div className="overflow-x-auto shadow-xl">
                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
