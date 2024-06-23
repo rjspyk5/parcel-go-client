@@ -48,6 +48,7 @@ export const Routing = createBrowserRouter([
         <Dashboard />
       </PrivateRoute>
     ),
+    errorElement: <ErrorPage />,
     children: [
       // Delivery Hero Routes
       {

@@ -10,12 +10,17 @@ export const MyParcels = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
   const axiosSequre = useAxiosSequre();
+  const [filter, setfilter] = useState("all");
 
   const { data, isLoading, refetch } = useQuery({
-    queryKey: ["myparcel"],
+    queryKey: ["myparcel", filter],
     queryFn: async () => {
       const result = await axiosSequre.get(`/bookings/${user?.email}`);
-      return result.data;
+      if (filter === "all") {
+        return result.data;
+      } else {
+        return result?.data?.filter((el) => el.status === filter);
+      }
     },
   });
 
@@ -62,7 +67,10 @@ export const MyParcels = () => {
                 View and manage your parcels.
               </p>
               <div className="flex  mt-4 justify-end">
-                <select className="border rounded-md  bg-white dark:bg-gray-700 md:p-2 p-1">
+                <select
+                  onChange={(e) => setfilter(e.target.value)}
+                  className="border rounded-md  bg-white dark:bg-gray-700 md:p-2 p-1"
+                >
                   <option value="all">All</option>
                   <option value="pending">Pending</option>
                   <option value="delivered">Delivered</option>
@@ -136,11 +144,11 @@ export const MyParcels = () => {
                               {el.parcleType}
                             </td>
                             <td className="md:px-6 px-2 py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
-                              {
-                                new Date(el?.reqDeliveryDate)
-                                  .toISOString()
-                                  .split("T")[0]
-                              }
+                              {el?.reqDeliveryDate
+                                ? new Date(el.reqDeliveryDate)
+                                    .toISOString()
+                                    .split("T")[0]
+                                : "N/A"}
                             </td>
                             <td className="md:px-6 px-2py-4 whitespace-nowrap text-xs md:text-sm text-gray-500 dark:text-gray-400">
                               {el.approxDeliveryDate}
