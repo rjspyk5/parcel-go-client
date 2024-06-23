@@ -193,7 +193,7 @@ export const Dashboard = () => {
               {/* left side */}
               <div className="flex items-center">
                 <Link
-                  to="/dashboard"
+                  to={defaultRoute()}
                   className="flex rounded-md pr-2 hover:bg-accent font-bold md:text-lg text-base items-center"
                 >
                   <img className="w-10 h-10" src={logo} alt="logo" />
