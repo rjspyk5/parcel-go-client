@@ -1,5 +1,12 @@
 import { useRoleCheker } from "@/Hooks/useRoleCheker";
-import { NavLink, Outlet, Link, useNavigate } from "react-router-dom";
+import {
+  NavLink,
+  Outlet,
+  Link,
+  useNavigate,
+  useParams,
+  useLocation,
+} from "react-router-dom";
 import logo from "../assets/image/logo.png";
 import { ProfileDropDown } from "@/components/ProfileDropDown/ProfileDropDown";
 import { ToogleTheme } from "@/components/Theme/ToogleTheme";
@@ -16,6 +23,7 @@ import { RingSpinner } from "@/components/Loading/RingSpinner";
 export const Dashboard = () => {
   const [role, isLoading] = useRoleCheker();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
 
   const defaultRoute = () => {
     if (role?.role === "admin") {
@@ -29,7 +37,9 @@ export const Dashboard = () => {
 
   useEffect(() => {
     if (!isLoading && role) {
-      navigate(defaultRoute());
+      if (pathname === "/dashboard") {
+        navigate(defaultRoute(), { replace: true });
+      }
     }
   }, [isLoading, role]);
 
