@@ -22,13 +22,13 @@ export const Login = () => {
   } = useForm();
   const onSubmit = async (data) => {
     login(data.email, data.pass)
+      .then(() => (state ? navigate(state) : navigate("/")))
       .then(() => {
         Swal.fire({
           icon: "success",
           title: "Successfully login",
           timer: 2000,
         });
-        state ? navigate(state) : navigate("/");
       })
       .catch((er) => {
         Swal.fire({

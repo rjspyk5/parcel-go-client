@@ -60,15 +60,13 @@ export const Registration = () => {
           number: data.number,
         });
       })
+      .then(() => logOut())
       .then(() => {
-        Swal.fire({
+        return Swal.fire({
           icon: "success",
           title: "Registration successful,now you can login",
           timer: 2000,
         });
-      })
-      .then(() => {
-        return logOut();
       })
       .then(() => navigate("/login"))
       .catch((er) => {

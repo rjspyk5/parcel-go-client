@@ -8,6 +8,7 @@ export const GoogleLogin = ({ name }) => {
   const axiosPublic = useAxiosPublic();
   const { state } = useLocation();
   const { googleLogin } = useAuth();
+
   const handleLogin = () => {
     googleLogin()
       .then((res) => {
@@ -18,16 +19,16 @@ export const GoogleLogin = ({ name }) => {
           image: res?.user?.photoURL,
           number: res?.user?.phoneNumber,
         };
-        return axiosPublic.post("/user", data);
+        return data;
       })
+      .then((data) => axiosPublic.post("/user", data))
+      .then(() => (state ? navigate(state) : navigate("/")))
       .then(() => {
-        state ? navigate(state) : navigate("/");
         Swal.fire({
           icon: "success",
           title: "Successfully Login",
         });
       })
-
       .catch((er) =>
         Swal.fire({
           icon: "error",

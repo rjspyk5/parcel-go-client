@@ -46,14 +46,12 @@ export const MyProfile = () => {
         setloading(true);
       })
       .then(() => {
-        axiosPublic.patch(`/userprofile/${user?.email}`, { image: data.image });
+        return axiosPublic.patch(`/${user?.email}`, {
+          image: data.image,
+        });
       })
-      .then(() => {
-        refetch();
-      })
-      .then(() => {
-        setloading(false);
-      })
+      .then(() => refetch())
+      .then(() => setloading(false))
       .then(() => {
         reset();
         setprofilePhotoName("Upload Photo");
@@ -72,7 +70,7 @@ export const MyProfile = () => {
   return (
     <div className="relative">
       {uploadLoading && <UploadSpinner />}
-      {uploadLoading ? "" : loading ? <CustomLoading /> : ""}
+      {uploadLoading ? "" : loading ? <CustomLoading text="Saving.." /> : ""}
 
       <div className=" flex justify-center items-center">
         <div className="w-full py-5 px-2 sm:px-4 lg:px-6">
