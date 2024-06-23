@@ -2,8 +2,19 @@ import { ReactCount } from "@/components/ReactCount/ReactCount";
 import door from "../../../assets/image/icon/door.png";
 import fast from "../../../assets/image/icon/fast.png";
 import sequre from "../../../assets/image/icon/sequre.png";
+import { useQuery } from "@tanstack/react-query";
+import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
 
-export const FeaturedSection = ({ count }) => {
+export const FeaturedSection = () => {
+  const axiosPublic = useAxiosPublic();
+
+  const { data: count, isLoading } = useQuery({
+    queryKey: ["fetauredsectionstatistics"],
+    queryFn: async () => {
+      const result = await axiosPublic.get("/countdelivery");
+      return result.data;
+    },
+  });
   return (
     <div className="grid  grid-cols-1 md:grid-cols-2 gap-14 lg:grid-cols-3">
       <div className="border flex flex-col justify-center gap-3 items-center shadow-lg backdrop-blur-md rounded-md p-10 text-center">
@@ -14,7 +25,7 @@ export const FeaturedSection = ({ count }) => {
         </h1>
         <div className="flex text-base md:text-lg  font-bold gap-2 items-center">
           Successfully delivered{" "}
-          <ReactCount endCount={count.totalDelivered} refName="counter" />
+          <ReactCount endCount={count?.totalDelivered} refName="counter" />
         </div>
       </div>
       <div className="border flex flex-col justify-center gap-3 items-center shadow-lg backdrop-blur-md rounded-md p-10 text-center">
@@ -27,7 +38,7 @@ export const FeaturedSection = ({ count }) => {
 
         <div className="flex text-base md:text-lg  font-bold gap-2 items-center">
           Total Booked
-          <ReactCount endCount={count.totalBooked} refName="counter2" />
+          <ReactCount endCount={count?.totalBooked} refName="counter2" />
         </div>
       </div>
       <div className="border flex flex-col justify-center gap-3 items-center shadow-lg backdrop-blur-md rounded-md p-10 text-center">
@@ -40,7 +51,7 @@ export const FeaturedSection = ({ count }) => {
 
         <div className="flex text-base md:text-lg font-bold gap-2 items-center">
           Total User
-          <ReactCount endCount={count.totalUser} refName="counter3" />
+          <ReactCount endCount={count?.totalUser} refName="counter3" />
         </div>
       </div>
     </div>

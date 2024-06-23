@@ -29,7 +29,6 @@ export const Routing = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
-        loader: () => axios("https://parcelgo.vercel.app/countdelivery"),
       },
       {
         path: "/login",
