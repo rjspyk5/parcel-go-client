@@ -19,6 +19,7 @@ import { MyParcels } from "@/Pages/Dashboard/UserDashboard/MyParcels";
 import { MyProfile } from "@/Pages/Dashboard/UserDashboard/MyProfile";
 import { UpdateParcel } from "@/Pages/Dashboard/UserDashboard/UpdateParcel";
 import axios from "axios";
+import { Payment } from "@/Pages/Dashboard/UserDashboard/Payment/Payment";
 
 export const Routing = createBrowserRouter([
   {
@@ -113,6 +114,10 @@ export const Routing = createBrowserRouter([
       {
         path: "myprofile",
         element: <MyProfile />,
+      },
+      {
+        path: "payment",
+        element: <Payment />,
       },
       {
         path: "update/:id",

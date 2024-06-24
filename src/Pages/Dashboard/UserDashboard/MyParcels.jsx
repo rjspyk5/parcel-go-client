@@ -13,7 +13,6 @@ export const MyParcels = () => {
   const { user } = useAuth();
   const axiosSequre = useAxiosSequre();
   const [filter, setfilter] = useState("all");
-
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["myparcel", filter],
     queryFn: async () => {
@@ -55,7 +54,6 @@ export const MyParcels = () => {
         });
     }
   };
-
   return (
     <>
       <Fade>
@@ -210,10 +208,10 @@ export const MyParcels = () => {
                                   )}
                                   {el.status !== "canceled" && (
                                     <button
-                                      type="button"
-                                      disabled={
-                                        el.status === "pending" ? false : true
+                                      onClick={() =>
+                                        navigate("/dashboard/payment")
                                       }
+                                      type="button"
                                       className="bg-green-500 w-full hover:bg-green-600 text-white px-2 py-1 rounded-md"
                                     >
                                       Pay
