@@ -25,6 +25,18 @@ export const Navbar = () => {
       >
         Home
       </NavLink>
+
+      <NavLink
+        to="/bookparcel"
+        className={({ isActive }) =>
+          isActive
+            ? "border px-2 h-9 transition-all duration-300 flex items-center font-bold md:rounded-md shadow-sm  bg-[#f15a25]  text-white"
+            : "hover:bg-accent transition-all duration-300  flex items-center  font-bold h-9 px-2  md:rounded-md"
+        }
+      >
+        Book Parcel
+      </NavLink>
+
       <NavLink
         to="/dashboard"
         className={({ isActive }) =>
@@ -70,7 +82,6 @@ export const Navbar = () => {
             <>
               {" "}
               <ProfileDropDown />
-              <FaBell />
             </>
           ) : (
             <NavLink to="/login">

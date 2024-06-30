@@ -39,6 +39,10 @@ export const Routing = createBrowserRouter([
         path: "/reg",
         element: <Registration />,
       },
+      {
+        path: "/bookparcel",
+        element: <BookParcels />,
+      },
     ],
   },
   {
