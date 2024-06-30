@@ -4,7 +4,6 @@ import {
   Outlet,
   Link,
   useNavigate,
-  useParams,
   useLocation,
 } from "react-router-dom";
 import logo from "../assets/image/logo.png";
@@ -222,7 +221,7 @@ export const Dashboard = () => {
                 ? deliveryHeroMenu
                 : adminMenu}
             </div>
-            <div className="flex-grow ml-[20%] overflow-hidden">
+            <div className="flex-grow ml-[20%] min-h-screen overflow-hidden">
               <Outlet />
             </div>
           </div>

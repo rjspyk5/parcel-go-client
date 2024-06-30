@@ -17,7 +17,6 @@ export const GetInTouch = () => {
         <div className="relative z-10">
           <Maps />
         </div>
-
         <div className=" flex justify-center items-center rounded-lg ">
           <ContactForm />
         </div>
