@@ -21,14 +21,14 @@
 - Users can book and manage parcels.
 - Delivery men can view and update assigned deliveries.
 - Admins can manage parcels, users, and deliverymen.
-- Secure login with email/password and Google OAuth.
+- Secure login with email/password and Firebase.
 
 ## Technology Stack
 
-- **Frontend:** React.js, Tailwind CSS
+- **Frontend:** React.js, Tailwind CSS,Shadcn
 - **Backend:** Node.js, Express.js
 - **Database:** MongoDB
-- **Authentication:** JWT, Google OAuth
+- **Authentication:** JWT, Firebase
 - **Hosting:** Firebase
 
 ## How to Run the Project
@@ -61,9 +61,13 @@
    VITE_MESSAGINGSENDERID=
    VITE_APPID=
 -For the .env file format and details, please contact [rjspyk5@gmail.com]
+
 4. **Run the development server::**
    ```bash
    npm run dev
+
+   
+5. **Download the server from the provided GitHub repository and follow its setup instructions**
 
    
 
