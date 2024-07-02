@@ -2,11 +2,13 @@
 
 ## Overview
 
-ParcelGo is a comprehensive web platform designed for efficient parcel delivery management. Users can book parcels, track their status, and communicate with delivery personnel. The platform ensures seamless handling of deliveries, cancellations, and modifications, providing a reliable and user-friendly experience for both senders and recipients. With features to manage user profiles and delivery personnel, ParcelGo is your go-to solution for all your parcel delivery needs.
+- ParcelGo is a platform for seamless parcel delivery management.
+- Users can book, track, and manage parcels.
+- Admins and delivery personnel handle logistics and ensure timely deliveries.
 
 ## Live Site URL
 
-[Parcel Go Live](https://parcel-go-a241e.web.app/)
+- [Parcel Go Live](https://parcel-go-a241e.web.app/)
 
 ## Admin Credentials
 
@@ -15,19 +17,11 @@ ParcelGo is a comprehensive web platform designed for efficient parcel delivery 
 
 ## Key Features
 
-- Responsive Navbar with dynamic user options and a profile picture dropdown.
-- Role-based dashboards for Users, Delivery Men, and Admins with specific menu options and pages.
-- Admins can view and manage all parcels, users, and deliverymen from a comprehensive dashboard.
-- Admins can assign delivery men to parcels and update parcel statuses.
-- Users can book new parcels by filling out a detailed form.
-- Users can view, update, cancel, and filter their bookings based on status.
-- Users can leave reviews for delivery men after parcel delivery.
-- Delivery men can view their assigned deliveries with detailed information.
-- Delivery men can mark parcels as delivered or canceled.
-- Delivery men can view and manage user reviews of their delivery performance.
-- Interactive statistics for admins showing app usage data, bookings by date, and delivery status comparisons.
-- Secure login and registration system with email/password and Google OAuth options.
-- JWT-based authentication for secure API endpoints.
+- Role-based dashboards for Users, Delivery Men, and Admins.
+- Users can book and manage parcels.
+- Delivery men can view and update assigned deliveries.
+- Admins can manage parcels, users, and deliverymen.
+- Secure login with email/password and Google OAuth.
 
 ## Technology Stack
 
@@ -41,14 +35,35 @@ ParcelGo is a comprehensive web platform designed for efficient parcel delivery 
 
 ### Prerequisites
 
-- Node.js (>=14.x)
-- npm or yarn
+- Node.js 
+- npm 
 - MongoDB
 
 ### Installation
 
-1. Clone the repository:
+1. **Clone the repository:**
 
    ```bash
    git clone https://github.com/yourusername/parcel-go.git
    cd parcel-go
+
+2. **Install dependencies::**
+
+   ```bash
+   npm install
+   
+3. **Create an .env file in the root directory and add necessary environment variables:**
+   ```bash
+   VITE_APIKEY=
+   VITE_AUTHDOMAIN=
+   VITE_PROJECTID=
+   VITE_STORAGEBUCKET=
+   VITE_MESSAGINGSENDERID=
+   VITE_APPID=
+-For the .env file format and details, please contact [rjspyk5@gmail.com]
+4. **Run the development server::**
+   ```bash
+   npm run dev
+
+   
+
