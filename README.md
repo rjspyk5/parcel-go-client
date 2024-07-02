@@ -1,5 +1,9 @@
 # Parcel Go
 
+## Overview
+
+ParcelGo is a comprehensive web platform designed for efficient parcel delivery management. Users can book parcels, track their status, and communicate with delivery personnel. The platform ensures seamless handling of deliveries, cancellations, and modifications, providing a reliable and user-friendly experience for both senders and recipients. With features to manage user profiles and delivery personnel, ParcelGo is your go-to solution for all your parcel delivery needs.
+
 ## Live Site URL
 
 [Parcel Go Live](https://parcel-go-a241e.web.app/)
@@ -24,3 +28,27 @@
 - Interactive statistics for admins showing app usage data, bookings by date, and delivery status comparisons.
 - Secure login and registration system with email/password and Google OAuth options.
 - JWT-based authentication for secure API endpoints.
+
+## Technology Stack
+
+- **Frontend:** React.js, Tailwind CSS
+- **Backend:** Node.js, Express.js
+- **Database:** MongoDB
+- **Authentication:** JWT, Google OAuth
+- **Hosting:** Firebase
+
+## How to Run the Project
+
+### Prerequisites
+
+- Node.js (>=14.x)
+- npm or yarn
+- MongoDB
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/parcel-go.git
+   cd parcel-go
