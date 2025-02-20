@@ -37,17 +37,17 @@ export const AllParcel = () => {
   return (
     <Fade>
       <div className="flex justify-center items-center">
-        <div className="w-full py-5 px-2 sm:px-4 lg:px-6">
+        <div className="w-full py-4 px-2 sm:px-4 lg:px-5">
           <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-lg">
             <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-t-lg">
-              <div className="md:p-6 p-3  pb-0 bg-accent border-b border-gray-200 dark:border-gray-700">
+              <div className="md:p-4 p-3  pb-0 bg-accent border-b border-gray-200 dark:border-gray-700">
                 <h1 className="md:text-3xl text-2xl font-bold text-gray-900 dark:text-white text-center">
                   All Parcel
                 </h1>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-400 text-center">
                   Manage and track all your parcels in one place.
                 </p>
-                <div className="my-5 pt-4">
+                <div className="my-3 pt-2">
                   <form
                     className="flex md:justify-end flex-col md:flex-row gap-4 md:items-center"
                     onSubmit={handleSearch}
@@ -56,7 +56,7 @@ export const AllParcel = () => {
                       <label htmlFor="startDate">From</label>
                       <input
                         required
-                        className="px-2 w-full py-1 border text-black font-semibold rounded-md"
+                        className="px-2 w-full py-1 border bg-base-100 font-semibold rounded-md"
                         type="date"
                         name="startDate"
                         id="startDate"
@@ -66,7 +66,7 @@ export const AllParcel = () => {
                       <label htmlFor="endDate">To </label>
                       <input
                         required
-                        className="px-2 w-full text-black font-semibold py-1 border rounded-md"
+                        className="px-2 w-full bg-base-100  font-semibold py-1 border rounded-md"
                         type="date"
                         name="endDate"
                         id="endDate"
@@ -90,25 +90,25 @@ export const AllParcel = () => {
                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                   <thead className="bg-orange-500">
                     <tr>
-                      <th className="md:px-3 px-1 py-3.5 text-xs md:text-sm font-normal text-left text-white">
+                      <th className="whitespace-nowrap md:px-3 px-1 py-3.5 text-xs md:text-sm font-normal text-left text-white">
                         User's Name
                       </th>
-                      <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
+                      <th className="whitespace-nowrap px-2 md:px-3 py-3.5  md:text-sm font-normal text-left text-white">
                         Mobile
                       </th>
-                      <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
+                      <th className="whitespace-nowrap px-2 md:px-3 py-3.5  md:text-sm font-normal text-left text-white">
                         Booking Date
                       </th>
-                      <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
+                      <th className="whitespace-nowrap px-2 md:px-3 py-3.5  md:text-sm font-normal text-left text-white">
                         Req. Delivery Date
                       </th>
-                      <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
+                      <th className="whitespace-nowrap px-2 md:px-3 py-3.5  md:text-sm font-normal text-left text-white">
                         Cost
                       </th>
-                      <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
+                      <th className="whitespace-nowrap px-2 md:px-3 py-3.5  md:text-sm font-normal text-left text-white">
                         Status
                       </th>
-                      <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
+                      <th className="whitespace-nowrap px-2 md:px-3 py-3.5  md:text-sm font-normal text-left text-white">
                         Action
                       </th>
                     </tr>
@@ -123,26 +123,26 @@ export const AllParcel = () => {
                           <td className="md:px-3 px-1 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                             {el.senderName}
                           </td>
-                          <td className="px-1 md:px-3 py-4 text-xs md:text-sm font-medium text-gray-700 dark:text-gray-300">
+                          <td className="px-2 md:px-3 py-4 md:text-sm font-medium text-gray-700 dark:text-gray-300">
                             {el.senderNumber}
                           </td>
-                          <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300">
+                          <td className="px-2 md:px-3 py-4 md:text-sm text-gray-500 dark:text-gray-300">
                             {el.bookingDate}
                           </td>
-                          <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300">
+                          <td className="px-2 md:px-3 py-4 md:text-sm text-gray-500 dark:text-gray-300">
                             {el?.reqDeliveryDate
                               ? new Date(el.reqDeliveryDate)
                                   .toISOString()
                                   .split("T")[0]
                               : "N/A"}
                           </td>
-                          <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300">
+                          <td className="px-2 md:px-3 py-4 md:text-sm text-gray-500 dark:text-gray-300">
                             {el.price}
                           </td>
-                          <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300">
+                          <td className="px-2 md:px-3 py-4 md:text-sm text-gray-500 dark:text-gray-300">
                             {el.status}
                           </td>
-                          <td className="px-1 md:px-3 py-4 text-xs md:text-sm">
+                          <td className="px-2 md:px-3 py-4 md:text-sm">
                             <button
                               className={`  text-white px-2 py-1 rounded-md ${
                                 el.status === "canceled" ||
