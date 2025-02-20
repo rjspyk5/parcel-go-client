@@ -70,10 +70,10 @@ export const AllUser = () => {
   return (
     <Fade>
       <div className="flex justify-center items-center">
-        <div className="w-full py-5 px-2 sm:px-4 lg:px-6">
+        <div className="w-full py-4 px-2 sm:px-4 lg:px-6">
           <div className="bg-white  dark:bg-gray-900 overflow-hidden shadow-md rounded-lg">
             <div className="bg-white dark:bg-gray-900 overflow-hidden shadow-md rounded-t-lg">
-              <div className="p-3 md:p-6 bg-accent border-b border-gray-200 dark:border-gray-700">
+              <div className="p-3 md:p-5 bg-accent border-b border-gray-200 dark:border-gray-700">
                 <h1 className="md:text-3xl text-xl font-bold text-gray-900 dark:text-white text-center">
                   All Users
                 </h1>
@@ -93,19 +93,19 @@ export const AllUser = () => {
                       <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                         <thead className="bg-orange-500">
                           <tr>
-                            <th className="md:px-3 px-1 py-3.5 text-xs md:text-sm font-normal text-left text-white">
+                            <th className="md:px-3 whitespace-nowrap px-1 py-3.5 text-xs md:text-sm font-normal text-left text-white">
                               User's Name
                             </th>
-                            <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
+                            <th className="px-1 whitespace-nowrap md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
                               Phone Number
                             </th>
-                            <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
+                            <th className="px-1 whitespace-nowrap md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
                               Number Of Parcel Booked
                             </th>
-                            <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
+                            <th className="px-1 whitespace-nowrap md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
                               Spent Amount
                             </th>
-                            <th className="px-1 md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
+                            <th className="px-1 whitespace-nowrap md:px-3 py-3.5 text-xs md:text-sm font-normal text-left text-white">
                               Action
                             </th>
                           </tr>
@@ -116,22 +116,22 @@ export const AllUser = () => {
                               key={el._id}
                               className="transition-colors hover:bg-gray-100  dark:hover:bg-gray-800"
                             >
-                              <td className="md:px-3 px-1 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                              <td className="md:px-3 px-1 py-2 text-xs md:text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
                                 {el.name}
                               </td>
-                              <td className="px-1 md:px-3 py-4 text-xs md:text-sm font-medium text-gray-700 dark:text-gray-300">
+                              <td className="px-1 md:px-3 py-2 text-xs md:text-sm font-medium text-gray-700 dark:text-gray-300">
                                 {el.number}
                               </td>
-                              <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300">
+                              <td className="px-1 md:px-3 py-2 text-xs md:text-sm text-gray-500 dark:text-gray-300">
                                 {el.numberOfParcelBooked}
                               </td>
-                              <td className="px-1 md:px-3 py-4 text-xs md:text-sm text-gray-500 dark:text-gray-300">
+                              <td className="px-1 md:px-3 py-2 text-xs md:text-sm text-gray-500 dark:text-gray-300">
                                 {el.totalSpendMoney}
                               </td>
-                              <td className="px-1 md:px-3 py-4 text-xs md:text-sm">
+                              <td className="px-1 md:px-3 py-2 text-xs md:text-sm flex  gap-2">
                                 <button
                                   onClick={() => handleManage(el._id, "admin")}
-                                  className="text-white bg-green-500 hover:bg-green-600 md:px-2 px-1 py-1 rounded-lg"
+                                  className="text-white whitespace-nowrap bg-green-500 hover:bg-green-600 md:px-2 px-1 py-2 rounded-lg"
                                 >
                                   Make Admin
                                 </button>
@@ -140,7 +140,7 @@ export const AllUser = () => {
                                   onClick={() =>
                                     handleManage(el._id, "deliveryHero")
                                   }
-                                  className="text-white bg-orange-500 hover:bg-orange-600 md:px-2 px-1 py-1 rounded-lg mt-2"
+                                  className="text-white whitespace-nowrap bg-orange-500 hover:bg-orange-600 md:px-2 px-1 py-2 rounded-lg"
                                 >
                                   Make DeliveryMan
                                 </button>

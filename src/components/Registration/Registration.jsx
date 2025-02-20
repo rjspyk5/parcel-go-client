@@ -7,7 +7,7 @@ import { GoogleLogin } from "../GoogleLogin/GoogleLogin";
 import { useAuth } from "@/Hooks/useAuth";
 import Swal from "sweetalert2";
 import { useAxiosPublic } from "@/Hooks/useAxiosPublic";
-import { number } from "yup";
+
 
 export const Registration = () => {
   const axiosPublic = useAxiosPublic();
