@@ -75,7 +75,7 @@ export const AllParcel = () => {
 
                     <input
                       type="submit"
-                      className="bg-orange-600 px-3 py-[6px] text-white rounded-md text-center"
+                      className="bg-orange-600 px-3 py-2 text-white rounded-md text-center"
                       value="Search"
                     />
                   </form>

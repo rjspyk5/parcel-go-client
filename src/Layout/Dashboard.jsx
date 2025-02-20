@@ -16,14 +16,18 @@ import { FaUsers } from "react-icons/fa";
 import { IoMdBicycle } from "react-icons/io";
 import { IoBarChart } from "react-icons/io5";
 import { MdRateReview } from "react-icons/md";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { RingSpinner } from "@/components/Loading/RingSpinner";
 import { FullRingSpinner } from "@/components/Loading/FullRingSpinner";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
+import { Button } from "react-day-picker";
 
 export const Dashboard = () => {
   const [role, isLoading] = useRoleCheker();
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  const [open, setOpen] = useState(false);
 
   const defaultRoute = () => {
     if (role?.role === "admin") {
@@ -51,12 +55,11 @@ export const Dashboard = () => {
             to="/dashboard/bookparcel"
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
-                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 lg:px-4"
             }
           >
-            <FaPeopleCarry />{" "}
-            <span className="hidden lg:block ">Book Parcel</span>
+            <FaPeopleCarry /> Book Parcel
           </NavLink>
         </li>
         <li>
@@ -64,11 +67,11 @@ export const Dashboard = () => {
             to="/dashboard/myparcel"
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
-                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 lg:px-4"
             }
           >
-            <FaBoxOpen /> <span className="hidden lg:block ">My Parcel </span>
+            <FaBoxOpen /> My Parcel
           </NavLink>
         </li>
         <li>
@@ -76,12 +79,11 @@ export const Dashboard = () => {
             to="/dashboard/myprofile"
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
-                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 lg:px-4"
             }
           >
-            <FaUser />
-            <span className="hidden lg:block ">My Profile</span>
+            <FaUser /> My Profile
           </NavLink>
         </li>
         <hr />
@@ -98,12 +100,11 @@ export const Dashboard = () => {
             end
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
-                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 lg:px-4"
             }
           >
-            <IoBarChart />
-            <span className="hidden lg:block "> Statistics </span>
+            <IoBarChart /> Statistics
           </NavLink>
         </li>
         <li>
@@ -111,12 +112,11 @@ export const Dashboard = () => {
             to="/dashboard/allparcel"
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
-                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 lg:px-4"
             }
           >
-            <FaBoxOpen />
-            <span className="hidden lg:block ">All Parcels </span>
+            <FaBoxOpen /> All Parcels
           </NavLink>
         </li>
         <li>
@@ -124,12 +124,11 @@ export const Dashboard = () => {
             to="/dashboard/alluser"
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
-                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 lg:px-4"
             }
           >
-            <FaUsers />
-            <span className="hidden lg:block ">All Users </span>
+            <FaUsers /> All Users
           </NavLink>
         </li>
         <li>
@@ -137,12 +136,11 @@ export const Dashboard = () => {
             to="/dashboard/alldelivery"
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
-                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 lg:px-4"
             }
           >
-            <IoMdBicycle />
-            <span className="hidden lg:block ">All Delivery Men</span>
+            <IoMdBicycle /> All Delivery Men
           </NavLink>
         </li>
       </ul>
@@ -157,12 +155,11 @@ export const Dashboard = () => {
             to="/dashboard/mydelivery"
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
-                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 lg:px-4"
             }
           >
-            <FaPeopleCarry />{" "}
-            <span className="hidden lg:block ">My Delivery List</span>
+            <FaPeopleCarry /> My Delivery List
           </NavLink>
         </li>
         <li>
@@ -170,12 +167,11 @@ export const Dashboard = () => {
             to="/dashboard/reviews"
             className={({ isActive }) =>
               isActive
-                ? "border justify-center lg:justify-normal lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
-                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 justify-center lg:justify-normal lg:px-4"
+                ? "border lg:px-4 space-x-2 h-9 transition-all duration-300 flex items-center font-bold shadow-sm bg-[#f15a25] text-white"
+                : "hover:bg-[#f15b2558] space-x-2 transition-all duration-300 flex items-center font-bold h-9 lg:px-4"
             }
           >
-            <MdRateReview />
-            <span className="hidden lg:block ">My Reviews </span>
+            <MdRateReview /> My Reviews
           </NavLink>
         </li>
       </ul>
@@ -192,6 +188,20 @@ export const Dashboard = () => {
             <div className="flex justify-between pr-[2%] md:pr-[2%] bg-accent backdrop-blur-xl py-[9px]">
               {/* left side */}
               <div className="flex items-center">
+                <Sheet open={open} onOpenChange={setOpen}>
+                  <SheetTrigger asChild>
+                    <HamburgerMenuIcon className="md:hidden" />
+                  </SheetTrigger>
+                  <SheetContent className="p-0" side="left">
+                    <div className="flex flex-col mt-12 *:w-full px-4">
+                      {role?.role === "user"
+                        ? userMenu
+                        : role?.role === "deliveryHero"
+                        ? deliveryHeroMenu
+                        : adminMenu}
+                    </div>
+                  </SheetContent>
+                </Sheet>
                 <Link
                   to={defaultRoute()}
                   className="flex rounded-md pr-2 hover:bg-accent font-bold md:text-lg text-base items-center"
@@ -215,14 +225,15 @@ export const Dashboard = () => {
             </div>
           </div>
           <div className="flex">
-            <div className="fixed top-14 left-0 w-[20%] h-full border bg-accent shadow-2xl">
+            <div className="fixed top-14 left-0 hidden md:block  w-[20%] h-full border bg-accent shadow-2xl">
               {role?.role === "user"
                 ? userMenu
                 : role?.role === "deliveryHero"
                 ? deliveryHeroMenu
                 : adminMenu}
             </div>
-            <div className="flex-grow ml-[20%] min-h-screen overflow-hidden">
+
+            <div className="flex-grow md:ml-[20%] min-h-screen overflow-hidden">
               <Outlet />
             </div>
           </div>
