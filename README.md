@@ -2,12 +2,11 @@
 
 ## Overview
 
-- ParcelGo is a platform for seamless parcel delivery management.
+- ParcelGo is a platform for parcel delivery management.
 - Users can book, track, and manage parcels.
 - Admins and delivery personnel handle logistics and ensure timely deliveries.
 
-## Live Site URL
-
+## Live Link
 - [Parcel Go Live](https://parcel-go-a241e.web.app/)
 
 ## Admin Credentials
